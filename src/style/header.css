@@ -1,0 +1,49 @@
+/************************** HEADER ******************/
+
+nav {
+    background-color: rgba(240, 240, 240, 0.546);
+}
+
+.navbar {
+    --bs-navbar-padding-y: 0rem;
+    --bs-navbar-padding: 0rem;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.borde {
+    width: 100px;
+    height: auto;
+    text-align: center;
+
+}
+
+.purple {
+    background-color: rgb(82, 35, 119);
+}
+
+.azul {
+    background-color: rgb(86, 155, 206);
+}
+
+.verde {
+    background-color: rgb(86, 206, 141);
+}
+
+.amarillo {
+    background-color: rgb(203, 206, 86);
+}
+
+.rojito {
+    background-color: rgb(206, 144, 86);
+}
+
+.blanco {
+    background-color: rgb(240, 240, 240);
+}
+
+/* FIN HEADER */
