@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Container, Col, Row } from 'react-bootstrap';
 
 import styles from "../style/Background.module.css"
 import '../style/Home.css';
 
-import Header from '../components/Header';
 import Carousel from '../components/Carousel';
 import { Link } from 'react-router-dom';
 
@@ -22,13 +22,15 @@ const Home = () => {
     }, [])
     return (
         <>
-            <div className="container1">
-                <h1 className="display-1 titulo">ReelKeeper</h1>
-            </div>
-
-            <Link to="movies"><button className="btn btn-dark centerbutton">MOVIES</button></Link>
-            <Link to="login"><button className="btn btn-dark loginButton">LOGIN</button></Link>
-
+            <Container>
+                <Row className="justify-content-md-center">
+                    <h1 className="titulo">ReelKeeper</h1>
+                </Row>
+                <Row className="justify-content-md-center m-5">
+                    <Link to="movies"><Button className="mr-5" variant="dark">MOVIES</Button></Link>
+                    <Link to="login"><Button className="" variant="dark">LOGIN</Button></Link>
+                </Row>
+            </Container>
             {/* <Carousel/> */}
         </>
     )

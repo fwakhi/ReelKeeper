@@ -27,17 +27,6 @@ code {
     width: fit-content;
 }
 
-.loginButton {
-    position: absolute;
-    top: auto;
-    left: 50%;
-    right: 10%;
-    bottom: 40%;
-    width: fit-content;
-    background-color: #522377;
-}
-
-
 .movie-app>.row {
     /* overflow-x: auto; */
     flex-wrap: wrap;
@@ -71,11 +60,7 @@ code {
 
 }
 
-h1,
-h2,
-h3,
-a,
-p {
+* {
     font-family: 'JetBrains Mono';
 }
 

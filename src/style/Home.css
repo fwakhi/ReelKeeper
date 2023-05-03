@@ -1,4 +1,5 @@
 .titulo {
+    font-size: 70pt;
     text-align: center;
     padding-top: 200px;
     background: -webkit-linear-gradient(550deg, #424242, #8d8d8d);
@@ -12,15 +13,9 @@
 
 .btn {
     position: relative;
-    ;
 }
 
 .tam {
     width: 60%;
     margin: auto;
-}
-
-.centerbutton {
-    margin: auto;
-    display: block;
 }
