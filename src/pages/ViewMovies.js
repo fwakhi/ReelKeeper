@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap/dist/css/bootstrap.min.css";
-import '../style/App.css';
+
+import styles from "../style/Background.module.css"
 
 //COMPONENTES
 import MovieList from '../components/MovieList';
@@ -10,7 +11,6 @@ import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
 import AddFavourites from '../components/AddFavourites';
 import RemoveFavourites from '../components/RemoveFavourites';
-import Header from '../components/Header';
 
 // import $ from 'jquery';
 // global.jQuery = $;
@@ -29,6 +29,7 @@ const ViewMovies = () => {
         }
 
     }
+
     useEffect(() => {
         getMovieRequest(searchValue);
     }, [searchValue]);
@@ -60,8 +61,6 @@ const ViewMovies = () => {
     return (
 
         <div className="container-fluid movie-app">
-            <Header />
-
             <div className='row d-flec align-items-center mt-4 mb-4'>
                 <MovieListHeading heading="Movies" />
                 <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />

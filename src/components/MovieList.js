@@ -4,7 +4,7 @@ const MovieList = (props) => {
     const FavouriteComponent = props.favouriteComponent
 
     const replaceImage = (error) => {
-        error.target.src = "";
+        error.target.src = "images/default.jpg";
     }
 
     return (

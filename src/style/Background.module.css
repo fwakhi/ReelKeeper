@@ -1,40 +1,14 @@
-.titulo {
-    text-align: center;
-    padding-top: 200px;
-    background: -webkit-linear-gradient(550deg, #424242, #8d8d8d);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.plainBackground {
+    background: rgb(217, 217, 217);
 }
 
-.carousel {
-    min-width: none;
-}
-
-.btn {
-    position: relative;
-    ;
-}
-
-.tam {
-    width: 60%;
-    margin: auto;
-}
-
-.centerbutton {
-    margin: auto;
-    display: block;
-}
-
-.container1 {
-    max-height: 1000px;
-    height: 617px;
+.dynamicBackground {
     background: linear-gradient(311deg, #f6f7f5, #aefff5, #ffb7ec, #fdffa0, #f99b78, #b862d2);
     background-size: 1200% 1200%;
 
     -webkit-animation: AnimationName 32s ease infinite;
     -moz-animation: AnimationName 32s ease infinite;
     animation: AnimationName 32s ease infinite;
-
 }
 
 @-webkit-keyframes AnimationName {

@@ -1,13 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
-body {
-    background: rgb(217, 217, 217);
-    /* background: linear-gradient(311deg, #f6f7f5, #aefff5, #ffb7ec, #fdffa0, #f99b78, #b862d2);
-    background-size: 1200% 1200%;
+body>#root>div {
+    height: 100vh;
+}
 
-    -webkit-animation: AnimationName 22s ease infinite;
-    -moz-animation: AnimationName 22s ease infinite;
-    animation: AnimationName 22s ease infinite; */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
 }
 
 .btn {
