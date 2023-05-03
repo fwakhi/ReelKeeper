@@ -39,17 +39,17 @@ const Header = () => {
               </li>
 
                {/* DROPDOWN  */}
-              <li className="nav-item dropdown mr-2">
-                <a className="nav-link dropdown-toggle verde borde text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                  Movies
-                </a>
-                <ul className="dropdown-menu borde mr-2 fondoNav">
-                  <li><a className="dropdown-item verde" href="#" >Popular this week</a></li>
-                  <li><a className="dropdown-item verde" href="#" >By genre</a></li>
-                  <li><a className="dropdown-item verde" href="#" >By country</a></li>
-                  <li><a className="dropdown-item verde" href="#" >By director</a></li>
-                </ul>
-              </li>
+               <li class="nav-item dropdown verde">
+        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Movies
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Popular this week</a>
+          <a class="dropdown-item" href="#">By genre</a>
+          <a class="dropdown-item" href="#">By director</a>
+          <a class="dropdown-item" href="#">By country</a>
+        </div>
+      </li>
                            
               <li className="nav-item purple borde rounded ml-3 fondoNav">
                 <a className="nav-link text-white " href="#">Login</a>

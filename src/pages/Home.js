@@ -8,8 +8,10 @@ import Inicio from '../components/Inicio';
 import { Link } from 'react-router-dom';
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.min.js';
 import $ from 'jquery';
-
+import Popper from 'popper.js';
 global.jQuery = $;
 
 const Home = () => {
