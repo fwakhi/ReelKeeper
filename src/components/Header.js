@@ -39,15 +39,15 @@ const Header = () => {
                             </li>
 
                             {/* DROPDOWN  */}
-                            <li class="nav-item dropdown verde">
-                                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li className="nav-item dropdown verde">
+                                <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Movies
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Popular this week</a>
-                                    <a class="dropdown-item" href="#">By genre</a>
-                                    <a class="dropdown-item" href="#">By director</a>
-                                    <a class="dropdown-item" href="#">By country</a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a className="dropdown-item" href="#">Popular this week</a>
+                                    <a className="dropdown-item" href="#">By genre</a>
+                                    <a className="dropdown-item" href="#">By director</a>
+                                    <a className="dropdown-item" href="#">By country</a>
                                 </div>
                             </li>
 
