@@ -39,29 +39,25 @@ const Login = () => {
         <>
             <Container className="h-100">
                 <Row className="align-items-center h-100">
-                    {/* <Card className="col-5 mx-auto"> */}
-                    {/* <Card.Body> */}
-                    {/* <Card.Title>Login</Card.Title> */}
-                    {/* <Card.Subtitle className="mb-3">Please enter your mail and password!</Card.Subtitle> */}
-                    {/* <Form onSubmit={handleSubmit}> */}
-                    <Form className="col-5 mx-auto" onSubmit={handleSubmit}>
-                        <Form.Group controlId="formBasicEmail">
-                            <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter username" value={username} onChange={handleUsernameChange} />
-                        </Form.Group>
+                    <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded">
+                        <Card.Body>
+                            <Card.Title>Login</Card.Title>
+                            <Card.Subtitle className="mb-3">Please enter your mail and password!</Card.Subtitle>
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Username</Form.Label>
+                                    <Form.Control type="text" placeholder="Enter username" value={username} onChange={handleUsernameChange} />
+                                </Form.Group>
 
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-                        </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+                                </Form.Group>
 
-                        <Button type="submit" size="lg" block>Login</Button>
-                        <Button variant="secondary" className="col-12 mx-auto" block>
-                            Block level button
-                        </Button>
-                    </Form>
-                    {/* </Card.Body> */}
-                    {/* </Card> */}
+                                <Button variant="dark" type="submit" className="mx-auto" style={{ width: "100%" }}>Login</Button>
+                            </Form>
+                        </Card.Body>
+                    </Card>
                 </Row>
             </Container>
         </>

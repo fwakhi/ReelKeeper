@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
 
+* {
+    font-family: 'JetBrains Mono';
+}
+
 body>#root>div {
     height: 100vh;
 }
@@ -16,15 +20,6 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
-}
-
-.btn {
-    position: absolute;
-    top: auto;
-    left: 20%;
-    right: 40%;
-    bottom: 40%;
-    width: fit-content;
 }
 
 .movie-app>.row {
@@ -45,7 +40,6 @@ code {
 
 }
 
-
 .margin-top {
     margin-top: 150px;
 }
@@ -58,10 +52,6 @@ code {
 .image-container:hover .overlay {
     opacity: 1;
 
-}
-
-* {
-    font-family: 'JetBrains Mono';
 }
 
 .overlay {
