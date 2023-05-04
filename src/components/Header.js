@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import "../style/Header.css"
+import "../style/header.css"
 
 
 const Header = () => {
@@ -50,7 +50,7 @@ const Header = () => {
                             </li>
 
                             <li className="nav-item purple borde rounded ml-3">
-                                <Link to="login"><span className="nav-link text-white">LOGIN</span></Link>
+                                <Link to="login" style={{ textDecoration: 'none' }}><span className="nav-link text-white">LOGIN</span></Link>
                             </li>
 
                         </ul>

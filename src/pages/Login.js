@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Card, Container, Form, Button, Row } from 'react-bootstrap';
+import { Card, Container, Form, Button, Row, NavLink } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -42,7 +42,7 @@ const Login = () => {
                     <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded">
                         <Card.Body>
                             <Card.Title>Login</Card.Title>
-                            <Card.Subtitle className="mb-3">Please enter your mail and password!</Card.Subtitle>
+                            <Card.Subtitle className="mb-3">Please enter your user and password!</Card.Subtitle>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Username</Form.Label>
@@ -52,9 +52,14 @@ const Login = () => {
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
+                                    
                                 </Form.Group>
+                                <a className='btn-pass'>Forgot your password?</a>
+                                
 
-                                <Button variant="dark" type="submit" className="mx-auto" style={{ width: "100%" }}>Login</Button>
+                                <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
+                            
+                                <a className='btn-pass text-center'>Don't have an account? Sign in!</a>
                             </Form>
                         </Card.Body>
                     </Card>
@@ -63,36 +68,6 @@ const Login = () => {
         </>
     )
 }
-{/* <section className="vh-50 pt-5">
-                <div className="container py-5 h-75 ">
-                    <div className="row d-flex justify-content-center align-items-center h-75 ">
-                        <div className="col-12 col-md-8 col-lg-6 col-xl-5 ">
-                            <div className="card bg-dark text-white">
-                                <div className="card-body p-5 text-center">
-                                    <div className="mb-md-5 mt-md-4">
-                                        <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                                        <p className="text-white-50 mb-5">Please enter your mail and password!</p>
-                                        <div className="form-outline form-white mb-4">
-                                            <label className="form-label">Email</label>
-                                            <input type="email" id="typeEmailX" className="form-control form-control-lg" />
-                                        </div>
 
-                                        <div className="form-outline form-white mb-5">
-                                            <label className="form-label">Password</label>
-                                            <input type="password" id="typePasswordX" className="form-control form-control-lg" />
-                                        </div>
-                                        <button className="btn btn-outline-light btn-lg px-5 mb-5 form-control-lg" type="submit">Login</button>
-                                        <p className="small pb-lg-2"><a className="text-white-50" href="#!">Forgot password?</a></p>
-                                    </div>
-                                    <div>
-                                        <p className="mb-0">Don't have an account? <a href="#!" className="text-white-50 fw-bold">Sign Up</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
 
 export default Login;

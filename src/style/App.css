@@ -73,6 +73,19 @@ a {
     text-decoration: none;
 }
 
+.btn-pass{
+    color: rgb(37, 37, 37);
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    width: 100%;
+   
+}
+.btn-pass:hover{
+    color: rgb(217, 217, 217);
+    background-color: #373737;
+    text-decoration: none;
+}
 
 /******************** SCROLLBAR  ***********************/
 /* width */
