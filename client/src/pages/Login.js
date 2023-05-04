@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import { Card, Container, Form, Button, Row } from 'react-bootstrap';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from 'react-router-dom';
 
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
@@ -53,7 +50,7 @@ const Login = () => {
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
-                                    
+
                                 </Form.Group>
                                 <Link className='btn-pass'>Forgot your password?</Link>
                                 

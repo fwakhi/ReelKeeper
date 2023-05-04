@@ -1,18 +1,16 @@
 import React, { useEffect } from "react";
 
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import './style/App.css';
 import styles from "./style/Background.module.css"
 
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 
 import Home from './pages/Home';
 import ViewMovies from './pages/ViewMovies';
 import Login from './pages/Login';
+import Playground from "./pages/Playground";
 
 
 const App = () => {
@@ -29,6 +27,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/movies" element={<ViewMovies />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/playground' element={<Playground />} />
             </Routes>
         </div>
     );

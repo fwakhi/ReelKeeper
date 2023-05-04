@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import $ from 'jquery';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Carousel() {
     useEffect(() => {
