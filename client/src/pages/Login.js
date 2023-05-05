@@ -54,7 +54,6 @@ const Login = () => {
                                 </Form.Group>
                                 <Link className='btn-pass'>Forgot your password?</Link>
                                 
-
                                 <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
                             
                                 <Link className='btn-pass text-center'>Don't have an account? Sign in!</Link>
