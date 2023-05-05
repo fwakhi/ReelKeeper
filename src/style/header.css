@@ -1,10 +1,12 @@
 nav {
     background-color: rgba(240, 240, 240, 0.546);
+    margin-bottom: 10%;
 }
 
 .navbar {
     --bs-navbar-padding-y: 0rem;
     --bs-navbar-padding: 0rem;
+    
 
 }
 

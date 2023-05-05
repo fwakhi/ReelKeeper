@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { Card, Container, Form, Button, Row, NavLink } from 'react-bootstrap';
+import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from 'react-router-dom';
 
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
@@ -37,7 +38,7 @@ const Login = () => {
 
     return (
         <>
-            <Container className="h-100">
+            <Container className="h-100 mt-5">
                 <Row className="align-items-center h-100">
                     <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded">
                         <Card.Body>
@@ -54,12 +55,12 @@ const Login = () => {
                                     <Form.Control type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
                                     
                                 </Form.Group>
-                                <a className='btn-pass'>Forgot your password?</a>
+                                <Link className='btn-pass'>Forgot your password?</Link>
                                 
 
                                 <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
                             
-                                <a className='btn-pass text-center'>Don't have an account? Sign in!</a>
+                                <Link className='btn-pass text-center'>Don't have an account? Sign in!</Link>
                             </Form>
                         </Card.Body>
                     </Card>

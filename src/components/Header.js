@@ -11,7 +11,7 @@ import "../style/header.css"
 const Header = () => {
     return (
         <>
-            <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary ">
+            <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
 
                     <div className="mr-auto">
