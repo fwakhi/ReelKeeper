@@ -12,6 +12,29 @@ a {
     text-decoration: none;
 }
 
+@media (max-width: 991px) {
+    #navbarSupportedContent{
+        max-width: 100%;
+        padding: 10px 0;
+        
+    }
+    .navbar-collapse li{
+      max-width: 400px;
+      min-width: max-content;
+      margin-left: auto;
+      margin-top: 10px;
+      
+    }
+    .navbar-collapse ul{
+        width: fit-content;
+     }
+     li.verde{ 
+       width: 100px;
+       text-align: center;
+       
+  } 
+  
+  }
 
 .borde {
     width: 100px;
@@ -19,7 +42,9 @@ a {
     text-align: center;
 
 }
-
+.negro{
+    color: black;
+}
 .purple {
     background-color: rgb(82, 35, 119);
 }

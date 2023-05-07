@@ -10,7 +10,8 @@ import "../style/Header.css"
 const Header = () => {
     return (
         <>
-            <nav className="navbar fixed-top navbar-expand-lg bg-body-tertiary">
+            <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+            
                 <div className="container-fluid">
 
                     <div className="mr-auto">
@@ -22,6 +23,9 @@ const Header = () => {
                         </a>
                     </div>
 
+                    <button class="navbar-toggler negro" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
                     <div className="collapse navbar-collapse col-8" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
                             <li className="nav-item">

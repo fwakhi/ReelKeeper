@@ -35,9 +35,9 @@ const Login = () => {
 
     return (
         <>
-            <Container className="h-100 mt-5">
+            <Container className="h-100 mt-5 ">
                 <Row className="align-items-center h-100">
-                    <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded">
+                    <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded min-width">
                         <Card.Body>
                             <Card.Title>Login</Card.Title>
                             <Card.Subtitle className="mb-3">Please enter your user and password!</Card.Subtitle>
