@@ -3,11 +3,6 @@ import UserModel from "../models/UserModel.js";
 export const getAllUsers = async (req, res) => {
     try {
         const users = await UserModel.findAll()
-        // const user = await UserModel.findAll({
-        //     where:{
-        //         id: req.params.id
-        //     }
-        // })
         res.json(users)
     } catch (error) {
         res.json({ message: error.message })

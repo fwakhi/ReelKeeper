@@ -73,18 +73,53 @@ a {
     text-decoration: none;
 }
 
-.btn-pass{
+.btn-pass {
     color: rgb(37, 37, 37);
     text-decoration: none;
     font-size: 0.9rem;
     margin-left: 10px;
     width: 100%;
-   
+
 }
-.btn-pass:hover{
+
+.btn-pass:hover {
     color: rgb(217, 217, 217);
     background-color: #373737;
     text-decoration: none;
+}
+
+.bordered {
+    padding: 10px;
+    margin: auto 20px;
+    background-color: rgba(240, 240, 240, 0.363);
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+    text-align: center;
+}
+.bordered i{
+    margin: auto;
+    display: block;
+    text-align: center;
+    width: 40px;
+}
+.redhover:hover {
+    background-color: rgba(206, 144, 86, 0.655);
+    box-shadow: none;
+}
+
+.yellowhover:hover {
+    background-color: rgba(202, 206, 86, 0.656);
+    box-shadow: none;
+}
+
+.greenhover:hover {
+    background-color: rgba(86, 206, 142, 0.527);
+    box-shadow: none;
+}
+
+.purplehover:hover {
+    background-color: rgba(83, 35, 119, 0.537);
+    box-shadow: none;
 }
 
 /******************** SCROLLBAR  ***********************/
