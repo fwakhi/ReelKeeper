@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import ViewMovies from './pages/ViewMovies';
 import Login from './pages/Login';
 import Playground from "./pages/Playground";
+import Signup from "./pages/Signup";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/movies" element={<ViewMovies />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
                 <Route path='/playground' element={<Playground />} />
             </Routes>
         </div>
