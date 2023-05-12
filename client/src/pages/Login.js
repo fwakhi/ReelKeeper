@@ -9,9 +9,6 @@ import axios from 'axios'
 const URL = 'http://localhost:8000/users/';
 // const LOGIN_URL = '/auth';
 
-// import $ from 'jquery';
-// global.jQuery = $;
-
 const Login = () => {
     const {setAuth} = useContext(AuthContext);
     const userRef = useRef();
@@ -120,6 +117,4 @@ const Login = () => {
         
     )
 }
-
-
 export default Login;
