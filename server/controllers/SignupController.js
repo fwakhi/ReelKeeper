@@ -5,16 +5,19 @@ import bcrypt from 'bcrypt';
 
 export const handleNewUser = async (req, res) => {
     const { user, password, email } = req.body;
-    console.log(user, password, email)
     if (!user || !password || !email) {
         return res.status(400).json({ 'message': 'Username, email and password are required.' });
     }
 
     // check for duplicate usernames in the db
-    const duplicate = await UserModel.findOne({ where: { username: user } })
-    if (duplicate) {
+    const duplicateUsername = await UserModel.findOne({ where: { username: user } })
+    if (duplicateUsername) {
         return res.sendStatus(409);
-    } //Conflict
+    }
+    const duplicateEmail = await UserModel.findOne({ where: { email: email } })
+    if (duplicateEmail) {
+        return res.sendStatus(408);
+    }
 
     try {
         const hashedPwd = await bcrypt.hash(password, 10);

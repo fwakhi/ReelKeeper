@@ -5,13 +5,21 @@ import { fileURLToPath } from 'url';
 import db from './config/db.js'
 import userRoutes from './routes/routes.js'
 import registerRoutes from './routes/signup.js'
+import authRoutes from './routes/auth.js'
+import refreshRoutes from './routes/refresh.js'
+import logoutRoutes from './routes/logout.js'
+import cookieParser from 'cookie-parser'
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use(cookieParser())
 app.use('/users', userRoutes)
 app.use('/signup', registerRoutes)
+app.use('/auth', authRoutes)
+app.use('/refresh', refreshRoutes)
+app.use('/logout', logoutRoutes)
 
 app.all('*', (req, res) => {
     res.status(404);

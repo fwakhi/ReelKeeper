@@ -6,12 +6,11 @@ import { Link } from 'react-router-dom';
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
 import axios from "axios";
+import { SIGNUP_URL } from "../utils/Constants";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
-const URL = 'http://localhost:8000/signup';
 
 
 const Login = () => {
@@ -66,7 +65,7 @@ const Login = () => {
     useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
         console.log(password, result);
-        setValidPassword(result); 
+        setValidPassword(result);
         const match = password === matchPassword;
         setValidMatch(match);
     }, [password, matchPassword])
@@ -85,10 +84,10 @@ const Login = () => {
             return;
         }
         try {
-            const response = await axios.post(URL,
+            const response = await axios.post(SIGNUP_URL,
                 JSON.stringify({ user, password, email }),
                 {
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'application/json' }
                 }
             );
             console.log(response?.data);
@@ -105,8 +104,10 @@ const Login = () => {
                 setErrorMsg('No Server Response');
             } else if (err.response?.status === 409) {
                 setErrorMsg('Username Taken');
+            } else if (err.response?.status === 408) {
+                setErrorMsg('Email Taken');
             } else {
-                setErrorMsg('Registration Failed', err.message)
+                setErrorMsg(`Registration failed: ${err.message}`)
             }
             errorRef.current?.focus();
         }
