@@ -28,11 +28,15 @@ const Playground = () => {
             <div style={{ margin: "150px" }}>
                 <h1>User List</h1>
                 {users.map(item => (
-                    <h2>{item.username}</h2>
+                    <h2 style={{ marginLeft: "20px" }}>{item.username}</h2>
                     // <li key={item.id}>
                     //     <h2>{item.name}</h2>
                     //     <p>{item.email}</p>
                     // </li>
+                ))}
+                <h1>User mail</h1>
+                {users.map(item => (
+                    <h2 style={{ marginLeft: "20px" }}>{item.email}</h2>
                 ))}
             </div>
         </>

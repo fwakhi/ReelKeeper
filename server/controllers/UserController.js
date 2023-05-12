@@ -1,5 +1,6 @@
 import UserModel from "../models/UserModel.js";
 
+
 export const getAllUsers = async (req, res) => {
     try {
         const users = await UserModel.findAll()
@@ -53,3 +54,4 @@ export const removeUser = async (req, res) => {
         res.json({ message: error.message })
     }
 }
+

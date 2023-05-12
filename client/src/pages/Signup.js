@@ -66,7 +66,7 @@ const Login = () => {
     useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
         console.log(password, result);
-        setValidPassword(result);
+        setValidPassword(true); // TODO
         const match = password === matchPassword;
         setValidMatch(match);
     }, [password, matchPassword])
@@ -245,7 +245,7 @@ const Login = () => {
 
                                     <button disabled={!validUser || !validPassword || !validMatch ? true : false}>Sign Up</button>
 
-                                    <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Sign up</Button>
+                                    {/* <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Sign up</Button> */}
 
                                     <Link to="/login" className='btn-pass text-center'>Already registered? Sign in!</Link>
                                 </Form>
