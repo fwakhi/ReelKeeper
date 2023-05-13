@@ -12,6 +12,9 @@ import ViewMovies from './pages/ViewMovies';
 import Login from './pages/Login';
 import Playground from "./pages/Playground";
 import Signup from "./pages/Signup";
+import Layout from "./components/Layout";
+import Missing from "./components/Missing";
+import PersistLogin from "./components/PersistLogin";
 
 
 const App = () => {
@@ -22,17 +25,24 @@ const App = () => {
     }, [])
 
     return (
-        <div className="App">
-            <Header />
-            <Routes>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                {/* Public routes */}
                 <Route path="/" element={<Home />} />
-                <Route path="/movies" element={<ViewMovies />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
-                <Route path='/playground' element={<Playground />} />
-            </Routes>
-        </div>
-    );
+
+                {/* Protected routes */}
+                <Route element={<PersistLogin />}>
+                    <Route path="/movies" element={<ViewMovies />} />
+                    <Route path='/playground' element={<Playground />} />
+                </Route>
+
+                {/* Catch all */}
+                <Route path='*' element={<Missing />} />
+            </Route>
+        </Routes>
+    )
 }
 
 export default App;

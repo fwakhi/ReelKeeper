@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import { Button, Container, Row, Col } from 'react-bootstrap';
 
@@ -7,9 +7,9 @@ import styles from "../style/Background.module.css"
 import '../style/Home.css';
 
 import { Link } from 'react-router-dom';
+import useAuth from "../hooks/useAuth";
+import AuthContext from "../context/AuthProvider";
 
-// import $ from 'jquery';
-// global.jQuery = $;
 
 const Home = () => {
     useEffect(() => {
@@ -18,6 +18,12 @@ const Home = () => {
             document.body.className = styles.plainBackground;
         }
     }, [])
+
+    const { auth, setAuth } = useContext(AuthContext);
+
+    // const { auth } = useAuth()
+    console.log("QUE", auth.user)
+
     return (
         <>
             <Container>
@@ -27,6 +33,7 @@ const Home = () => {
                 <Row className="justify-content-md-center m-5">
                     <Link to="movies"><Button className="mr-5" variant="dark">MOVIES</Button></Link>
                     <Link to="login"><Button className="mr-5" variant="dark">LOGIN</Button></Link>
+                    { }
                     <Link to="playground"><Button className="" variant="dark">DB check</Button></Link>
                 </Row>
 

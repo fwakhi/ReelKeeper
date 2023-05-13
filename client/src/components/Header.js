@@ -1,13 +1,16 @@
 import React from "react";
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 
 
 import "../style/Header.css"
+import useAuth from "../hooks/useAuth";
 
 
 const Header = () => {
+    const { auth } = useAuth();
+    const location = useLocation();
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
@@ -25,7 +28,7 @@ const Header = () => {
 
                     <button className="navbar-toggler negro" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon text-white"></span>
-            </button>
+                    </button>
                     <div className="collapse navbar-collapse col-8" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
                             <li className="nav-item">
@@ -36,7 +39,7 @@ const Header = () => {
                             </li>
 
                             {/* DROPDOWN  */}
-                            <li className="nav-item dropdown verde">
+                            <li className="nav-item dropdown verde" visible={auth?.user ? "true" : "false"}>
                                 <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Movies
                                 </a>

@@ -9,6 +9,9 @@ import authRoutes from './routes/auth.js'
 import refreshRoutes from './routes/refresh.js'
 import logoutRoutes from './routes/logout.js'
 import cookieParser from 'cookie-parser'
+import dotenv from 'dotenv';
+
+dotenv.config()
 
 const app = express()
 

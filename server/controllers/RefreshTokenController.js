@@ -1,8 +1,6 @@
 import UserModel from "../models/UserModel.js";
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 
-dotenv.config()
 
 export const handleRefreshToken = async (req, res) => {
     const { cookies } = req;
@@ -29,7 +27,7 @@ export const handleRefreshToken = async (req, res) => {
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '30s' }
+                { expiresIn: '1d' }
             );
             res.json({ accessToken })
         }
