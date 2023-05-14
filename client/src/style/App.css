@@ -99,16 +99,17 @@ a {
 }
 
 
-.bordered i{
-    margin:  auto;
+.bordered i {
+    margin: auto;
     display: block;
-    font-size: 2em;;
+    font-size: 2em;
+    ;
     text-align: center;
     width: 40px;
 }
 
 
-.bordered div{
+.bordered div {
     margin: auto;
 }
 
@@ -132,15 +133,17 @@ a {
     background-color: rgba(83, 35, 119, 0.537);
     /* box-shadow: none; */
 }
+
 @media (max-width: 991px) {
-  .bordered{
-    width: 100%;
-    height: fit-content;
-    padding: auto;
-    
-  }
+    .bordered {
+        width: 100%;
+        height: fit-content;
+        padding: auto;
+
+    }
 
 }
+
 /******************** SCROLLBAR  ***********************/
 /* width */
 ::-webkit-scrollbar {
@@ -163,4 +166,12 @@ a {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(177, 255, 211);
+}
+
+.visible {
+    visibility: visible;
+}
+
+.not-visible {
+    visibility: hidden;
 }

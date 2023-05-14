@@ -48,7 +48,8 @@ const Login = () => {
             const response = await axios.post(LOGIN_URL,
                 JSON.stringify({ username, password }),
                 {
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
                 }
             );
             console.log(JSON.stringify(response?.data));
@@ -86,7 +87,6 @@ const Login = () => {
                 <Card.Body>
                     <p ref={errorRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <Card.Title>Login</Card.Title>
-                    {/* <Card.Subtitle className="mb-3">Please enter your user and password!</Card.Subtitle> */}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Username</Form.Label>

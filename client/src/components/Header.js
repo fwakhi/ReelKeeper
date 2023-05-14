@@ -1,8 +1,6 @@
 import React from "react";
 
 import { Link, useLocation } from 'react-router-dom';
-import { Row } from 'react-bootstrap';
-
 
 import "../style/Header.css"
 import useAuth from "../hooks/useAuth";
@@ -11,6 +9,17 @@ import useAuth from "../hooks/useAuth";
 const Header = () => {
     const { auth } = useAuth();
     const location = useLocation();
+
+    const isAuthorized = auth.accessToken != null
+
+    const loginButton = (<>
+        <Link to="login" style={{ textDecoration: 'none' }}><span className="nav-link text-white">LOGIN</span></Link>
+    </>)
+
+    const profileButton = (<>
+        <Link to="profile" style={{ textDecoration: 'none' }}><span className="nav-link text-white">PROFILE</span></Link>
+    </>)
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light fixed-top">
@@ -52,7 +61,7 @@ const Header = () => {
                             </li>
 
                             <li className="nav-item purple borde rounded ml-3">
-                                <Link to="login" style={{ textDecoration: 'none' }}><span className="nav-link text-white">LOGIN</span></Link>
+                                {isAuthorized ? profileButton : loginButton}
                             </li>
 
                         </ul>

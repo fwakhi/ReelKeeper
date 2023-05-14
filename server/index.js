@@ -1,5 +1,7 @@
 import express from 'express'
 import cors from 'cors'
+import corsOptions from './config/corsOptions.js';
+import credentials from './middleware/credentials.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
 import db from './config/db.js'
@@ -14,8 +16,8 @@ import dotenv from 'dotenv';
 dotenv.config()
 
 const app = express()
-
-app.use(cors())
+app.use(credentials);
+app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cookieParser())
 app.use('/users', userRoutes)

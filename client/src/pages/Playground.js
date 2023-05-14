@@ -73,6 +73,7 @@ const Playground = () => {
                             </ul>
                         ) : <p>No users to display</p>
                 }
+                <button onClick={() => refresh()}>refresh</button>
             </div>
         </>
     );
