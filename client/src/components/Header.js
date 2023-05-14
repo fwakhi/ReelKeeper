@@ -16,6 +16,7 @@ const Header = () => {
 
     const signOut = async () => {
         await logout();
+        localStorage.setItem("savedUsername", "");
         navigate('/');
     }
 

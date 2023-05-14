@@ -35,10 +35,11 @@ const App = () => {
                     <Route element={<RequireAuth />}>
                         <Route path="/movies" element={<ViewMovies />} />
                         <Route path='/playground' element={<Playground />} />
+                        {/* ... */}
                     </Route>
                 </Route>
 
-                {/* Catch all */}
+                {/* All routes */}
                 <Route path='*' element={<Missing />} />
             </Route>
         </Routes>
