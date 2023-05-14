@@ -167,11 +167,3 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(177, 255, 211);
 }
-
-.visible {
-    visibility: visible;
-}
-
-.not-visible {
-    visibility: hidden;
-}

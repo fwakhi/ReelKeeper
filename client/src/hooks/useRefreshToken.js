@@ -2,12 +2,13 @@ import axios from 'axios';
 import useAuth from './useAuth';
 
 import { REFRESH_URL } from "../utils/Constants";
+import { axiosPrivate } from '../api/axios';
 
 const useRefreshToken = () => {
     const { setAuth } = useAuth();
 
     const refresh = async () => {
-        const response = await axios.get(REFRESH_URL, {
+        const response = await axiosPrivate.get(REFRESH_URL, {
             withCredentials: true
         });
         setAuth(prev => {
@@ -15,7 +16,6 @@ const useRefreshToken = () => {
             console.log(response.data.accessToken);
             return {
                 ...prev,
-                roles: response.data.roles,
                 accessToken: response.data.accessToken
             }
         });

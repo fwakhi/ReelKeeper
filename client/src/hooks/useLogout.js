@@ -1,21 +1,19 @@
-import axios from "axios";
+import axios from "../api/axios";
 import useAuth from "./useAuth";
-
-import { LOGOUT_URL } from "../utils/Constants";
 
 
 const useLogout = () => {
     const { setAuth } = useAuth();
 
-    const logout = async () => {
+    return async () => {
         setAuth({});
         try {
-            const response = await axios.post(LOGOUT_URL, {});
+            const response = await axios('/logout', {
+                withCredentials: true
+            });
         } catch (err) {
-            console.error(err);
+            console.error("Error logging out:", err);
         }
-    }
-
-    return logout;
+    };
 }
 export default useLogout

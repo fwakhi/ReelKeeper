@@ -8,6 +8,7 @@ import '../style/Login.css';
 
 import useAuth from "../hooks/useAuth";
 import { LOGIN_URL } from "../utils/Constants";
+import { axiosPrivate } from "../api/axios";
 
 
 const Login = () => {
@@ -22,7 +23,6 @@ const Login = () => {
 
     const navigate = useNavigate();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/movies";
 
     const userRef = useRef();
     const errorRef = useRef();
@@ -45,20 +45,14 @@ const Login = () => {
         event.preventDefault();
 
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ username, password }),
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                    withCredentials: true
-                }
+            const response = await axiosPrivate.post(LOGIN_URL,
+                JSON.stringify({ username, password })
             );
-            console.log(JSON.stringify(response?.data));
             const accessToken = response?.data?.accessToken;
-            // setAuth(accessToken != null);
             setAuth({ username, password, accessToken });
             setUsername('');
             setPassword('');
-            // navigate(from, { replace: true });
+            navigate('/movies', { state: { from: location }, replace: true });
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No server response');

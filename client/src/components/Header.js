@@ -1,23 +1,58 @@
 import React from "react";
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import "../style/Header.css"
 import useAuth from "../hooks/useAuth";
+import useLogout from "../hooks/useLogout";
 
 
 const Header = () => {
     const { auth } = useAuth();
-    const location = useLocation();
-
     const isAuthorized = auth.accessToken != null
+    const location = useLocation();
+    const navigate = useNavigate();
+    const logout = useLogout();
+
+    const signOut = async () => {
+        await logout();
+        navigate('/');
+    }
 
     const loginButton = (<>
         <Link to="login" style={{ textDecoration: 'none' }}><span className="nav-link text-white">LOGIN</span></Link>
     </>)
 
+    const listButton = (<>
+        <li className="nav-item">
+            <Link to="lists" style={{ textDecoration: 'none' }}><span className="nav-link amarillo borde text-white">Lists</span></Link>
+        </li>
+    </>)
+
+    const moviesButton = (<>
+        <li className="nav-item dropdown verde">
+            <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Movies
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item" href="#">Popular this week</a>
+                <a className="dropdown-item" href="#">By genre</a>
+                <a className="dropdown-item" href="#">By director</a>
+                <a className="dropdown-item" href="#">By country</a>
+            </div>
+        </li>
+    </>)
+
     const profileButton = (<>
-        <Link to="profile" style={{ textDecoration: 'none' }}><span className="nav-link text-white">PROFILE</span></Link>
+        <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i className="fa-solid fa-user mr-2"></i>
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to="profile" className="dropdown-item" ><span className="nav-link">Go to profile</span></Link>
+                <button className="dropdown-item" onClick={signOut}>Sign Out</button>
+            </div>
+        </li>
     </>)
 
     return (
@@ -43,22 +78,9 @@ const Header = () => {
                             <li className="nav-item">
                                 <a className="nav-link active rojito borde text-white" aria-current="page" href="#">About</a>
                             </li>
-                            <li className="nav-item">
-                                <a className="nav-link amarillo borde text-white" href="#">Lists</a>
-                            </li>
 
-                            {/* DROPDOWN  */}
-                            <li className="nav-item dropdown verde" visible={auth?.user ? "true" : "false"}>
-                                <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Movies
-                                </a>
-                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" href="#">Popular this week</a>
-                                    <a className="dropdown-item" href="#">By genre</a>
-                                    <a className="dropdown-item" href="#">By director</a>
-                                    <a className="dropdown-item" href="#">By country</a>
-                                </div>
-                            </li>
+                            {isAuthorized ? listButton : ""}
+                            {isAuthorized ? moviesButton : ""}
 
                             <li className="nav-item purple borde rounded ml-3">
                                 {isAuthorized ? profileButton : loginButton}

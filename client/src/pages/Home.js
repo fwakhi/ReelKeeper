@@ -6,21 +6,29 @@ import { Button, Container, Row, Col } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
 import '../style/Home.css';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
 import AuthContext from "../context/AuthProvider";
 
 
 const Home = () => {
+    const { auth, setAuth } = useContext(AuthContext);
+    const isAuthorized = auth.accessToken != null
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthorized) {
+            navigate('/movies', { state: { from: location }, replace: true });
+        }
+    }, [])
+
     useEffect(() => {
         document.body.className = styles.dynamicBackground;
         return () => {
             document.body.className = styles.plainBackground;
         }
     }, [])
-
-    const { auth, setAuth } = useContext(AuthContext);
-    const isAuthorized = auth.accessToken != null
 
     return (
         <>
@@ -66,4 +74,3 @@ const Home = () => {
     )
 }
 export default Home;
-

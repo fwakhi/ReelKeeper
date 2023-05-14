@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
-
-import './style/App.css';
-import styles from "./style/Background.module.css"
-
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/Header';
+import styles from "./style/Background.module.css"
+import './style/App.css';
 
 import Home from './pages/Home';
 import ViewMovies from './pages/ViewMovies';
@@ -15,6 +12,7 @@ import Signup from "./pages/Signup";
 import Layout from "./components/Layout";
 import Missing from "./components/Missing";
 import PersistLogin from "./components/PersistLogin";
+import RequireAuth from "./components/RequireAuth";
 
 
 const App = () => {
@@ -28,14 +26,16 @@ const App = () => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 {/* Public routes */}
-                <Route path="/" element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/signup' element={<Signup />} />
 
                 {/* Protected routes */}
                 <Route element={<PersistLogin />}>
-                    <Route path="/movies" element={<ViewMovies />} />
-                    <Route path='/playground' element={<Playground />} />
+                    <Route path="/" element={<Home />} />
+                    <Route element={<RequireAuth />}>
+                        <Route path="/movies" element={<ViewMovies />} />
+                        <Route path='/playground' element={<Playground />} />
+                    </Route>
                 </Route>
 
                 {/* Catch all */}
@@ -44,5 +44,4 @@ const App = () => {
         </Routes>
     )
 }
-
 export default App;

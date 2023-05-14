@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import axios from 'axios'
 import useAuth from "../hooks/useAuth";
 import useRefreshToken from "../hooks/useRefreshToken";
+import axios from "axios";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+// import axios, { axiosPrivate } from "../api/axios";
 
 const URL = 'http://localhost:8000/users/'
 
@@ -10,7 +12,7 @@ const Playground = () => {
 
     const [users, setUsers] = useState([]);
     const refresh = useRefreshToken()
-    // const axiosPrivate = useAxiosPrivate();
+    const axiosPrivate = useAxiosPrivate();
     // const navigate = useNavigate();
     // const location = useLocation();
 
@@ -19,14 +21,13 @@ const Playground = () => {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const response = await axios.get('/users', {
+                const response = await axiosPrivate.get('/users', {
                     signal: controller.signal
                 });
-                console.log(response.data);
+                console.log("Response", response.data);
                 isMounted && setUsers(response.data);
             } catch (err) {
                 console.error(err);
-                // navigate('/login', { state: { from: location }, replace: true });
             }
         }
 
