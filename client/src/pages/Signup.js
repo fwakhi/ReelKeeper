@@ -66,7 +66,7 @@ const Login = () => {
     useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
         console.log(password, result);
-        setValidPassword(true); // TODO
+        setValidPassword(result); 
         const match = password === matchPassword;
         setValidMatch(match);
     }, [password, matchPassword])
