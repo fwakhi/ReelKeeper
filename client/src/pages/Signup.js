@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
-import axios from "axios";
 import { SIGNUP_URL } from "../utils/Constants";
-import { axiosPrivate } from "../api/axios";
+import axios from "../api/axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -65,7 +64,6 @@ const Login = () => {
 
     useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
-        console.log(password, result);
         setValidPassword(result);
         const match = password === matchPassword;
         setValidMatch(match);
@@ -85,7 +83,7 @@ const Login = () => {
             return;
         }
         try {
-            const response = await axiosPrivate.post(SIGNUP_URL,
+            const response = await axios.post(SIGNUP_URL,
                 JSON.stringify({ user, password, email })
             );
             console.log(response?.data);

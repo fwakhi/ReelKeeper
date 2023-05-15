@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios'
 
 import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
 
 import useAuth from "../hooks/useAuth";
-import { LOGIN_URL } from "../utils/Constants";
-import { axiosPrivate } from "../api/axios";
+import { BASE_URL, LOGIN_URL } from "../utils/Constants";
+import axios from "../api/axios";
 
 
 const Login = () => {
@@ -43,9 +42,8 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
-            const response = await axiosPrivate.post(LOGIN_URL,
+            const response = await axios.post(LOGIN_URL,
                 JSON.stringify({ username, password })
             );
             const accessToken = response?.data?.accessToken;
@@ -62,7 +60,7 @@ const Login = () => {
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrMsg('No user found with that name');
             } else {
                 setErrMsg('Login Failed');
             }

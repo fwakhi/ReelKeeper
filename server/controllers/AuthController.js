@@ -7,7 +7,7 @@ export const handleLogin = async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
         return res.status(400).json({ 'message': 'Username and password are required.' });
-    }
+    } // Bad request
 
     const foundUser = await UserModel.findOne({ where: { username: username } })
     if (!foundUser) {
@@ -35,13 +35,12 @@ export const handleLogin = async (req, res) => {
         // // Saving refreshToken with current user
         foundUser.refreshToken = refreshToken;
         const result = await foundUser.save();
-        console.log(result);
 
         // // Creates Secure Cookie with refresh token
         res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 }); // hh * min * sec * mil
 
         // Send access token to user
-        res.json({ accessToken });
+        res.json({ accessToken, username });
     } else {
         res.sendStatus(401);
     }
