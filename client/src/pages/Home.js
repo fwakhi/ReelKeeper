@@ -8,11 +8,10 @@ import '../style/Home.css';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
-import AuthContext from "../context/AuthProvider";
 
 
 const Home = () => {
-    const { auth, setAuth } = useContext(AuthContext);
+    const { auth } = useAuth();
     const isAuthorized = auth.accessToken != null
     const location = useLocation();
     const navigate = useNavigate();
