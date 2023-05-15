@@ -40,7 +40,6 @@ const Home = () => {
                     <Link to="movies"><Button className="mr-5" variant="dark">MOVIES</Button></Link>
                     <Link to="login"><Button className={`mr-5 ${isAuthorized ? "not-visible" : "visible"}`} variant="dark">LOGIN</Button></Link>
                     {isAuthorized ? "LOGGED IN" : "LOGGED OUT"}
-                    <Link to="playground"><Button className="" variant="dark">DB check</Button></Link>
                 </Row>
 
                 <Container>

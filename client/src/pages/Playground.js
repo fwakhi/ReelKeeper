@@ -1,52 +1,56 @@
 import React, { useState, useEffect } from "react";
 
 import useAuth from "../hooks/useAuth";
-import useRefreshToken from "../hooks/useRefreshToken";
-import axios from "axios";
-import useAxiosPrivate from "../hooks/useAxiosPrivate";
-// import axios, { axiosPrivate } from "../api/axios";
+import { imgUrl, fetchSingleMovie } from '../api/tmdb'
 
-const URL = 'http://localhost:8000/users/'
 
 const Playground = () => {
 
-    const [users, setUsers] = useState([]);
-    const refresh = useRefreshToken()
-    const axiosPrivate = useAxiosPrivate();
-    // const navigate = useNavigate();
-    // const location = useLocation();
+    const movieId = "550"
+
+    const [movie, setMovie] = useState([]);
 
     const { auth } = useAuth();
 
+    const getMovieRequest = async (movieId) => {
+        const response = await fetchSingleMovie(movieId);
+        console.log(response.data)
+        if (response.data) {
+            setMovie(response.data)
+        }
+    }
+
     useEffect(() => {
-        const getUsers = async () => {
-            try {
-                const response = await axiosPrivate.get('/users', {
-                    signal: controller.signal
-                });
-                console.log("Response", response.data);
-                isMounted && setUsers(response.data);
-            } catch (err) {
-                console.error(err);
-            }
-        }
+        getMovieRequest(movieId);
+    }, [movieId]);
 
-        let isMounted = true;
-        const controller = new AbortController();
+    // useEffect(() => {
+    //     const getUsers = async () => {
+    //         try {
+    //             const response = await axiosPrivate.get('/users', {
+    //                 signal: controller.signal
+    //             });
+    //             console.log("Response", response.data);
+    //             isMounted && setUsers(response.data);
+    //         } catch (err) {
+    //             console.error(err);
+    //         }
+    //     }
 
-        getUsers();
+    //     let isMounted = true;
+    //     const controller = new AbortController();
 
-        return () => {
-            isMounted = false;
-            controller.abort();
-        }
-    }, [])
+    //     getUsers();
+
+    //     return () => {
+    //         isMounted = false;
+    //         controller.abort();
+    //     }
+    // }, [])
 
     // useEffect(() => {
     //     getUsers();
     // }, []);
-
-
 
     // const getUsers = async () => {
     //     console.log("AUTH", auth)
@@ -65,16 +69,20 @@ const Playground = () => {
     return (
         <>
             <div style={{ margin: "150px" }}>
-                <h1>User List</h1>
+                <h1>Movie</h1>
                 {
+                    <img src={imgUrl + movie.poster_path} alt="poster"></img>
+
+                }
+                {/* {
                     users?.length
                         ? (
                             <ul>
                                 {users.map((user, i) => <li key={i}>{user?.username}</li>)}
                             </ul>
                         ) : <p>No users to display</p>
-                }
-                <button onClick={() => refresh()}>refresh</button>
+                } */}
+                {/* <button onClick={() => refresh()}>refresh</button> */}
             </div>
         </>
     );

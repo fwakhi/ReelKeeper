@@ -1,4 +1,6 @@
 import React from 'react';
+import { imgUrl  } from '../api/tmdb'
+
 
 const MovieList = (props) => {
     const FavouriteComponent = props.favouriteComponent
@@ -11,7 +13,7 @@ const MovieList = (props) => {
         <>
             {props.movies.map((movie, index) =>
                 <div className='image-container d-flex justify-content-start m-3'>
-                    <img src={movie.Poster} alt="poster" onError={replaceImage}></img>
+                    <img src={imgUrl + movie.poster_path} alt="poster" onError={replaceImage}></img>
                     <div onClick={() => props.handleFavouritesClick(movie)} className='overlay d-flex align-items-center justify-items-center'>
                         <FavouriteComponent />
                     </div>

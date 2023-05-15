@@ -31,16 +31,8 @@ const Header = () => {
     </>)
 
     const moviesButton = (<>
-        <li className="nav-item dropdown verde">
-            <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Movies
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="#">Popular this week</a>
-                <a className="dropdown-item" href="#">By genre</a>
-                <a className="dropdown-item" href="#">By director</a>
-                <a className="dropdown-item" href="#">By country</a>
-            </div>
+        <li className="nav-item">
+            <Link to="movies" style={{ textDecoration: 'none' }}><span className="nav-link verde borde text-white">Movies</span></Link>
         </li>
     </>)
 
@@ -50,7 +42,8 @@ const Header = () => {
                 <i className="fa-solid fa-user mr-2"></i>
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to="profile" className="dropdown-item" ><span className="nav-link">Go to profile</span></Link>
+                <Link to="profile" className="dropdown-item" >Go to profile</Link>
+                <Link to="playground" className="dropdown-item">Playground</Link>
                 <button className="dropdown-item" onClick={signOut}>Sign Out</button>
             </div>
         </li>
@@ -80,8 +73,8 @@ const Header = () => {
                                 <a className="nav-link active rojito borde text-white" aria-current="page" href="#">About</a>
                             </li>
 
-                            {isAuthorized ? listButton : ""}
                             {isAuthorized ? moviesButton : ""}
+                            {isAuthorized ? listButton : ""}
 
                             <li className="nav-item purple borde rounded ml-3">
                                 {isAuthorized ? profileButton : loginButton}
