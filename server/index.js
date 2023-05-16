@@ -5,11 +5,12 @@ import credentials from './middleware/credentials.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
 import db from './config/db.js'
-import userRoutes from './routes/routes.js'
+import userRoutes from './routes/users.js'
 import registerRoutes from './routes/signup.js'
 import authRoutes from './routes/auth.js'
 import refreshRoutes from './routes/refresh.js'
 import logoutRoutes from './routes/logout.js'
+import favoriteRoutes from './routes/favorite.js'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv';
 
@@ -25,6 +26,7 @@ app.use('/signup', registerRoutes)
 app.use('/auth', authRoutes)
 app.use('/refresh', refreshRoutes)
 app.use('/logout', logoutRoutes)
+app.use('/favs', favoriteRoutes)
 
 app.all('*', (req, res) => {
     res.status(404);
