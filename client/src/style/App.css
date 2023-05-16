@@ -23,8 +23,8 @@ code {
 }
 
 .movie-app>.row {
-    /* overflow-x: auto; */
-    flex-wrap: wrap;
+    overflow-x: auto;
+    flex-wrap: nowrap;
 }
 
 .movie-app>.row img {
@@ -34,7 +34,7 @@ code {
 }
 
 .image-container {
-
+    flex-direction: column;
     position: relative;
     transition: transform 0.2s;
 
@@ -56,6 +56,7 @@ code {
 
 .overlay {
     text-align: center;
+    font-size: 0.7em;
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
@@ -63,7 +64,7 @@ code {
     transition: 0.5s ease;
     opacity: 0;
     bottom: 0;
-    font-size: 20px;
+    margin-bottom: 24px;
     padding: 20px;
 
 }
@@ -165,5 +166,5 @@ a {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(177, 255, 211);
+    background: #212529;
 }
