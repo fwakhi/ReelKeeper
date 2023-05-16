@@ -6,7 +6,7 @@ import styles from "../style/Background.module.css"
 import '../style/Login.css';
 
 import useAuth from "../hooks/useAuth";
-import { BASE_URL, LOGIN_URL } from "../utils/Constants";
+import { LOGIN_URL } from "../utils/Constants";
 import axios from "../api/axios";
 
 
@@ -128,7 +128,7 @@ const Login = () => {
 
     return (
         <>
-            (<Container className="h-100 mt-5 ">
+            <Container className="h-100 mt-5 ">
                 <Row className="align-items-center h-100">
                     {/* {loginContent} */}
                     {auth.accessToken != null ? loginSuccessContent : loginContent}
