@@ -93,7 +93,7 @@ const Login = () => {
                             <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
                         </Form.Group>
-                        <Link className='btn-pass'>Forgot your password?</Link>
+                        {/* <Link className='btn-pass'>Forgot your password?</Link> */}
 
                         <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
                         <div className="persistCheck">
@@ -130,7 +130,6 @@ const Login = () => {
         <>
             <Container className="h-100 mt-5 ">
                 <Row className="align-items-center h-100">
-                    {/* {loginContent} */}
                     {auth.accessToken != null ? loginSuccessContent : loginContent}
                 </Row>
             </Container>

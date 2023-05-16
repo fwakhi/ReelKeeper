@@ -13,6 +13,7 @@ import Layout from "./components/Layout";
 import Missing from "./components/Missing";
 import PersistLogin from "./components/PersistLogin";
 import RequireAuth from "./components/RequireAuth";
+import MovieDetail from "./components/MovieDetail";
 
 
 const App = () => {
@@ -30,14 +31,16 @@ const App = () => {
                 <Route path='/signup' element={<Signup />} />
 
                 {/* Protected routes */}
-                <Route element={<PersistLogin />}>
-                    <Route path="/" element={<Home />} />
-                    <Route element={<RequireAuth />}>
-                        <Route path="/movies" element={<ViewMovies />} />
-                        <Route path='/playground' element={<Playground />} />
-                        {/* ... */}
-                    </Route>
-                </Route>
+                {/* <Route element={<PersistLogin />}> */}
+                {/* <Route element={<RequireAuth />}> */}
+
+                <Route path="/" element={<Home />} />
+                <Route path="/movies" element={<ViewMovies />} />
+                <Route path='/playground' element={<Playground />} />
+                <Route path="/movie/:movie_id" element={<MovieDetail />} />
+
+                {/* </Route> */}
+                {/* </Route> */}
 
                 {/* All routes */}
                 <Route path='*' element={<Missing />} />

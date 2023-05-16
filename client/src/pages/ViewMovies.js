@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { searchMovies } from '../api/tmdb'
 
 //COMPONENTES
 import MovieList from '../components/MovieList';
@@ -8,8 +9,6 @@ import SearchBox from '../components/SearchBox';
 import AddFavourites from '../components/AddFavourites';
 import RemoveFavourites from '../components/RemoveFavourites';
 
-// import $ from 'jquery';
-// global.jQuery = $;
 
 const ViewMovies = () => {
     const [movies, setMovies] = useState([]);
@@ -17,13 +16,10 @@ const ViewMovies = () => {
     const [searchValue, setSearchValue] = useState('');
 
     const getMovieRequest = async (searchValue) => {
-        const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=48b027b6`;
-        const response = await fetch(url);
-        const responsJson = await response.json();
-        if (responsJson.Search) {
-            setMovies(responsJson.Search)
+        const response = await searchMovies(searchValue);
+        if (response.data.results) {
+            setMovies(response.data.results)
         }
-
     }
 
     useEffect(() => {
