@@ -103,6 +103,18 @@ const ViewMovies = () => {
     return (
 
         <div className="container-fluid movie-app">
+             {/* SEARCH MOVIES  */}
+             <div className='row d-flec align-items-center margin-top mb-4'>
+                <MovieListHeading heading="Movies" />
+                <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+            </div>
+            <div className='row'>
+                <MovieList
+                    movies={movies}
+                    handleFavouritesClick={addFavouriteMovie}
+                    favouriteComponent={AddFavourites} />
+            </div>
+
               {/* LATEST MOVIES  */}
               <div className='row d-flec align-items-center  mt-5'>
                 <MovieListHeading heading="Latest Movies" />
@@ -130,18 +142,9 @@ const ViewMovies = () => {
                     favouriteComponent={AddFavourites} />
             </div>
 
-           
-            <div className='row d-flec align-items-center mt-4 mb-4'>
-                <MovieListHeading heading="Movies" />
-                <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-            </div>
-            <div className='row'>
-                <MovieList
-                    movies={movies}
-                    handleFavouritesClick={addFavouriteMovie}
-                    favouriteComponent={AddFavourites} />
-            </div>
+          
 
+            {/* FAVOURITES MOVIES  */}
             <div className='row d-flec align-items-center mt-4 mb-4'>
                 <MovieListHeading heading="Favourites" />
             </div>
