@@ -18,16 +18,6 @@ const ViewMovies = () => {
     const [latest, setLatest] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
-    const getMovieRequest = async (searchValue) => {
-        const response = await searchMovies(searchValue);
-        console.log(response);
-        if (response.data.results) {
-            //Filter no poster movies and adult movies
-            const filteredMovies = filterMovies(response.data.results);
-            setMovies(filteredMovies)
-        }
-    }
-
     const filterMovies = (data) => {
         return data.filter(movie => {
             return movie.poster_path &&
@@ -54,13 +44,21 @@ const ViewMovies = () => {
 
     const getLatestMovies = async () => {
         const response = await latestMovies();
-        var limited = response.data.results.reverse().filter((_, i) => i < 10);
-       
+        const limited = response.data.results.reverse().filter((_, i) => i < 10);
         setLatest(limited);
     }
 
 
     useEffect(() => {
+        const getMovieRequest = async (searchValue) => {
+            const response = await searchMovies(searchValue);
+            console.log(response);
+            if (response.data.results) {
+                //Filter no poster movies and adult movies
+                const filteredMovies = filterMovies(response.data.results);
+                setMovies(filteredMovies)
+            }
+        }
         getMovieRequest(searchValue);
     }, [searchValue]);
 
@@ -88,11 +86,27 @@ const ViewMovies = () => {
         localStorage.setItem('react-movie-app-favs', JSON.stringify(items));
     }
 
+    const saveToDatabase = (items) => {
+        // const getUsers = async () => {
+        //     try {
+        //         const response = await axiosPrivate.post('/users', {
+        //             signal: controller.signal
+        //         });
+        //         console.log("Response", response.data);
+        //         isMounted && setUsers(response.data);
+        //     } catch (err) {
+        //         console.error(err);
+        //     }
+        // }
+
+        // localStorage.setItem('react-movie-app-favs', JSON.stringify(items));
+    }
+
     const addFavouriteMovie = (movie) => {
         const newFavouriteList = [...favourites, movie];
         setFavourites(newFavouriteList);
         saveToLocalStorage(newFavouriteList);
-
+        saveToDatabase(newFavouriteList);
     }
     const removeFavouriteMovie = (movie) => {
         const newFavouriteList = favourites.filter((favourite) => favourite.id !== movie.id);
@@ -124,8 +138,8 @@ const ViewMovies = () => {
                     favouriteComponent={AddFavourites} />
             </div>
 
-             {/* UPCOMING MOVIES  */}
-             <div className='row d-flec align-items-center'>
+            {/* UPCOMING MOVIES  */}
+            <div className='row d-flec align-items-center'>
                 <MovieListHeading heading="Upcoming Movies" />
             </div>
             <div className='row'>

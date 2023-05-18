@@ -13,15 +13,15 @@ const MovieList = (props) => {
     //     error.target.src = "images/default2.png";
     // }
 
-    const handleClick =  (clickedMovieId) => {
-         navigate(`/movie/${clickedMovieId}`)
+    const handleClick = (clickedMovieId) => {
+        navigate(`/movie/${clickedMovieId}`)
     }
 
     return (
         <>
             {props.movies.map((movie, index) =>
                 <div className='image-container d-flex justify-content-start m-3'>
-                    <img onClick={() => handleClick(movie.id)} src={imgUrl + movie.poster_path} alt="poster"></img>                    
+                    <img onClick={() => handleClick(movie.id)} src={imgUrl + movie.poster_path} alt="poster"></img>
                     <div onClick={() => props.handleFavouritesClick(movie)} className='justify-content-end'>
                         <FavouriteComponent />
                     </div>
