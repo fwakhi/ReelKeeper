@@ -47,8 +47,8 @@ const Login = () => {
                 JSON.stringify({ username, password })
             );
             const accessToken = response?.data?.accessToken;
-            const savedUsername = response?.data?.username;
-            localStorage.setItem("savedUsername", savedUsername);
+            const foundUser = response?.data?.foundUser;
+            localStorage.setItem('foundUser', JSON.stringify(foundUser));
 
             setAuth({ username, password, accessToken });
             setUsername('');

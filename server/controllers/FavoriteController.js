@@ -5,22 +5,25 @@ export const getAllFavsByUserId = async (req, res) => {
     try {
         const favorites = await FavoriteModel.findAll({
             where: {
-                userId: req.params.id
+                userId: req.params.user_id
             }
         })
-        res.json(favorites[0])
+        res.json(favorites)
     } catch (error) {
         res.json({ message: error.message })
     }
 }
 
 export const addToFavorites = async (req, res) => {
+    // const duplicateUsername = await UserModel.findOne({ where: { username: user } })
+    // if (duplicateUsername) {
+    //     return res.sendStatus(409);
+    // }
     try {
         await FavoriteModel.create(req.body)
         res.json({ message: 'Register created' })
-
     } catch (error) {
-        res.json({ message: error.message })
+        res.status(400).json({ message: error.message });
     }
 }
 
@@ -28,14 +31,14 @@ export const addToFavorites = async (req, res) => {
 export const removeFromFavorites = async (req, res) => {
     try {
         await FavoriteModel.destroy({
-            where: { 
-                id: req.params.id 
+            where: {
+                id: req.params.movie_id,
+                userId: req.params.user_id,
             }
         })
         res.json({ message: 'Register deleted' })
-
     } catch (error) {
-        res.json({ message: error.message })
+        res.status(400).json({ message: error.message });
     }
 }
 

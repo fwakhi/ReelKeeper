@@ -9,6 +9,7 @@ const Playground = () => {
     const movieId = "550"
 
     const [movie, setMovie] = useState([]);
+    const [foundUser, setFoundUser] = useState({});
 
     const { auth } = useAuth();
 
@@ -23,6 +24,15 @@ const Playground = () => {
     useEffect(() => {
         getMovieRequest(movieId);
     }, [movieId]);
+
+    // useEffect(() => console.log("QUE", JSON.parse(localStorage.getItem('foundUser'))), []);
+    useEffect(() => {
+        const data = localStorage.getItem('foundUser')
+        if (data) {
+            const newData = JSON.parse(data);
+            setFoundUser(newData);
+        }
+    }, [])
 
     // useEffect(() => {
     //     const getUsers = async () => {
@@ -69,9 +79,17 @@ const Playground = () => {
     return (
         <>
             <div style={{ margin: "150px" }}>
-                <h1>Movie</h1>
+
+                <h1>
+                    {foundUser.username}
+                </h1>
+                {foundUser.id}
+                {foundUser.email}
+
+
+                {/* <h1>Movie</h1> */}
                 {
-                    <img src={imgUrl + movie.poster_path} alt="poster"></img>
+                    // <img src={imgUrl + movie.poster_path} alt="poster"></img>
 
                 }
                 {/* {
