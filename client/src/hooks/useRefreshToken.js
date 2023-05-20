@@ -1,4 +1,3 @@
-import axios from 'axios';
 import useAuth from './useAuth';
 
 import { REFRESH_URL } from "../utils/Constants";

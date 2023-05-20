@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchSingleMovie, fetchSingleMovieCredits, fetchRecommendations, imgUrl } from '../api/tmdb'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
 import { Tabs, Tab } from 'react-bootstrap';
 
@@ -13,45 +13,6 @@ const MovieDetail = (props) => {
     const [movie, setMovie] = useState({});
     const [rec, setRecs] = useState([]);
     const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        setMovieId(movie_id);
-        console.log(movie_id, movieId);
-        displayMovie();
-
-    }, [movieId])
-
-
-    // const languageNames = {
-    //     "en": "English",
-    //     "zh": "Chinese",
-    //     "hi": "Hindi",
-    //     "es": "Spanish",
-    //     "ar": "Arabic",
-    //     "bn": "Bengali",
-    //     "pt": "Portuguese",
-    //     "ru": "Russian",
-    //     "ja": "Japanese",
-    //     "pa": "Punjabi",
-    //     "de": "German",
-    //     "jv": "Javanese",
-    //     "ms": "Malay",
-    //     "da": "Danish",
-    //     "fr": "French",
-    //     "fi": "Finnish",
-    //     "vi": "Vietnamese",
-    //     "ko": "Korean",
-    //     "it": "Italian",
-    //     "ta": "Tamil",
-    //     "sv": "Swedish",
-    //     "eu": "Basque",
-    //     "ca": "Catalan",
-    //     "el": "Greek",
-    //     "he": "Hebrew",
-    //     "is": "Icelandic",
-    //     "gl": "Galician"
-    // }
 
     const getRecs = async () => {
         const recs = await fetchRecommendations(movieId);
@@ -90,8 +51,6 @@ const MovieDetail = (props) => {
 
     }
 
-
-
     const handleClick = (clickedMovieId) => {
         console.log(clickedMovieId);
         navigate(`/movie/${clickedMovieId}`, { replace: true });
@@ -100,11 +59,16 @@ const MovieDetail = (props) => {
         displayMovie();
     }
 
+    useEffect(() => {
+        setMovieId(movie_id);
+        displayMovie();
+    }, [movieId])
+
     return (
         <div className="container margin-top">
             <div className="row">
                 <div className="col-4 posterContainer">
-                    <img src={imgUrl + movie.poster_path}></img>
+                    <img src={imgUrl + movie.poster_path} alt="poster"></img>
                 </div>
                 <div className="col-8">
                     {/* Title & year  */}
@@ -156,20 +120,20 @@ const MovieDetail = (props) => {
                     <Tabs
                         defaultActiveKey="profile"
                         id="uncontrolled-tab-example"
-                        
+
                     >
                         <Tab eventKey="home" title="Cast" className="castTag">
-                        <div className="card card-body">
-                            {movie.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>))}
-                        </div>
+                            <div className="card card-body">
+                                {movie.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>))}
+                            </div>
                         </Tab>
 
                         <Tab eventKey="profile" title="Crew" className="crewTag">
-                        <div className="card card-body">
-                            {movie.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>))}
-                        </div>
+                            <div className="card card-body">
+                                {movie.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>))}
+                            </div>
                         </Tab>
-                        
+
                     </Tabs>
 
                     {/* RECOMMENDATIONS  */}

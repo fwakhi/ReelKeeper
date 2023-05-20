@@ -1,8 +1,9 @@
 import axios from "../axios";
 import { fetchSingleMovie } from '../tmdb'
 
+// @ts-ignore
 const fetchMovies = async (ids) => {
-    const fetchedMovies = new Array()
+    const fetchedMovies = []
     ids.forEach(async movieId => {
         const response = await fetchSingleMovie(movieId.id);
         if (response.data) {
@@ -28,7 +29,7 @@ export const saveFavorite = async (movie, userId) => {
     const id = movie.id
     const poster_path = movie.poster_path
     try {
-        const response = await axios.post("/favs",
+        await axios.post("/favs",
             JSON.stringify({ id, userId, poster_path })
         );
         return true
@@ -40,7 +41,7 @@ export const saveFavorite = async (movie, userId) => {
 
 export const removeFavorite = async (id, userId) => {
     try {
-        const response = await axios.delete(`/favs/${userId}/${id}`, {});
+        await axios.delete(`/favs/${userId}/${id}`, {});
     } catch (err) {
         console.error("Error; ", err);
         return false

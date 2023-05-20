@@ -1,31 +1,10 @@
 import React, { useState, useEffect } from "react";
 
-import useAuth from "../hooks/useAuth";
-import { imgUrl, fetchSingleMovie } from '../api/tmdb'
-
 
 const Playground = () => {
 
-    const movieId = "550"
-
-    const [movie, setMovie] = useState([]);
     const [foundUser, setFoundUser] = useState({});
 
-    const { auth } = useAuth();
-
-    const getMovieRequest = async (movieId) => {
-        const response = await fetchSingleMovie(movieId);
-        console.log(response.data)
-        if (response.data) {
-            setMovie(response.data)
-        }
-    }
-
-    useEffect(() => {
-        getMovieRequest(movieId);
-    }, [movieId]);
-
-    // useEffect(() => console.log("QUE", JSON.parse(localStorage.getItem('foundUser'))), []);
     useEffect(() => {
         const data = localStorage.getItem('foundUser')
         if (data) {

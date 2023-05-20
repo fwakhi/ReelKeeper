@@ -7,13 +7,11 @@ import './style/App.css';
 import Home from './pages/Home';
 import ViewMovies from './pages/ViewMovies';
 import Login from './pages/Login';
-import Profile from './pages/Profile';
+// import Profile from './pages/Profile';
 import Playground from "./pages/Playground";
 import Signup from "./pages/Signup";
 import Layout from "./components/Layout";
 import Missing from "./components/Missing";
-import PersistLogin from "./components/PersistLogin";
-import RequireAuth from "./components/RequireAuth";
 import MovieDetail from "./components/MovieDetail";
 
 
@@ -39,7 +37,7 @@ const App = () => {
                 <Route path="/movies" element={<ViewMovies />} />
                 <Route path='/playground' element={<Playground />} />
                 <Route path="/movie/:movie_id" element={<MovieDetail />} />
-                <Route path="/profile" element={<Profile />}/>
+                {/* <Route path="/profile" element={<Profile />}/> */}
 
                 {/* </Route> */}
                 {/* </Route> */}

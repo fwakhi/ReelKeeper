@@ -81,7 +81,7 @@ const Login = () => {
             return;
         }
         try {
-            const response = await axios.post(SIGNUP_URL,
+            await axios.post(SIGNUP_URL,
                 JSON.stringify({ user, password, email })
             );
             setSuccess(true);
