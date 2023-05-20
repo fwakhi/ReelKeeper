@@ -1,12 +1,18 @@
 import db from "../config/db.js";
 import { DataTypes } from 'sequelize';
+import UserModel from "./UserModel.js";
 
 const FavoriteModel = db.define('favorites', {
-    id: { type: DataTypes.INTEGER, primaryKey: true },
-    userId: { type: DataTypes.INTEGER, primaryKey: true,
-        references: 'users', //table's name, not object name
-        referencesKey: 'id'}, //column's name
-    poster_path: {type: DataTypes.STRING}
+    id: { type: DataTypes.STRING, primaryKey: true },
+    userId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        references: {
+            model: UserModel,
+            key: 'id'
+        }
+    },
+    poster_path: { type: DataTypes.STRING }
 })
 
 export default FavoriteModel

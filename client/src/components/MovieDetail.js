@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { fetchSingleMovie, fetchSingleMovieCredits, fetchRecommendations, imgUrl } from '../api/tmdb'
 import { useNavigate, useLocation } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
+import { Tabs, Tab } from 'react-bootstrap';
+
 
 const MovieDetail = (props) => {
 
@@ -151,6 +153,26 @@ const MovieDetail = (props) => {
                         </div>
                     </div>
 
+                    <Tabs
+                        defaultActiveKey="profile"
+                        id="uncontrolled-tab-example"
+                        
+                    >
+                        <Tab eventKey="home" title="Cast" className="castTag">
+                        <div className="card card-body">
+                            {movie.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>))}
+                        </div>
+                        </Tab>
+
+                        <Tab eventKey="profile" title="Crew" className="crewTag">
+                        <div className="card card-body">
+                            {movie.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>))}
+                        </div>
+                        </Tab>
+                        
+                    </Tabs>
+
+                    {/* RECOMMENDATIONS  */}
                     <p className="mt-5">If you liked this title, you'll probable like...</p>
 
                     <div className="row mb-5">

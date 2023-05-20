@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/:user_id', getAllFavsByUserId)
 router.post('/', addToFavorites)
-router.delete('/:movie_id', removeFromFavorites)
+router.delete('/:user_id/:movie_id', removeFromFavorites)
 
 export default router

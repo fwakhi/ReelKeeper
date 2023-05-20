@@ -52,13 +52,11 @@ const Login = () => {
 
     useEffect(() => {
         const result = EMAIL_REGEX.test(email);
-        console.log(email, result);
         setValidEmail(result);
     }, [email])
 
     useEffect(() => {
         const result = USER_REGEX.test(user);
-        console.log(user, result);
         setValidUser(result);
     }, [user])
 
@@ -86,8 +84,6 @@ const Login = () => {
             const response = await axios.post(SIGNUP_URL,
                 JSON.stringify({ user, password, email })
             );
-            console.log(response?.data);
-            console.log(JSON.stringify(response))
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
