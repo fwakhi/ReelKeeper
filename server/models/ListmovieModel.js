@@ -4,16 +4,13 @@ import { DataTypes } from 'sequelize';
 const ListmovieModel = db.define('listmovie', {
     listid: {
         type: DataTypes.INTEGER,
+        primaryKey: true,
         references: 'lists',
         referencesKey: 'id'
     }
     ,
-    id: { type: DataTypes.INTEGER },
-    userId: {
-        type: DataTypes.INTEGER,
-        references: 'users', //table's name, not object name
-        referencesKey: 'id'
-    }, //column's name
+    id: { type: DataTypes.INTEGER, primaryKey: true },
+    
     poster_path: { type: DataTypes.STRING }
 })
 
