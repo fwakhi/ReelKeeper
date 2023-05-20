@@ -5,7 +5,8 @@ const FavoriteModel = db.define('favorites', {
     imdbId: { type: DataTypes.INTEGER },
     userId: { type: DataTypes.INTEGER,
         references: 'users', //table's name, not object name
-        referencesKey: 'id'} //column's name
+        referencesKey: 'id'}, //column's name
+    poster_path: {type: DataTypes.STRING}
 })
 
 export default FavoriteModel

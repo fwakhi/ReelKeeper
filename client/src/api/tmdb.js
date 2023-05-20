@@ -18,7 +18,7 @@ export const latestMovies = () => tmdbApi.get(`/movie/now_playing?api_key=${API_
 export const fetchSingleMovie = (movieId) => tmdbApi.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`);
 
 export const fetchSingleMovieCredits = (movieId) => tmdbApi.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`);
-export const fetchRecommendations = (movieId) => tmdbApi.get(`/movie/${movieId}/similar?api_key=${API_KEY}`);
+export const fetchRecommendations = (movieId) => tmdbApi.get(`/movie/${movieId}/recommendations?api_key=${API_KEY}`);
 
 export const fetchCollection = (collectionId) => tmdbApi.get(`/collection/${collectionId}?api_key=${API_KEY}`);
 export const fetchGenres = () => tmdbApi.get(`/genre/movie/list?api_key=${API_KEY}`);
