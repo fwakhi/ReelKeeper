@@ -29,7 +29,7 @@ export const removeFromFavorites = async (req, res) => {
     try {
         await FavoriteModel.destroy({
             where: { 
-                imdbId: req.params.id 
+                id: req.params.id 
             }
         })
         res.json({ message: 'Register deleted' })

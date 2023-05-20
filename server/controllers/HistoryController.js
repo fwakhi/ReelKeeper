@@ -29,7 +29,7 @@ export const removeFromHistory = async (req, res) => {
     try {
         await HistoryModel.destroy({
             where: { 
-                imdbId: req.params.id 
+                id: req.params.id 
             }
         })
         res.json({ message: 'Register deleted' })

@@ -29,7 +29,7 @@ export const removeFromWatchlist = async (req, res) => {
     try {
         await WatchlistModel.destroy({
             where: { 
-                imdbId: req.params.id 
+                id: req.params.id 
             }
         })
         res.json({ message: 'List deleted' })

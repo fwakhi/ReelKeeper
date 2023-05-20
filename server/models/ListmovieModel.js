@@ -8,7 +8,7 @@ const ListmovieModel = db.define('listmovie', {
         referencesKey: 'id'
     }
     ,
-    imdbId: { type: DataTypes.INTEGER },
+    id: { type: DataTypes.INTEGER },
     userId: {
         type: DataTypes.INTEGER,
         references: 'users', //table's name, not object name
