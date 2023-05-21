@@ -12,7 +12,7 @@ import useAuth from "../hooks/useAuth";
 
 const Home = () => {
     const { auth } = useAuth();
-    const isAuthorized = auth.accessToken != null
+    const isAuthorized = auth.user != null
     const location = useLocation();
     const navigate = useNavigate();
 

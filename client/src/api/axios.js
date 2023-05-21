@@ -1,14 +1,17 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000'
+export const BASE_URL = 'http://localhost:8000'
+export const SIGNUP_URL = '/signup';
+export const AUTH_URL = '/auth';
+export const FAVS_URL = '/favs';
 
-export default axios.create({
-    baseURL: BASE_URL,
-    headers: { 'Content-Type': 'application/json' },
-})
+const api = axios.create({ baseURL: BASE_URL })
 
-export const axiosPrivate = axios.create({
-    baseURL: BASE_URL,
-    headers: { 'Content-Type': 'application/json' },
-    withCredentials: true
-});
+api.interceptors.request.use(
+    config => {
+        const accessToken = localStorage.getItem("accessToken")
+        config.headers['Authorization'] = `Bearer ${accessToken}`;
+        return config;
+    }, (error) => Promise.reject(error)
+);
+export default api

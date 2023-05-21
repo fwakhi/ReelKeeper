@@ -9,10 +9,10 @@ import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
 import AddFavourites from '../components/AddFavourites';
 import RemoveFavourites from '../components/RemoveFavourites';
+import useAuth from '../hooks/useAuth';
 
 
 const ViewMovies = () => {
-    const [foundUser, setFoundUser] = useState({});
     const [movies, setMovies] = useState([]);
     const [favourites, setFavourites] = useState([]);
     const [popular, setPopular] = useState([]);
@@ -20,23 +20,20 @@ const ViewMovies = () => {
     const [latest, setLatest] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
-    useEffect(() => {
-        const data = localStorage.getItem('foundUser')
-        if (data) {
-            const newData = JSON.parse(data);
-            setFoundUser(newData);
-        }
-    }, [])
+    const { auth: { user: { id: userId } } } = useAuth()
 
     const filterMovies = (data) => {
         return data.filter(movie => {
             return movie.poster_path &&
-                !movie.overview.includes("sex") &&
-                !movie.overview.includes("sexual") &&
-                !movie.overview.includes("erotic") &&
-                !movie.title.includes("Erotic") &&
-                !movie.title.includes("Sexy") &&
-                !movie.title.includes("Erotic");
+                movie.adult == false &&
+                !movie.overview.toLowerCase().includes("sex") &&
+                !movie.overview.toLowerCase().includes("sexual") &&
+                !movie.overview.toLowerCase().includes("erotic") &&
+                !movie.overview.toLowerCase().includes("porn") &&
+                !movie.title.toLowerCase().includes("porn") &&
+                !movie.title.toLowerCase().includes("porno") &&
+                !movie.title.toLowerCase().includes("erotic") &&
+                !movie.title.toLowerCase().includes("sexy");
         });
     }
 
@@ -55,7 +52,7 @@ const ViewMovies = () => {
     useEffect(() => {
         const getPopularMovies = async () => {
             const response = await popularMovies();
-            var limited = response.data.results.filter((_, i) => i < 10)
+            const limited = response.data.results.filter((_, i) => i < 10)
             setPopular(limited);
         }
         getPopularMovies();
@@ -64,8 +61,7 @@ const ViewMovies = () => {
     useEffect(() => {
         const getUpcomingMovies = async () => {
             const response = await upcomingMovies();
-            var limited = response.data.results.filter((_, i) => i < 10)
-
+            const limited = response.data.results.filter((_, i) => i < 10)
             setUpcoming(limited);
         }
         getUpcomingMovies();
@@ -82,23 +78,25 @@ const ViewMovies = () => {
 
     useEffect(() => {
         const loadFavorites = async () => {
-            const favs = await getFavorites(foundUser.id);
-            if (favs != null) {
-                console.log("favs", favs)
-                setFavourites(favs);
+            if (userId) {
+                const favs = await getFavorites(userId);
+                if (favs) {
+                    console.log("favss", favs, userId)
+                    setFavourites(favs);
+                }
             }
         }
         loadFavorites()
-    }, [foundUser]);
+    }, [userId]);
 
     const addFavouriteMovie = async (movie) => {
-        if (await saveFavorite(movie, foundUser.id)) {
+        if (userId && await saveFavorite(movie, userId)) {
             const newFavouriteList = [...favourites, movie];
             setFavourites(newFavouriteList);
         }
     }
     const removeFavouriteMovie = async (movie) => {
-        if (await removeFavorite(movie.id, foundUser.id)) {
+        if (userId && await removeFavorite(movie.id, userId)) {
             const newFavouriteList = favourites.filter((favourite) => favourite.id !== movie.id);
             setFavourites(newFavouriteList);
         }
@@ -171,4 +169,3 @@ const ViewMovies = () => {
     );
 }
 export default ViewMovies;
-

@@ -8,16 +8,15 @@ import useLogout from "../hooks/useLogout";
 
 
 const Header = () => {
-    const { auth } = useAuth();
-    const isAuthorized = auth.accessToken != null
+    const { auth, setAuth } = useAuth();
+    const isAuthorized = auth.user != null
     const location = useLocation();
     const navigate = useNavigate();
     const logout = useLogout();
 
     const signOut = async () => {
         await logout();
-        localStorage.setItem("savedUsername", "");
-        navigate('/');
+
     }
 
     const loginButton = (<>

@@ -2,9 +2,11 @@ import UserModel from "../models/UserModel.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+export const handleAuth = async (req, res) => res.json(req.user)
 
 export const handleLogin = async (req, res) => {
     const { username, password } = req.body;
+
     if (!username || !password) {
         return res.status(400).json({ 'message': 'Username and password are required.' });
     } // Bad request
@@ -14,33 +16,16 @@ export const handleLogin = async (req, res) => {
         return res.sendStatus(401);
     } //Unauthorized
 
-    // evaluate password
     const match = await bcrypt.compare(password, foundUser.password);
     if (match) {
-        // create JWTs
         const accessToken = jwt.sign(
             {
-                "UserInfo": {
-                    "username": foundUser.username
-                }
+                username: foundUser.username,
+                id: foundUser.id
             },
-            process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '7d' }
+            process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' }
         );
-        const refreshToken = jwt.sign(
-            { "username": foundUser.username },
-            process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: '7d' }
-        );
-        // // Saving refreshToken with current user
-        foundUser.refreshToken = refreshToken;
-        const result = await foundUser.save();
-
-        // // Creates Secure Cookie with refresh token
-        res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 }); // hh * min * sec * mil
-
-        // Send access token to user
-        res.json({ accessToken, foundUser });
+        res.json({ accessToken, user: { id: foundUser.id, name: foundUser.username } });
     } else {
         res.sendStatus(401);
     }

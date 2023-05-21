@@ -17,7 +17,6 @@ const MovieDetail = (props) => {
     const getRecs = async () => {
         const recs = await fetchRecommendations(movieId);
         if (recs.data) {
-            // console.log(recs?.data.results.filter((_, i) => i < 5));
             setRecs(recs.data.results.filter((_, i) => i < 5));
         }
     }

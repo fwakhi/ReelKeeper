@@ -6,8 +6,7 @@ import styles from "../style/Background.module.css"
 import '../style/Login.css';
 
 import useAuth from "../hooks/useAuth";
-import { LOGIN_URL } from "../utils/Constants";
-import axios from "../api/axios";
+import api, { AUTH_URL } from "../api/axios";
 
 
 const Login = () => {
@@ -18,7 +17,7 @@ const Login = () => {
         }
     }, [])
 
-    const { auth, setAuth, persist, setPersist } = useAuth();
+    const { auth, setAuth } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -43,14 +42,14 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post(LOGIN_URL,
-                JSON.stringify({ username, password })
+            const response = await api.post(AUTH_URL,
+                { username, password }
             );
             const accessToken = response?.data?.accessToken;
-            const foundUser = response?.data?.foundUser;
-            localStorage.setItem('foundUser', JSON.stringify(foundUser));
+            const user = response?.data?.user;
+            localStorage.setItem('accessToken', accessToken);
 
-            setAuth({ username, password, accessToken });
+            setAuth({ accessToken, user });
             setUsername('');
             setPassword('');
             navigate('/movies', { state: { from: location }, replace: true });
@@ -67,14 +66,6 @@ const Login = () => {
             errorRef.current?.focus();
         }
     };
-
-    const togglePersist = () => {
-        setPersist(prev => !prev);
-    }
-
-    useEffect(() => {
-        localStorage.setItem("persist", persist);
-    }, [persist])
 
     const loginContent =
         (<>
@@ -96,15 +87,6 @@ const Login = () => {
                         {/* <Link className='btn-pass'>Forgot your password?</Link> */}
 
                         <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
-                        <div className="persistCheck">
-                            <input
-                                type="checkbox"
-                                id="persist"
-                                onChange={togglePersist}
-                                checked={persist}
-                            />
-                            <label htmlFor="persist">Trust This Device</label>
-                        </div>
 
                         <Link to="/signup" className='btn-pass text-center'>Don't have an account? Sign up!</Link>
                     </Form>

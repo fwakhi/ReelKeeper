@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { Card, Container, Form, Button, Row } from 'react-bootstrap';
+import api, { SIGNUP_URL } from "../api/axios";
 import { Link } from 'react-router-dom';
 
+import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
-import { SIGNUP_URL } from "../utils/Constants";
-import axios from "../api/axios";
+
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
 
 const Login = () => {
     useEffect(() => {
@@ -81,9 +80,7 @@ const Login = () => {
             return;
         }
         try {
-            await axios.post(SIGNUP_URL,
-                JSON.stringify({ user, password, email })
-            );
+            await api.post(SIGNUP_URL, { user, password, email });
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
