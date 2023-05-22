@@ -1,22 +1,18 @@
 import React from "react";
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useLogout from "../hooks/useLogout";
 
 import "../style/Header.css"
-import useAuth from "../hooks/useAuth";
-import useLogout from "../hooks/useLogout";
 
 
 const Header = () => {
-    const { auth, setAuth } = useAuth();
-    const isAuthorized = auth.user != null
-    const location = useLocation();
-    const navigate = useNavigate();
+    const isAuthorized = localStorage.getItem("accessToken") != null
+
     const logout = useLogout();
 
     const signOut = async () => {
         await logout();
-
     }
 
     const loginButton = (<>

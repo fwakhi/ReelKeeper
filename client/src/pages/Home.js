@@ -11,8 +11,8 @@ import useAuth from "../hooks/useAuth";
 
 
 const Home = () => {
-    const { auth } = useAuth();
-    const isAuthorized = auth.user != null
+
+    const isAuthorized = localStorage.getItem("accessToken") != null
     const location = useLocation();
     const navigate = useNavigate();
 

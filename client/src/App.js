@@ -6,6 +6,7 @@ import './style/App.css';
 
 import Home from './pages/Home';
 import ViewMovies from './pages/ViewMovies';
+import MovieCollections from './pages/MovieCollections';
 import Login from './pages/Login';
 import Playground from "./pages/Playground";
 import Signup from "./pages/Signup";
@@ -27,13 +28,14 @@ const App = () => {
         <Routes>
             <Route path="/" element={<Layout />}>
                 {/* Public routes */}
-                <Route path='/signup' element={<Signup />} />
                 <Route path="/" element={<Home />} />
+                <Route path='/signup' element={<Signup />} />
                 <Route path='/login' element={<Login />} />
 
                 {/* Protected routes */}
                 <Route element={<RequireAuth />}>
                     <Route path="/movies" element={<ViewMovies />} />
+                    <Route path="/lists" element={<MovieCollections />} />
                     <Route path='/playground' element={<Playground />} />
                     <Route path="/movie/:movie_id" element={<MovieDetail />} />
                     {/* <Route path="/profile" element={<Profile />}/> */}

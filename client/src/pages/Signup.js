@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import api, { SIGNUP_URL } from "../api/axios";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
@@ -17,6 +17,17 @@ const Login = () => {
         document.body.className = styles.dynamicBackground;
         return () => {
             document.body.className = styles.plainBackground;
+        }
+    }, [])
+
+    const isAuthorized = localStorage.getItem("accessToken") != null
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
+    useEffect(() => {
+        if (isAuthorized) {
+            navigate('/movies', { state: { from: location }, replace: true });
         }
     }, [])
 

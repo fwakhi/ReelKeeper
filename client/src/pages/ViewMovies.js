@@ -80,10 +80,7 @@ const ViewMovies = () => {
         const loadFavorites = async () => {
             if (userId) {
                 const favs = await getFavorites(userId);
-                if (favs) {
-                    console.log("favss", favs, userId)
-                    setFavourites(favs);
-                }
+                favs && setFavourites(favs);
             }
         }
         loadFavorites()

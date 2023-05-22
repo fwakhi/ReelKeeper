@@ -18,6 +18,7 @@ const Login = () => {
     }, [])
 
     const { auth, setAuth } = useAuth();
+    const isAuthorized = localStorage.getItem("accessToken") != null
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -28,6 +29,13 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
+
+    // useEffect(() => {
+    //     console.log(auth)
+    //     if (isAuthorized) {
+    //         navigate('/movies', { state: { from: location }, replace: true });
+    //     }
+    // }, [])
 
     useEffect(() => {
         if (userRef.current) {
@@ -112,7 +120,7 @@ const Login = () => {
         <>
             <Container className="h-100 mt-5 ">
                 <Row className="align-items-center h-100">
-                    {auth.accessToken != null ? loginSuccessContent : loginContent}
+                    {isAuthorized ? loginSuccessContent : loginContent}
                 </Row>
             </Container>
         </>
