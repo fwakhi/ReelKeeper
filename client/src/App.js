@@ -14,7 +14,7 @@ import Layout from "./components/Layout";
 import Missing from "./components/Missing";
 import MovieDetail from "./components/MovieDetail";
 import RequireAuth from "./components/RequireAuth";
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
                     <Route path="/lists" element={<MovieCollections />} />
                     <Route path='/playground' element={<Playground />} />
                     <Route path="/movie/:movie_id" element={<MovieDetail />} />
-                    {/* <Route path="/profile" element={<Profile />}/> */}
+                    <Route path="/profile" element={<Profile />}/>
                 </Route>
 
                 {/* All routes */}

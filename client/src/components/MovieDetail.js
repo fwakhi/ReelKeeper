@@ -4,6 +4,7 @@ import { fetchSingleMovie, fetchSingleMovieCredits, fetchRecommendations, imgUrl
 import { useNavigate } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
 import { Tabs, Tab } from 'react-bootstrap';
+import Accordion from 'react-bootstrap/Accordion';
 
 
 const MovieDetail = (props) => {
@@ -13,6 +14,17 @@ const MovieDetail = (props) => {
     const [movie, setMovie] = useState({});
     const [rec, setRecs] = useState([]);
     const navigate = useNavigate();
+
+    // const FavouriteComponent = props.favouriteComponent
+
+    useEffect(() => {
+        setMovieId(movie_id);
+        console.log(movie_id, movieId);
+        displayMovie();
+
+    }, [movieId])
+
+
 
     const getRecs = async () => {
         const recs = await fetchRecommendations(movieId);
@@ -65,11 +77,11 @@ const MovieDetail = (props) => {
 
     return (
         <div className="container margin-top">
-            <div className="row">
+            <div className="row movieContainer">
                 <div className="col-4 posterContainer">
                     <img src={imgUrl + movie.poster_path} alt="poster"></img>
                 </div>
-                <div className="col-8">
+                <div className="col-8 detailsContainer">
                     {/* Title & year  */}
                     <h1>{movie.title}<span className="releaseYear ml-4">{movie?.release_date?.split('-')[0]}</span></h1>
 
@@ -116,7 +128,7 @@ const MovieDetail = (props) => {
                         </div>
                     </div>
 
-                    <Tabs
+                    {/* <Tabs
                         defaultActiveKey="profile"
                         id="uncontrolled-tab-example"
 
@@ -124,7 +136,7 @@ const MovieDetail = (props) => {
                         <Tab eventKey="home" title="Cast" className="castTag">
                             <div className="card card-body">
                                 {movie.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>))}
-                            </div>
+                            </div> 
                         </Tab>
 
                         <Tab eventKey="profile" title="Crew" className="crewTag">
@@ -133,10 +145,11 @@ const MovieDetail = (props) => {
                             </div>
                         </Tab>
 
-                    </Tabs>
+                    </Tabs> */}
+                    
 
                     {/* RECOMMENDATIONS  */}
-                    <p className="mt-5">If you liked this title, you'll probable like...</p>
+                    <p className="mt-5">If you liked this title, you'll probably like...</p>
 
                     <div className="row mb-5">
                         {rec?.map(r =>
