@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 import { searchMovies, popularMovies, upcomingMovies, latestMovies } from '../api/tmdb'
-import { getFavorites, saveFavorite, removeFavorite } from '../api/services/Favorites'
+import { getFavorites } from '../api/services/Favorites'
 
 //COMPONENTES
 import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
 import AddFavourites from '../components/AddFavourites';
-import RemoveFavourites from '../components/RemoveFavourites';
 import useAuth from '../hooks/useAuth';
 
 
@@ -86,25 +85,28 @@ const ViewMovies = () => {
         loadFavorites()
     }, [userId]);
 
-    const addFavouriteMovie = async (movie) => {
-        if (userId && await saveFavorite(movie, userId)) {
-            const newFavouriteList = [...favourites, movie];
-            setFavourites(newFavouriteList);
-        }
-    }
-    const removeFavouriteMovie = async (movie) => {
-        if (userId && await removeFavorite(movie.id, userId)) {
-            const newFavouriteList = favourites.filter((favourite) => favourite.id !== movie.id);
-            setFavourites(newFavouriteList);
-        }
+
+    
+
+    const refreshFavsAdd = (newMovie) => {
+        const newFavouriteList = [...favourites, newMovie];
+        setFavourites(newFavouriteList);
     }
 
-    const movieList = (<>
+    const refreshFavsRemove = (newMovie) => {
+        
+        const newFavouriteList = favourites.filter((fav) => fav.id.toString() !== newMovie.id.toString());
+        setFavourites(newFavouriteList);
+        console.log(newMovie, newFavouriteList);
+    }
+
+    const FavList = (<>
         <div className='row'>
             <MovieList
                 movies={favourites}
-                handleFavouritesClick={removeFavouriteMovie}
-                favouriteComponent={RemoveFavourites} />
+                favourites={favourites}
+                onFavouritesAdded={refreshFavsAdd} 
+                onFavouritesRemoved={refreshFavsRemove}/>
         </div>
     </>)
 
@@ -124,8 +126,9 @@ const ViewMovies = () => {
             <div className='row'>
                 <MovieList
                     movies={movies}
-                    handleFavouritesClick={addFavouriteMovie}
-                    favouriteComponent={AddFavourites} />
+                    favourites={favourites}
+                    onFavouritesAdded={refreshFavsAdd} 
+                    onFavouritesRemoved={refreshFavsRemove}/>
             </div>
 
             {/* LATEST MOVIES  */}
@@ -133,8 +136,11 @@ const ViewMovies = () => {
                 <MovieListHeading heading="Latest Movies" />
             </div>
             <div className='row'>
-                <MovieList movies={latest} handleFavouritesClick={addFavouriteMovie}
-                    favouriteComponent={AddFavourites} />
+                <MovieList
+                    movies={latest}
+                    favourites={favourites}
+                    onFavouritesAdded={refreshFavsAdd} 
+                    onFavouritesRemoved={refreshFavsRemove}/>
             </div>
 
             {/* UPCOMING MOVIES  */}
@@ -142,8 +148,9 @@ const ViewMovies = () => {
                 <MovieListHeading heading="Upcoming Movies" />
             </div>
             <div className='row'>
-                <MovieList movies={upcoming} handleFavouritesClick={addFavouriteMovie}
-                    favouriteComponent={AddFavourites} />
+                <MovieList movies={upcoming} favourites={favourites}
+                    onFavouritesAdded={refreshFavsAdd} 
+                    onFavouritesRemoved={refreshFavsRemove}/>
             </div>
 
             {/* POPULAR MOVIES  */}
@@ -151,8 +158,9 @@ const ViewMovies = () => {
                 <MovieListHeading heading="Popular Movies" />
             </div>
             <div className='row'>
-                <MovieList movies={popular} handleFavouritesClick={addFavouriteMovie}
-                    favouriteComponent={AddFavourites} />
+                <MovieList movies={popular} favourites={favourites}
+                    onFavouritesAdded={refreshFavsAdd} 
+                    onFavouritesRemoved={refreshFavsRemove}/>
             </div>
 
             {/* FAVOURITES MOVIES  */}
@@ -160,7 +168,7 @@ const ViewMovies = () => {
                 <MovieListHeading heading="Favourites" />
             </div>
 
-            {favourites.length > 0 ? movieList : emptyState}
+            {favourites.length > 0 ? FavList : emptyState}
 
         </div>
     );

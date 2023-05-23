@@ -3,6 +3,7 @@ import { imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import Buttons from './Buttons';
 import AddFavourites from '../components/AddFavourites';
+import addFavouriteMovie from '../components/AddFavourites';
 
 const MovieList = (props) => {
 
@@ -12,16 +13,31 @@ const MovieList = (props) => {
         navigate(`/movie/${clickedMovieId}`)
     }
 
+    if (props.hideButtons) {
+        return (
+            <>
+                {props.movies.map((movie, userId) =>
+                    <div key={movie.id} className='image-container d-flex justify-content-start m-3'>
+                        <img onClick={() => handleClick(movie.id)} src={imgUrl + movie.poster_path} alt="poster" className='mb-1'></img>
+                    </div>
+                )}
+            </>
+        )
+    }
+
     return (
         <>
-            {props.movies.map((movie, _) =>
+            {props.movies.map((movie, userId) =>
                 <div key={movie.id} className='image-container d-flex justify-content-start m-3'>
                     <img onClick={() => handleClick(movie.id)} src={imgUrl + movie.poster_path} alt="poster" className='mb-1'></img>
-                    <div onClick={() => props.handleFavouritesClick(movie)} className='justify-content-end'>
-                        <AddFavourites />
+                    <div className='justify-content-end'>
+                        <AddFavourites
+                            movie={movie}
+                            onFavouritesAdded={props.onFavouritesAdded}
+                            onFavouritesRemoved={props.onFavouritesRemoved}
+                            favourites={props.favourites}
+                        />
                     </div>
-                   {/* <Buttons  movies={movie}
-                    handleFavouritesClick={addFavouriteMovie} /> */}
                 </div>
             )}
         </>

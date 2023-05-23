@@ -1,21 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { getFavorites } from '../api/services/Favorites'
 
 import { fetchCollection } from '../api/tmdb'
 
 //COMPONENTES
 import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
-import AddFavourites from '../components/AddFavourites';
 import useAuth from '../hooks/useAuth';
-import { saveFavorite } from '../api/services/Favorites';
+
 
 
 const ViewMovies = () => {
 
     const { auth: { user: { id: userId } } } = useAuth()
-
+    const [favourites, setFavourites] =  useState([]);
     const ids = [10, 8936, 119, 1241, 33514, 2602, 123800, 264]
     const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+        const loadFavorites = async () => {
+            if (userId) {
+                const favs = await getFavorites(userId);
+                favs && setFavourites(favs);
+            }
+        }
+        loadFavorites()
+    }, [userId]);
 
     useEffect(() => {
         const myPromise = new Promise((resolve, reject) => {
@@ -43,7 +53,7 @@ const ViewMovies = () => {
         getCollections();
     }, []);
 
-    const addFavouriteMovie = async (movie) => userId && await saveFavorite(movie, userId)
+  
 
     const movieCollections =
         React.Children.toArray(
@@ -53,8 +63,7 @@ const ViewMovies = () => {
                     <MovieListHeading heading={col.name} />
                 </div>
                 <div className='row'>
-                    <MovieList movies={col?.parts} handleFavouritesClick={addFavouriteMovie}
-                        favouriteComponent={AddFavourites} />
+                    <MovieList movies={col?.parts}  hideButtons={true} />
                 </div>
             </>)
             ))
