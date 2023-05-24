@@ -223,6 +223,10 @@ a {
     margin-right: 4px;
 }
 
+.broken:hover .fa-heart::before {
+    content: "\f7a9";
+}
+
 .watchedButton {
     background-color: rgba(202, 206, 86, 0.656);
     margin-right: 4px;

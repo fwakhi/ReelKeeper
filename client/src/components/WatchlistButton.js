@@ -12,7 +12,7 @@ const WatchlistButton = (props) => {
     const addWatchlistMovie = async (movie) => {
         if (userId && await saveWatchlist(movie, userId)) {
             setWatchlist(await getWatchlist(userId));
-            //TODO aun no se guarda aunque se mete dentro
+            
         }
     }
 
