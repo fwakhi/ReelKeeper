@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Buttons from './Buttons';
 import AddFavourites from '../components/AddFavourites';
 import WatchlistButton from './WatchlistButton';
+import HistoryButton from './HistoryButton';
 
 const MovieList = (props) => {
 
@@ -38,6 +39,9 @@ const MovieList = (props) => {
                             favourites={props.favourites}
                         />
                         <WatchlistButton
+                        movie={movie}
+                        />
+                        <HistoryButton
                         movie={movie}
                         />
                     </div>

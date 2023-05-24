@@ -5,6 +5,7 @@ export const SIGNUP_URL = '/signup';
 export const AUTH_URL = '/auth';
 export const FAVS_URL = '/favs';
 export const WATCHLIST_URL = '/watchlist';
+export const HISTORY_URL = '/history';
 
 const api = axios.create({ baseURL: BASE_URL })
 

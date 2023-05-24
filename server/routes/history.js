@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/:id', getAllHistoryByUserId)
 router.post('/', addToHistory)
-router.delete('/:id', removeFromHistory)
+router.delete('/:user_id/:id', removeFromHistory)
 
 export default router
