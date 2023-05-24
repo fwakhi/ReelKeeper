@@ -223,7 +223,7 @@ const Login = () => {
 
                         <Button variant="dark" type="submit" disabled={!!(!validUser || !validPassword || !validMatch)} className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Sign up</Button>
 
-                        <Link to="/login" className='btn-pass text-center'>Already registered? Sign in!</Link>
+                        <Link to="/login" className='btn-pass text-center'>Already registered? Log in!</Link>
                     </Form>
                 </Card.Body>
             </Card>

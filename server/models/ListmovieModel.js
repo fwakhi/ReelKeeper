@@ -12,6 +12,8 @@ const ListmovieModel = db.define('listmovie', {
     id: { type: DataTypes.INTEGER, primaryKey: true },
     
     poster_path: { type: DataTypes.STRING }
+}, {
+    tableName: 'listmovie'
 })
 
 export default ListmovieModel

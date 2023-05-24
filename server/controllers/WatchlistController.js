@@ -8,7 +8,7 @@ export const getAllByUserId = async (req, res) => {
                 userId: req.params.id
             }
         })
-        res.json(watchlist[0])
+        res.json(watchlist)
     } catch (error) {
         res.json({ message: error.message })
     }
@@ -32,7 +32,7 @@ export const removeFromWatchlist = async (req, res) => {
                 id: req.params.id 
             }
         })
-        res.json({ message: 'List deleted' })
+        res.json({ message: 'Movie deleted' })
 
     } catch (error) {
         res.json({ message: error.message })

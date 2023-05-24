@@ -19,3 +19,13 @@
     width: 60%;
     margin: auto;
 }
+
+.createAccountBtn{
+    background-color: rgb(82, 35, 119);
+    border: none;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.createAccountBtn:hover{
+    background-color: #212529;
+}

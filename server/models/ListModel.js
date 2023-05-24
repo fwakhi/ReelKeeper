@@ -7,6 +7,8 @@ const ListModel = db.define('lists', {
     userId: { type: DataTypes.INTEGER, primaryKey: true,
         references: 'users', //table's name, not object name
         referencesKey: 'id'} //column's name
+}, {
+    tableName: 'lists'
 })
 
 export default ListModel

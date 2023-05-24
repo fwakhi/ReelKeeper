@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react';
 
 import { searchMovies, popularMovies, upcomingMovies, latestMovies } from '../api/tmdb'
 import { getFavorites } from '../api/services/Favorites'
+// import { getWatchlist } from '../api/services/Watchlist'
 
 //COMPONENTES
 import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
-import AddFavourites from '../components/AddFavourites';
 import useAuth from '../hooks/useAuth';
 
 
 const ViewMovies = () => {
     const [movies, setMovies] = useState([]);
     const [favourites, setFavourites] = useState([]);
+    // const [watchlist, setWatchlist] = useState([]);
     const [popular, setPopular] = useState([]);
     const [upcoming, setUpcoming] = useState([]);
     const [latest, setLatest] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    
 
     const { auth: { user: { id: userId } } } = useAuth()
 
@@ -86,15 +88,12 @@ const ViewMovies = () => {
     }, [userId]);
 
 
-    
-
     const refreshFavsAdd = (newMovie) => {
         const newFavouriteList = [...favourites, newMovie];
         setFavourites(newFavouriteList);
     }
 
     const refreshFavsRemove = (newMovie) => {
-        
         const newFavouriteList = favourites.filter((fav) => fav.id.toString() !== newMovie.id.toString());
         setFavourites(newFavouriteList);
         console.log(newMovie, newFavouriteList);
@@ -105,8 +104,8 @@ const ViewMovies = () => {
             <MovieList
                 movies={favourites}
                 favourites={favourites}
-                onFavouritesAdded={refreshFavsAdd} 
-                onFavouritesRemoved={refreshFavsRemove}/>
+                onFavouritesAdded={refreshFavsAdd}
+                onFavouritesRemoved={refreshFavsRemove} />
         </div>
     </>)
 
@@ -127,8 +126,9 @@ const ViewMovies = () => {
                 <MovieList
                     movies={movies}
                     favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd} 
-                    onFavouritesRemoved={refreshFavsRemove}/>
+                    onFavouritesAdded={refreshFavsAdd}
+                    onFavouritesRemoved={refreshFavsRemove}
+                     />
             </div>
 
             {/* LATEST MOVIES  */}
@@ -139,8 +139,8 @@ const ViewMovies = () => {
                 <MovieList
                     movies={latest}
                     favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd} 
-                    onFavouritesRemoved={refreshFavsRemove}/>
+                    onFavouritesAdded={refreshFavsAdd}
+                    onFavouritesRemoved={refreshFavsRemove} />
             </div>
 
             {/* UPCOMING MOVIES  */}
@@ -149,8 +149,8 @@ const ViewMovies = () => {
             </div>
             <div className='row'>
                 <MovieList movies={upcoming} favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd} 
-                    onFavouritesRemoved={refreshFavsRemove}/>
+                    onFavouritesAdded={refreshFavsAdd}
+                    onFavouritesRemoved={refreshFavsRemove} />
             </div>
 
             {/* POPULAR MOVIES  */}
@@ -159,8 +159,8 @@ const ViewMovies = () => {
             </div>
             <div className='row'>
                 <MovieList movies={popular} favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd} 
-                    onFavouritesRemoved={refreshFavsRemove}/>
+                    onFavouritesAdded={refreshFavsAdd}
+                    onFavouritesRemoved={refreshFavsRemove} />
             </div>
 
             {/* FAVOURITES MOVIES  */}

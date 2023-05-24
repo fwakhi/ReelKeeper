@@ -4,6 +4,7 @@ export const BASE_URL = 'http://localhost:8000'
 export const SIGNUP_URL = '/signup';
 export const AUTH_URL = '/auth';
 export const FAVS_URL = '/favs';
+export const WATCHLIST_URL = '/watchlist';
 
 const api = axios.create({ baseURL: BASE_URL })
 

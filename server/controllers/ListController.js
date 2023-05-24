@@ -8,7 +8,7 @@ export const getAllListByUserId = async (req, res) => {
                 userId: req.params.id
             }
         })
-        res.json(lists[0])
+        res.json(lists)
     } catch (error) {
         res.json({ message: error.message })
     }

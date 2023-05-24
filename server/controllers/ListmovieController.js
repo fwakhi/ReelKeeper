@@ -8,7 +8,7 @@ export const getAllListMovieByListId = async (req, res) => {
                 listId: req.params.id
             }
         })
-        res.json(listMovie[0])
+        res.json(listMovie)
     } catch (error) {
         res.json({ message: error.message })
     }

@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/:id', getAllByUserId)
 router.post('/', addToWatchlist)
-router.delete('/:id', removeFromWatchlist)
+router.delete('/:user_id/:id', removeFromWatchlist)
 
 export default router

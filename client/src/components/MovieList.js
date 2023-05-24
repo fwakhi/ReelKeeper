@@ -3,7 +3,7 @@ import { imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import Buttons from './Buttons';
 import AddFavourites from '../components/AddFavourites';
-import addFavouriteMovie from '../components/AddFavourites';
+import WatchlistButton from './WatchlistButton';
 
 const MovieList = (props) => {
 
@@ -27,7 +27,7 @@ const MovieList = (props) => {
 
     return (
         <>
-            {props.movies.map((movie, userId) =>
+            {props.movies.map((movie) =>
                 <div key={movie.id} className='image-container d-flex justify-content-start m-3'>
                     <img onClick={() => handleClick(movie.id)} src={imgUrl + movie.poster_path} alt="poster" className='mb-1'></img>
                     <div className='justify-content-end'>
@@ -36,6 +36,9 @@ const MovieList = (props) => {
                             onFavouritesAdded={props.onFavouritesAdded}
                             onFavouritesRemoved={props.onFavouritesRemoved}
                             favourites={props.favourites}
+                        />
+                        <WatchlistButton
+                        movie={movie}
                         />
                     </div>
                 </div>

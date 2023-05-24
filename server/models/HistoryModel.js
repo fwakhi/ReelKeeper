@@ -9,6 +9,8 @@ const HistoryModel = db.define('history', {
         referencesKey: 'id'
     }, //column's name
     poster_path: { type: DataTypes.STRING }
+}, {
+    tableName: 'history'
 })
 
 export default HistoryModel

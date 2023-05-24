@@ -8,7 +8,7 @@ export const getAllHistoryByUserId = async (req, res) => {
                 userId: req.params.id
             }
         })
-        res.json(history[0])
+        res.json(history)
     } catch (error) {
         res.json({ message: error.message })
     }

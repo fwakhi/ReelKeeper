@@ -15,23 +15,23 @@ const Header = () => {
         await logout();
     }
 
-    const loginButton = (<>
+    const loginButton = (
         <Link to="login" style={{ textDecoration: 'none' }}><span className="nav-link text-white">LOGIN</span></Link>
-    </>)
+    )
 
-    const listButton = (<>
+    const listButton = (
         <li className="nav-item">
             <Link to="lists" style={{ textDecoration: 'none' }}><span className="nav-link amarillo borde text-white">Lists</span></Link>
         </li>
-    </>)
+    )
 
-    const moviesButton = (<>
+    const moviesButton = (
         <li className="nav-item">
             <Link to="movies" style={{ textDecoration: 'none' }}><span className="nav-link verde borde text-white">Movies</span></Link>
         </li>
-    </>)
+    )
 
-    const profileButton = (<>
+    const profileButton = (
         <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i className="fa-solid fa-user mr-2"></i>
@@ -42,7 +42,7 @@ const Header = () => {
                 <button className="dropdown-item" onClick={signOut}>Sign Out</button>
             </div>
         </li>
-    </>)
+    )
 
     return (
         <>
