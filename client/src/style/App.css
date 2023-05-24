@@ -37,7 +37,6 @@ code {
     flex-direction: column;
     position: relative;
     transition: transform 0.2s;
-
 }
 
 .margin-top {
@@ -49,7 +48,7 @@ code {
     transform: scale(1.1);
 }
 
-.image-container:hover .overlay {
+/* .image-container:hover .overlay {
     opacity: 1;
 
 }
@@ -67,7 +66,7 @@ code {
     margin-bottom: 24px;
     padding: 20px;
 
-}
+} */
 
 a {
     color: white;

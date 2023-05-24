@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
+import useInfo from '../hooks/useInfo';
 import { useParams } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 import { fetchSingleMovie, fetchSingleMovieCredits, fetchRecommendations, imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
 import { Tabs, Tab } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
+import AddFavourites from '../components/AddFavourites';
+import WatchlistButton from './WatchlistButton';
+import HistoryButton from './HistoryButton';
+
+import { getFavorites } from '../api/services/Favorites'
 
 
 const MovieDetail = (props) => {
+    const { favorites, setFavorites } = useInfo()
+    const { auth: { user: { id: userId } } } = useAuth()
 
     const { movie_id } = useParams()
     const [movieId, setMovieId] = useState('0');
@@ -15,16 +24,23 @@ const MovieDetail = (props) => {
     const [rec, setRecs] = useState([]);
     const navigate = useNavigate();
 
+
     // const FavouriteComponent = props.favouriteComponent
 
     useEffect(() => {
+        const loadFavorites = async () => {
+            if (userId && favorites.length == 0) {
+                const favs = await getFavorites(userId);
+                favs && setFavorites(favs);
+            }
+        }
+        loadFavorites()
+    }, [userId]);
+
+    useEffect(() => {
         setMovieId(movie_id);
-        console.log(movie_id, movieId);
-        displayMovie();
-
+        displayMovie();    
     }, [movieId])
-
-
 
     const getRecs = async () => {
         const recs = await fetchRecommendations(movieId);
@@ -37,7 +53,6 @@ const MovieDetail = (props) => {
         const response = await fetchSingleMovie(movieId);
 
         if (response.data) {
-            console.log("movie", response.data)
             response.data.genres = response.data.genres.map(genre => genre.name);
             return response.data;
         }
@@ -63,7 +78,6 @@ const MovieDetail = (props) => {
     }
 
     const handleClick = (clickedMovieId) => {
-        console.log(clickedMovieId);
         navigate(`/movie/${clickedMovieId}`, { replace: true });
         setMovieId(clickedMovieId);
         // window.location.reload(true);
@@ -91,9 +105,18 @@ const MovieDetail = (props) => {
 
                         {/* BUTTONS  */}
                         <div className="ml-auto mb-2">
-                            <button className="btn btn-dark m-1"><i className="fa-regular fa-heart" style={{ color: "#8a8a8a;" }}></i></button>
-                            <button className="btn btn-dark m-1"><i className="fa-solid fa-eye" style={{ color: "#8a8a8a;" }}></i></button>
-                            <button className="btn btn-dark m-1"><i class="fa-regular fa-clock" style={{ color: "#8a8a8a;" }}></i></button>
+                        <AddFavourites
+                            movie={movie}
+                            // onFavouritesAdded={props.onFavouritesAdded}
+                            // onFavouritesRemoved={props.onFavouritesRemoved}
+                            
+                        />
+                        <WatchlistButton
+                        movie={movie}
+                        />
+                        <HistoryButton
+                        movie={movie}
+                        />
                         </div>
                     </div>
 

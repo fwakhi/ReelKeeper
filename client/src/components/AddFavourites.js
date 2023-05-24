@@ -19,7 +19,7 @@ const AddFavourites = (props) => {
 
     const removeFavouriteMovie = async (movie) => {
         if (userId && await removeFavorite(movie.id, userId)) {
-            const newFavouriteList = favorites.filter((fav) => fav.id.toString() !== movie.id.toString());
+            const newFavouriteList = favorites.filter((fav) => fav.id?.toString() !== movie.id?.toString());
             setFavorites(newFavouriteList);
         }
     }
