@@ -9,24 +9,24 @@ import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
 import useAuth from '../hooks/useAuth';
-
+import useInfo from '../hooks/useInfo';
 
 const ViewMovies = () => {
     const [movies, setMovies] = useState([]);
-    const [favourites, setFavourites] = useState([]);
-    // const [watchlist, setWatchlist] = useState([]);
     const [popular, setPopular] = useState([]);
     const [upcoming, setUpcoming] = useState([]);
     const [latest, setLatest] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    
+
 
     const { auth: { user: { id: userId } } } = useAuth()
+    const { favorites, setFavorites } = useInfo()
 
     const filterMovies = (data) => {
         return data.filter(movie => {
             return movie.poster_path &&
                 movie.adult == false &&
+                movie.id != 617932 &&
                 !movie.overview.toLowerCase().includes("sex") &&
                 !movie.overview.toLowerCase().includes("sexual") &&
                 !movie.overview.toLowerCase().includes("erotic") &&
@@ -79,33 +79,17 @@ const ViewMovies = () => {
 
     useEffect(() => {
         const loadFavorites = async () => {
-            if (userId) {
+            if (userId && favorites.length == 0) {
                 const favs = await getFavorites(userId);
-                favs && setFavourites(favs);
+                favs && setFavorites(favs);
             }
         }
         loadFavorites()
     }, [userId]);
 
-
-    const refreshFavsAdd = (newMovie) => {
-        const newFavouriteList = [...favourites, newMovie];
-        setFavourites(newFavouriteList);
-    }
-
-    const refreshFavsRemove = (newMovie) => {
-        const newFavouriteList = favourites.filter((fav) => fav.id.toString() !== newMovie.id.toString());
-        setFavourites(newFavouriteList);
-        console.log(newMovie, newFavouriteList);
-    }
-
     const FavList = (<>
         <div className='row'>
-            <MovieList
-                movies={favourites}
-                favourites={favourites}
-                onFavouritesAdded={refreshFavsAdd}
-                onFavouritesRemoved={refreshFavsRemove} />
+            <MovieList movies={favorites} />
         </div>
     </>)
 
@@ -123,12 +107,7 @@ const ViewMovies = () => {
                 <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
             </div>
             <div className='row'>
-                <MovieList
-                    movies={movies}
-                    favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd}
-                    onFavouritesRemoved={refreshFavsRemove}
-                     />
+                <MovieList movies={movies} />
             </div>
 
             {/* LATEST MOVIES  */}
@@ -136,11 +115,7 @@ const ViewMovies = () => {
                 <MovieListHeading heading="Latest Movies" />
             </div>
             <div className='row'>
-                <MovieList
-                    movies={latest}
-                    favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd}
-                    onFavouritesRemoved={refreshFavsRemove} />
+                <MovieList movies={latest} />
             </div>
 
             {/* UPCOMING MOVIES  */}
@@ -148,29 +123,24 @@ const ViewMovies = () => {
                 <MovieListHeading heading="Upcoming Movies" />
             </div>
             <div className='row'>
-                <MovieList movies={upcoming} favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd}
-                    onFavouritesRemoved={refreshFavsRemove} />
-            </div>
+                <MovieList movies={upcoming} />
+            </div >
 
             {/* POPULAR MOVIES  */}
-            <div className='row d-flec align-items-center'>
+            < div className='row d-flec align-items-center' >
                 <MovieListHeading heading="Popular Movies" />
-            </div>
+            </div >
             <div className='row'>
-                <MovieList movies={popular} favourites={favourites}
-                    onFavouritesAdded={refreshFavsAdd}
-                    onFavouritesRemoved={refreshFavsRemove} />
-            </div>
+                <MovieList movies={popular} />
+            </div >
 
-            {/* FAVOURITES MOVIES  */}
-            <div className='row d-flec align-items-center mt-4 mb-4'>
-                <MovieListHeading heading="Favourites" />
-            </div>
+            {/* FAVORITE MOVIES  */}
+            < div className='row d-flec align-items-center mt-4 mb-4' >
+                <MovieListHeading heading="Favorites" />
+            </div >
+            {favorites?.length > 0 ? FavList : emptyState}
 
-            {favourites.length > 0 ? FavList : emptyState}
-
-        </div>
+        </div >
     );
 }
 export default ViewMovies;

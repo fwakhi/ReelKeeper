@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { getFavorites } from '../api/services/Favorites'
 
 import { fetchCollection } from '../api/tmdb'
 
@@ -12,20 +11,8 @@ import useAuth from '../hooks/useAuth';
 
 const ViewMovies = () => {
 
-    const { auth: { user: { id: userId } } } = useAuth()
-    const [favourites, setFavourites] =  useState([]);
     const ids = [10, 8936, 119, 1241, 33514, 2602, 123800, 264]
     const [collections, setCollections] = useState([]);
-
-    useEffect(() => {
-        const loadFavorites = async () => {
-            if (userId) {
-                const favs = await getFavorites(userId);
-                favs && setFavourites(favs);
-            }
-        }
-        loadFavorites()
-    }, [userId]);
 
     useEffect(() => {
         const myPromise = new Promise((resolve, reject) => {
@@ -53,8 +40,6 @@ const ViewMovies = () => {
         getCollections();
     }, []);
 
-  
-
     const movieCollections =
         React.Children.toArray(
             collections.map(col =>
@@ -63,7 +48,7 @@ const ViewMovies = () => {
                     <MovieListHeading heading={col.name} />
                 </div>
                 <div className='row'>
-                    <MovieList movies={col?.parts}  hideButtons={true} />
+                    <MovieList movies={col?.parts} hideButtons={false} />
                 </div>
             </>)
             ))

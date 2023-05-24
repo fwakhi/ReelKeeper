@@ -11,7 +11,6 @@ const RequireAuth = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const userAuth = async () => {
             try {
