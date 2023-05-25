@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
-import { getHistory, saveHistory, removeHistory } from '../api/services/History'
+import { getHistory, saveHistory, removeHistory } from '../api/services/History';
+import useInfo from "../hooks/useInfo";
 
 const HistoryButton = (props) => {
     
     const { auth: { user: { id: userId } } } = useAuth()
     const movie = props.movie;
-    const [history, setHistory] = useState([]);
+    const { history, setHistory } = useInfo()
     
 
     const addHistoryMovie = async (movie) => {

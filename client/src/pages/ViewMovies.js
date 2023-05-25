@@ -77,15 +77,7 @@ const ViewMovies = () => {
         getLatestMovies();
     }, []);
 
-    useEffect(() => {
-        const loadFavorites = async () => {
-            if (userId && favorites.length == 0) {
-                const favs = await getFavorites(userId);
-                favs && setFavorites(favs);
-            }
-        }
-        loadFavorites()
-    }, [userId]);
+   
 
     const FavList = (<>
         <div className='row'>

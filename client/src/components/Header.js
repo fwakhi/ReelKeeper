@@ -1,15 +1,28 @@
-import React from "react";
-
+import React, { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useLogout from "../hooks/useLogout";
-
+import { getFavorites } from '../api/services/Favorites'
 import "../style/Header.css"
-
+import useAuth from '../hooks/useAuth';
+import useInfo from '../hooks/useInfo';
 
 const Header = () => {
+   
+    const { auth } = useAuth()
+    
+    const { favorites, setFavorites } = useInfo()
     const isAuthorized = localStorage.getItem("accessToken") != null
-
     const logout = useLogout();
+
+    useEffect(() => {
+        const loadFavorites = async () => {
+            if (auth && favorites.length == 0) {
+                const favs = await getFavorites(auth.user.id);
+                favs && setFavorites(favs);
+            }
+        }
+        loadFavorites()
+    }, [auth]);
 
     const signOut = async () => {
         await logout();
