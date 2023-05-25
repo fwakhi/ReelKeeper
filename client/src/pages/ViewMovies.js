@@ -77,8 +77,6 @@ const ViewMovies = () => {
         getLatestMovies();
     }, []);
 
-   
-
     const FavList = (<>
         <div className='row'>
             <MovieList movies={favorites} />

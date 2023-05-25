@@ -19,23 +19,32 @@ const MovieDetail = (props) => {
     const { auth: { user: { id: userId } } } = useAuth()
 
     const { movie_id } = useParams()
-    const [movieId, setMovieId] = useState('0');
+    const [movieId, setMovieId] = useState(null);
     const [movie, setMovie] = useState({});
     const [rec, setRecs] = useState([]);
     const navigate = useNavigate();
 
-
-    // const FavouriteComponent = props.favouriteComponent
-
     useEffect(() => {
-        setMovieId(movie_id);
-        displayMovie();    
-    }, [movieId])
+        console.log(movie_id, movieId)
+        if (movie_id != null) {
+            setMovieId(movie_id);
+            if (movieId) {
+                displayMovie();
+            }
+        }
+    }, []) // movieId
+
+    const filterMovies = (data) => {
+        return data.filter(movie => {
+            return movie.poster_path != null && movie.adult == false;
+        });
+    }
 
     const getRecs = async () => {
         const recs = await fetchRecommendations(movieId);
         if (recs.data) {
-            setRecs(recs.data.results.filter((_, i) => i < 5));
+            const filtered = filterMovies(recs.data.results);
+            setRecs(filtered.filter((_, i) => i < 5));
         }
     }
 
@@ -64,7 +73,6 @@ const MovieDetail = (props) => {
         await getCast(peli);
         setMovie(peli);
         await getRecs();
-
     }
 
     const handleClick = (clickedMovieId) => {
@@ -95,18 +103,18 @@ const MovieDetail = (props) => {
 
                         {/* BUTTONS  */}
                         <div className="ml-auto mb-2">
-                        <AddFavourites
-                            movie={movie}
+                            <AddFavourites
+                                movie={movie}
                             // onFavouritesAdded={props.onFavouritesAdded}
                             // onFavouritesRemoved={props.onFavouritesRemoved}
-                            
-                        />
-                        <WatchlistButton
-                        movie={movie}
-                        />
-                        <HistoryButton
-                        movie={movie}
-                        />
+
+                            />
+                            <WatchlistButton
+                                movie={movie}
+                            />
+                            <HistoryButton
+                                movie={movie}
+                            />
                         </div>
                     </div>
 
@@ -159,7 +167,7 @@ const MovieDetail = (props) => {
                         </Tab>
 
                     </Tabs> */}
-                    
+
 
                     {/* RECOMMENDATIONS  */}
                     <p className="mt-5">If you liked this title, you'll probably like...</p>
