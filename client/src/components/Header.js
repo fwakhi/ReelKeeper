@@ -1,27 +1,41 @@
 import React, { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useLogout from "../hooks/useLogout";
 import { getFavorites } from '../api/services/Favorites'
+import { getWatchlist } from '../api/services/Watchlist'
+import { getHistory } from '../api/services/History'
 import "../style/Header.css"
 import useAuth from '../hooks/useAuth';
 import useInfo from '../hooks/useInfo';
 
 const Header = () => {
-   
+
     const { auth } = useAuth()
-    
-    const { favorites, setFavorites } = useInfo()
-    const isAuthorized = localStorage.getItem("accessToken") != null
+    const { favorites, setFavorites, watchlist, setWatchlist, history, setHistory } = useInfo()
     const logout = useLogout();
 
     useEffect(() => {
         const loadFavorites = async () => {
             if (auth && favorites.length == 0) {
-                const favs = await getFavorites(auth.user.id);
-                favs && setFavorites(favs);
+                const data = await getFavorites(auth.user.id);
+                data && setFavorites(data);
             }
-        }
-        loadFavorites()
+        };
+        const loadWatchlist = async () => {
+            if (auth && watchlist.length == 0) {
+                const data = await getWatchlist(auth.user.id);
+                data && setWatchlist(data);
+            }
+        };
+        const loadHistory = async () => {
+            if (auth && history.length == 0) {
+                const data = await getHistory(auth.user.id);
+                data && setHistory(data);
+            }
+        };
+        loadFavorites();
+        loadWatchlist();
+        loadHistory();
     }, [auth]);
 
     const signOut = async () => {
@@ -81,15 +95,13 @@ const Header = () => {
                                 <a className="nav-link active rojito borde text-white" aria-current="page" href="#">About</a>
                             </li>
 
-                            {isAuthorized ? moviesButton : ""}
-                            {isAuthorized ? listButton : ""}
+                            {auth ? moviesButton : ""}
+                            {auth ? listButton : ""}
 
                             <li className="nav-item purple borde rounded ml-3">
-                                {isAuthorized ? profileButton : loginButton}
+                                {auth ? profileButton : loginButton}
                             </li>
-
                         </ul>
-
                     </div>
                 </div>
             </nav>

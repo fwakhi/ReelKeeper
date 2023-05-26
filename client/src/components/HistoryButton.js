@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useAuth from "../hooks/useAuth";
 import { getHistory, saveHistory, removeHistory } from '../api/services/History';
 import useInfo from "../hooks/useInfo";
 
 const HistoryButton = (props) => {
-    
+
     const { auth: { user: { id: userId } } } = useAuth()
-    const movie = props.movie;
     const { history, setHistory } = useInfo()
-    
+
+    const movie = props.movie;
 
     const addHistoryMovie = async (movie) => {
         if (userId && await saveHistory(movie, userId)) {
             setHistory(await getHistory(userId));
-            
         }
     }
 
     const removeHistoryMovie = async (movie) => {
         if (userId && await removeHistory(movie.id, userId)) {
             setHistory(await getHistory(userId));
-           
         }
     }
 
-    
     if (history?.find(m => m.id == movie.id)) {
         return (
             <>
@@ -32,8 +29,6 @@ const HistoryButton = (props) => {
             </>
         )
     }
-
-
 
     return (
         <>

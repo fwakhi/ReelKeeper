@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import { searchMovies, popularMovies, upcomingMovies, latestMovies } from '../api/tmdb'
-import { getFavorites } from '../api/services/Favorites'
-// import { getWatchlist } from '../api/services/Watchlist'
+import { searchMovies } from '../api/tmdb'
+import { filterMovies, getLatestMovies, getPopularMovies, getUpcomingMovies } from '../api/services/Movies';
 
-//COMPONENTES
 import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
-import useAuth from '../hooks/useAuth';
 import useInfo from '../hooks/useInfo';
 
 const ViewMovies = () => {
@@ -18,25 +15,17 @@ const ViewMovies = () => {
     const [latest, setLatest] = useState([]);
     const [searchValue, setSearchValue] = useState('');
 
+    const { favorites } = useInfo()
 
-    const { auth: { user: { id: userId } } } = useAuth()
-    const { favorites, setFavorites } = useInfo()
-
-    const filterMovies = (data) => {
-        return data.filter(movie => {
-            return movie.poster_path &&
-                movie.adult == false &&
-                movie.id != 617932 &&
-                !movie.overview.toLowerCase().includes("sex") &&
-                !movie.overview.toLowerCase().includes("sexual") &&
-                !movie.overview.toLowerCase().includes("erotic") &&
-                !movie.overview.toLowerCase().includes("porn") &&
-                !movie.title.toLowerCase().includes("porn") &&
-                !movie.title.toLowerCase().includes("porno") &&
-                !movie.title.toLowerCase().includes("erotic") &&
-                !movie.title.toLowerCase().includes("sexy");
-        });
+    const fetchMovies = async () => {
+        setPopular(await getPopularMovies());
+        setUpcoming(await getUpcomingMovies());
+        setLatest(await getLatestMovies());
     }
+
+    useEffect(() => {
+        fetchMovies();
+    }, []);
 
     useEffect(() => {
         const getMovieRequest = async (searchValue) => {
@@ -50,47 +39,9 @@ const ViewMovies = () => {
         getMovieRequest(searchValue);
     }, [searchValue]);
 
-    useEffect(() => {
-        const getPopularMovies = async () => {
-            const response = await popularMovies();
-            const limited = response.data.results.filter((_, i) => i < 10)
-            setPopular(limited);
-        }
-        getPopularMovies();
-    }, []);
-
-    useEffect(() => {
-        const getUpcomingMovies = async () => {
-            const response = await upcomingMovies();
-            const limited = response.data.results.filter((_, i) => i < 10)
-            setUpcoming(limited);
-        }
-        getUpcomingMovies();
-    }, []);
-
-    useEffect(() => {
-        const getLatestMovies = async () => {
-            const response = await latestMovies();
-            const limited = response.data.results.reverse().filter((_, i) => i < 10);
-            setLatest(limited);
-        }
-        getLatestMovies();
-    }, []);
-
-    const FavList = (<>
-        <div className='row'>
-            <MovieList movies={favorites} />
-        </div>
-    </>)
-
-    const emptyState = (<>
-        <p>
-            No movies available
-        </p>
-    </>)
-
     return (
         <div className="container-fluid movie-app">
+
             {/* SEARCH MOVIES  */}
             <div className='row d-flec align-items-center margin-top mb-4'>
                 <MovieListHeading heading="Movies" />
@@ -100,36 +51,24 @@ const ViewMovies = () => {
                 <MovieList movies={movies} />
             </div>
 
-            {/* LATEST MOVIES  */}
-            <div className='row d-flec align-items-center  mt-5'>
-                <MovieListHeading heading="Latest Movies" />
-            </div>
-            <div className='row'>
-                <MovieList movies={latest} />
-            </div>
-
-            {/* UPCOMING MOVIES  */}
-            <div className='row d-flec align-items-center'>
-                <MovieListHeading heading="Upcoming Movies" />
-            </div>
-            <div className='row'>
-                <MovieList movies={upcoming} />
-            </div >
-
-            {/* POPULAR MOVIES  */}
-            < div className='row d-flec align-items-center' >
-                <MovieListHeading heading="Popular Movies" />
-            </div >
-            <div className='row'>
-                <MovieList movies={popular} />
-            </div >
-
-            {/* FAVORITE MOVIES  */}
-            < div className='row d-flec align-items-center mt-4 mb-4' >
-                <MovieListHeading heading="Favorites" />
-            </div >
-            {favorites?.length > 0 ? FavList : emptyState}
-
+            {React.Children.toArray([
+                { title: "Latest Movies", movies: latest },
+                { title: "Upcoming Movies", movies: upcoming },
+                { title: "Popular Movies", movies: popular },
+                { title: "Favorites", movies: favorites }].map((k) =>
+                    <>
+                        <div className='row d-flec align-items-center  mt-5'>
+                            <MovieListHeading heading={k.title} />
+                        </div>
+                        <div className='row'>
+                            {
+                                k.movies.length > 0
+                                    ? <MovieList movies={k.movies} />
+                                    : <p>No movies available</p>
+                            }
+                        </div>
+                    </>
+                ))}
         </div >
     );
 }

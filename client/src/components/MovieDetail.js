@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
-import useInfo from '../hooks/useInfo';
 import { useParams } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
 import { fetchSingleMovie, fetchSingleMovieCredits, fetchRecommendations, imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
-import { Tabs, Tab } from 'react-bootstrap';
-import Accordion from 'react-bootstrap/Accordion';
-import AddFavourites from '../components/AddFavourites';
-import WatchlistButton from './WatchlistButton';
-import HistoryButton from './HistoryButton';
-
-import { getFavorites } from '../api/services/Favorites'
+import Buttons from "./Buttons";
 
 
-const MovieDetail = (props) => {
-    const { favorites, setFavorites } = useInfo()
-    const { auth: { user: { id: userId } } } = useAuth()
-
+const MovieDetail = () => {
     const { movie_id } = useParams()
     const [movieId, setMovieId] = useState(null);
     const [movie, setMovie] = useState({});
@@ -25,7 +14,6 @@ const MovieDetail = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log(movie_id, movieId)
         if (movie_id != null) {
             setMovieId(movie_id);
             if (movieId) {
@@ -101,20 +89,8 @@ const MovieDetail = (props) => {
                         {/* Director  */}
                         <p className="ml-4"><b>Directed by</b> {movie.director?.map(dir => (<span className="directorTag">{dir.name} </span>))} </p>
 
-                        {/* BUTTONS  */}
                         <div className="ml-auto mb-2">
-                            <AddFavourites
-                                movie={movie}
-                            // onFavouritesAdded={props.onFavouritesAdded}
-                            // onFavouritesRemoved={props.onFavouritesRemoved}
-
-                            />
-                            <WatchlistButton
-                                movie={movie}
-                            />
-                            <HistoryButton
-                                movie={movie}
-                            />
+                            <Buttons movie={movie} />
                         </div>
                     </div>
 
@@ -179,21 +155,9 @@ const MovieDetail = (props) => {
                             </div>
                         )}
                     </div>
-
-
-
-
-
-
-
                 </div>
             </div>
-
         </div>
     )
-
-
 }
-
-
 export default MovieDetail;

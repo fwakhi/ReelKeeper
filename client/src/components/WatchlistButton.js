@@ -1,29 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useAuth from "../hooks/useAuth";
 import { getWatchlist, saveWatchlist, removeWatchlist } from '../api/services/Watchlist'
+import useInfo from "../hooks/useInfo";
 
 const WatchlistButton = (props) => {
-    
+
     const { auth: { user: { id: userId } } } = useAuth()
+    const { watchlist, setWatchlist } = useInfo()
+
     const movie = props.movie;
-    const [watchlist, setWatchlist] = useState([]);
-    
 
     const addWatchlistMovie = async (movie) => {
         if (userId && await saveWatchlist(movie, userId)) {
             setWatchlist(await getWatchlist(userId));
-            
         }
     }
 
     const removeWatchlistMovie = async (movie) => {
         if (userId && await removeWatchlist(movie.id, userId)) {
             setWatchlist(await getWatchlist(userId));
-           
         }
     }
 
-    
     if (watchlist?.find(m => m.id == movie.id)) {
         return (
             <>
@@ -31,8 +29,6 @@ const WatchlistButton = (props) => {
             </>
         )
     }
-
-
 
     return (
         <>

@@ -1,20 +1,16 @@
 import React from "react";
+import AddFavourites from "./AddFavourites";
+import HistoryButton from "./HistoryButton";
+import WatchlistButton from "./WatchlistButton";
 
 
 const Buttons = (props) => {
     return (
-        <>
-            {props.movies?.map((movie, _) =>
-                <div className="m-auto mb-2">
-                    <button className="btn  addListButton"><i class="fa-solid fa-plus" style={{ color: "#8a8a8a;" }}></i></button>
-                    <button className="btn  favButton"><i className="fa-regular fa-heart" style={{ color: "#8a8a8a;" }}></i></button>
-                    <button className="btn  watchedButton"><i className="fa-solid fa-eye" style={{ color: "#8a8a8a;" }}></i></button>
-                    <button className="btn  watchlistButton"><i class="fa-regular fa-clock" style={{ color: "#8a8a8a;" }}></i></button>
-                </div>
-            )
-            }
-        </>
+        <div className='justify-content-end'>
+            <AddFavourites movie={props.movie} />
+            <WatchlistButton movie={props.movie} />
+            <HistoryButton movie={props.movie} />
+        </div>
     )
 }
 export default Buttons;
-

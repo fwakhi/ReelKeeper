@@ -1,17 +1,5 @@
 import axios, { FAVS_URL } from "../axios";
-import { fetchSingleMovie } from '../tmdb'
 
-// @ts-ignore
-const fetchMovies = async (ids) => {
-    const fetchedMovies = []
-    ids.forEach(async movieId => {
-        const response = await fetchSingleMovie(movieId.id);
-        if (response.data) {
-            fetchedMovies.push(response.data)
-        }
-    });
-    return fetchedMovies;
-}
 
 export const getFavorites = async (userId) => {
     try {
@@ -29,6 +17,7 @@ export const saveFavorite = async (movie, userId) => {
     const { id, poster_path } = movie
     try {
         await axios.post(FAVS_URL, { id, userId, poster_path });
+        console.log("favorites-Added:", id);
         return true
     } catch (err) {
         console.error("Error; ", err);
@@ -39,9 +28,10 @@ export const saveFavorite = async (movie, userId) => {
 export const removeFavorite = async (id, userId) => {
     try {
         await axios.delete(`${FAVS_URL}/${userId}/${id}`, {});
+        console.log("favorites-Remved:", id);
+        return true
     } catch (err) {
         console.error("Error; ", err);
         return false
     }
-    return true
 }

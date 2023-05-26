@@ -1,17 +1,5 @@
 import axios, { WATCHLIST_URL } from "../axios";
-import { fetchSingleMovie } from '../tmdb'
 
-// @ts-ignore
-const fetchMovies = async (ids) => {
-    const fetchedMovies = []
-    ids.forEach(async movieId => {
-        const response = await fetchSingleMovie(movieId.id);
-        if (response.data) {
-            fetchedMovies.push(response.data)
-        }
-    });
-    return fetchedMovies;
-}
 
 export const getWatchlist = async (userId) => {
     try {
@@ -27,9 +15,9 @@ export const getWatchlist = async (userId) => {
 
 export const saveWatchlist = async (movie, userId) => {
     const { id, poster_path } = movie
-    
     try {
         await axios.post(WATCHLIST_URL, { id, userId, poster_path });
+        console.log("Watchlist-Added:", id);
         return true
     } catch (err) {
         console.error("Error; ", err);
@@ -39,12 +27,11 @@ export const saveWatchlist = async (movie, userId) => {
 
 export const removeWatchlist = async (id, userId) => {
     try {
-        console.log(id, userId);
         await axios.delete(`${WATCHLIST_URL}/${userId}/${id}`, {});
-        
+        console.log("Watchlist-Removed:", id);
+        return true
     } catch (err) {
         console.error("Error; ", err);
         return false
     }
-    return true
 }
