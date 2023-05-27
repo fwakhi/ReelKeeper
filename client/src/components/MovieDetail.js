@@ -1,79 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchSingleMovie, fetchSingleMovieCredits, fetchRecommendations, imgUrl } from '../api/tmdb'
+import { imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
 import Buttons from "./Buttons";
+import { fetchMovie } from '../api/services/Movies';
 
 
 const MovieDetail = () => {
-    const { movie_id } = useParams()
-    const [movieId, setMovieId] = useState(null);
+
+    let { movie_id } = useParams()
     const [movie, setMovie] = useState({});
-    const [rec, setRecs] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (movie_id != null) {
-            setMovieId(movie_id);
-            if (movieId) {
-                displayMovie();
-            }
-        }
-    }, []) // movieId
-
-    const filterMovies = (data) => {
-        return data.filter(movie => {
-            return movie.poster_path != null && movie.adult == false;
-        });
-    }
-
-    const getRecs = async () => {
-        const recs = await fetchRecommendations(movieId);
-        if (recs.data) {
-            const filtered = filterMovies(recs.data.results);
-            setRecs(filtered.filter((_, i) => i < 5));
-        }
-    }
-
-    const getMovie = async () => {
-        const response = await fetchSingleMovie(movieId);
-
-        if (response.data) {
-            response.data.genres = response.data.genres.map(genre => genre.name);
-            return response.data;
-        }
-    }
-
-
-    const getCast = async (movie) => {
-        const responseCredits = await fetchSingleMovieCredits(movieId);
-        if (responseCredits.data) {
-            const director = responseCredits.data.crew.filter(crew => crew.job === "Director");
-            movie.crew = responseCredits.data.crew.filter((_, i) => i < 15);
-            movie.cast = responseCredits.data.cast.filter((_, i) => i < 15);
-            movie.director = director;
-        }
-    }
+        displayMovie();
+    }, [movie_id])
 
     const displayMovie = async () => {
-        const peli = await getMovie();
-        await getCast(peli);
-        setMovie(peli);
-        await getRecs();
+        setMovie(await fetchMovie(movie_id));
     }
 
     const handleClick = (clickedMovieId) => {
         navigate(`/movie/${clickedMovieId}`, { replace: true });
-        setMovieId(clickedMovieId);
+        movie_id = clickedMovieId
         // window.location.reload(true);
-        displayMovie();
     }
-
-    useEffect(() => {
-        setMovieId(movie_id);
-        displayMovie();
-    }, [movieId])
 
     return (
         <div className="container margin-top">
@@ -87,7 +39,7 @@ const MovieDetail = () => {
 
                     <div className="row">
                         {/* Director  */}
-                        <p className="ml-4"><b>Directed by</b> {movie.director?.map(dir => (<span className="directorTag">{dir.name} </span>))} </p>
+                        <p className="ml-4"><b>Directed by</b> {React.Children.toArray(movie.director?.map(dir => (<span className="directorTag">{dir.name} </span>)))} </p>
 
                         <div className="ml-auto mb-2">
                             <Buttons movie={movie} />
@@ -101,7 +53,7 @@ const MovieDetail = () => {
                     <p><b>Original language:</b> <span>{languageNames[movie.original_language]}</span></p>
                     <p><b>Genres:</b>
                         {/* GENRES */}
-                        {movie.genres?.map(genre => (<span className="genreTag">{genre}</span>))}
+                        {React.Children.toArray(movie.genres?.map(genre => (<span className="genreTag">{genre}</span>)))}
                     </p>
 
                     {/* CAST & CREW  */}
@@ -116,12 +68,12 @@ const MovieDetail = () => {
                     </p>
                     <div className="collapse mb-5" id="collapse1">
                         <div className="card card-body">
-                            {movie.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>))}
+                            {React.Children.toArray(movie.credits.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>)))}
                         </div>
                     </div>
                     <div className="collapse mb-5" id="collapse2">
                         <div className="card card-body">
-                            {movie.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>))}
+                            {React.Children.toArray(movie.credits.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>)))}
                         </div>
                     </div>
 
@@ -149,11 +101,11 @@ const MovieDetail = () => {
                     <p className="mt-5">If you liked this title, you'll probably like...</p>
 
                     <div className="row mb-5">
-                        {rec?.map(r =>
+                        {React.Children.toArray(movie.recommendations?.map(r =>
                             <div className='image-container d-flex justify-content-start col-2'>
                                 <img onClick={() => handleClick(r.id)} src={imgUrl + r.poster_path} alt="poster"></img>
                             </div>
-                        )}
+                        ))}
                     </div>
                 </div>
             </div>

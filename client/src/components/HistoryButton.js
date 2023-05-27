@@ -25,14 +25,14 @@ const HistoryButton = (props) => {
     if (history?.find(m => m.id == movie.id)) {
         return (
             <>
-                <button className="btn watchedButton crossed" onClick={() => removeHistoryMovie(movie)}><i className="fa-solid fa-eye" style={{ color: "#8a8a8a;" }}></i></button>
+                <button className="btn watchedButton crossed" onClick={() => removeHistoryMovie(movie)}><i className="fa-solid fa-eye" style={{ color: "#1f1f1f" }}></i></button>
             </>
         )
     }
 
     return (
         <>
-            <button className="btn watchedButton" onClick={() => addHistoryMovie(movie)}><i className="fa-regular fa-eye" style={{ color: "#8a8a8a;" }}></i></button>
+            <button className="btn watchedButton" onClick={() => addHistoryMovie(movie)}><i className="fa-regular fa-eye" style={{ color: "#1f1f1f" }}></i></button>
         </>
     )
 }

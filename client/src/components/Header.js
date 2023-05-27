@@ -16,26 +16,29 @@ const Header = () => {
 
     useEffect(() => {
         const loadFavorites = async () => {
-            if (auth && favorites.length == 0) {
+            if (favorites.length == 0) {
                 const data = await getFavorites(auth.user.id);
                 data && setFavorites(data);
             }
         };
         const loadWatchlist = async () => {
-            if (auth && watchlist.length == 0) {
+            if (watchlist.length == 0) {
                 const data = await getWatchlist(auth.user.id);
                 data && setWatchlist(data);
             }
         };
         const loadHistory = async () => {
-            if (auth && history.length == 0) {
+            if (history.length == 0) {
                 const data = await getHistory(auth.user.id);
                 data && setHistory(data);
             }
         };
-        loadFavorites();
-        loadWatchlist();
-        loadHistory();
+
+        if (auth.user) {
+            loadFavorites();
+            loadWatchlist();
+            loadHistory();
+        }
     }, [auth]);
 
     const signOut = async () => {
@@ -78,12 +81,10 @@ const Header = () => {
                 <div className="container-fluid">
 
                     <div className="mr-auto">
-                        <a className="navbar-brand " href="#">
-                            <Link to="/" style={{ textDecoration: 'none' }}>
-                                <i className="fa-solid fa-film mr-3 text-dark"></i>
-                                <span className="display-6 text-dark">ReelKeeper</span>
-                            </Link>
-                        </a>
+                        <Link className="navbar-brand" to="/" style={{ textDecoration: 'none' }}>
+                            <i className="fa-solid fa-film mr-3 text-dark"></i>
+                            <span className="display-6 text-dark">ReelKeeper</span>
+                        </Link>
                     </div>
 
                     <button className="navbar-toggler negro" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

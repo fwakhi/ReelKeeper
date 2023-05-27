@@ -28,7 +28,7 @@ const AddFavourites = (props) => {
         return (
             <>
                 <button className="btn favButton broken" onClick={() => removeFavouriteMovie(movie)}>
-                    <i className="fa-solid fa-heart" style={{ color: '#8a8a8a;' }}></i>
+                    <i className="fa-solid fa-heart" style={{ color: '##1f1f1f' }}></i>
                 </button>
             </>
         )
@@ -37,7 +37,7 @@ const AddFavourites = (props) => {
     return (
         <>
             <button className="btn favButton" onClick={() => addFavouriteMovie(movie)}>
-                <i className="fa-regular fa-heart" style={{ color: '#8a8a8a;' }}></i>
+                <i className="fa-regular fa-heart" style={{ color: '#1f1f1f' }}></i>
             </button>
         </>
     )

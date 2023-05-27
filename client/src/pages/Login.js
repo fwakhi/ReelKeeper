@@ -55,9 +55,8 @@ const Login = () => {
             );
             const accessToken = response?.data?.accessToken;
             const user = response?.data?.user;
-         
+
             localStorage.setItem('accessToken', accessToken);
-           
 
             setAuth({ accessToken, user });
             setUsername('');

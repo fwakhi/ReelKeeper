@@ -25,14 +25,14 @@ const WatchlistButton = (props) => {
     if (watchlist?.find(m => m.id == movie.id)) {
         return (
             <>
-                <button className="btn watchlistButton" onClick={() => removeWatchlistMovie(movie)}><i className="fa-solid fa-bookmark" style={{ color: "#8a8a8a;" }}></i></button>
+                <button className="btn watchlistButton" onClick={() => removeWatchlistMovie(movie)}><i className="fa-solid fa-bookmark" style={{ color: "#1f1f1f" }}></i></button>
             </>
         )
     }
 
     return (
         <>
-            <button className="btn watchlistButton" onClick={() => addWatchlistMovie(movie)}><i className="fa-regular fa-bookmark" style={{ color: "#8a8a8a;" }}></i></button>
+            <button className="btn watchlistButton" onClick={() => addWatchlistMovie(movie)}><i className="fa-regular fa-bookmark" style={{ color: "#1f1f1f" }}></i></button>
         </>
     )
 }
