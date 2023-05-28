@@ -21,7 +21,17 @@ export const fetchMovie = async (id) => {
     if (response.data) {
         const movie = response.data
         movie.genres = movie.genres.map(genre => genre.name);
-        movie.recommendations = filterMovies(movie.recommendations.results).filter((_, i) => i < 5);
+        if (movie.recommendations.length > 0) {
+            movie.recommendations = filterMovies(movie.recommendations.results).filter((_, i) => i < 5);
+        } else {
+            movie.recommendations = [
+                { id: 1, poster_path: "" },
+                { id: 2, poster_path: "" },
+                { id: 3, poster_path: "" },
+                { id: 4, poster_path: "" },
+                { id: 5, poster_path: "" }
+            ]
+        }
         const director = movie.credits.crew.filter(crew => crew.job === "Director");
         movie.credits.crew = movie.credits.crew.filter((_, i) => i < 15);
         movie.credits.cast = movie.credits.cast.filter((_, i) => i < 15);
