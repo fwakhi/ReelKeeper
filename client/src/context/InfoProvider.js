@@ -7,8 +7,6 @@ export const InfoProvider = ({ children }) => {
     const [watchlist, setWatchlist] = useState([]);
     const [history, setHistory] = useState([]);
 
-    console.log("INFO--------")
-
     return (
         <InfoContext.Provider value={{ favorites, setFavorites, watchlist, setWatchlist, history, setHistory }}>
             {children}

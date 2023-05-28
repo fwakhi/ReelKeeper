@@ -5,44 +5,26 @@ import { fetchCollection } from '../api/tmdb'
 //COMPONENTES
 import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
-import useAuth from '../hooks/useAuth';
-
+import LoadingSpinner from '../components/Loading';
+import { fetchCollections } from '../api/services/Movies';
 
 
 const ViewMovies = () => {
-
     const ids = [10, 8936, 119, 1241, 33514, 2602, 123800, 264]
     const [collections, setCollections] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const myPromise = new Promise((resolve, reject) => {
-            const newArray = [];
-            ids.forEach(async i => {
-                await fetchCollection(i)
-                    .then(response => {
-                        const movies = response.data.parts.sort(function (filmA, filmB) {
-                            const a = filmA.release_date.split('/').reverse().join('');
-                            const b = filmB.release_date.split('/').reverse().join('');
-                            return a > b ? 1 : a < b ? -1 : 0;
-                        })
-                        response.data.parts = movies
-                        newArray.push(response.data)
-                        resolve(newArray);
-                    }).catch(error => {
-                        reject(error);
-                    });
-            });
-        });
         const getCollections = async () => {
-            myPromise.then(response => setCollections(response))
-                .catch(error => console.error(error))
+            setCollections(await fetchCollections(ids));
+            setIsLoading(false);
         }
         getCollections();
     }, []);
 
     const movieCollections =
         React.Children.toArray(
-            collections.map(col =>
+            collections?.map(col =>
             (<>
                 <div className='row d-flec align-items-center  mt-5'>
                     <MovieListHeading heading={col.name} />
@@ -55,8 +37,7 @@ const ViewMovies = () => {
 
     return (
         <div className="container-fluid movie-app">
-            {/* COLLECTIONS MOVIES  */}
-            {movieCollections}
+            {isLoading ? <LoadingSpinner /> : movieCollections}
         </div>
     );
 }

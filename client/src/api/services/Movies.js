@@ -1,4 +1,4 @@
-import { fetchSingleMovie, latestMovies, popularMovies, upcomingMovies } from "../tmdb";
+import { fetchSingleMovie, latestMovies, popularMovies, upcomingMovies, fetchCollection } from "../tmdb";
 
 export const filterMovies = (data) => {
     return data.filter(movie => {
@@ -30,7 +30,7 @@ export const fetchMovie = async (id) => {
     }
 }
 
-const fetchMovies = async (ids) => {
+export const fetchMovies = async (ids) => {
     const fetchedMovies = []
     ids.forEach(async movieId => {
         const response = await fetchSingleMovie(movieId.id);
@@ -39,6 +39,14 @@ const fetchMovies = async (ids) => {
         }
     });
     return fetchedMovies;
+}
+
+export const fetchCollections = async (ids) => {
+    const data = ids.map(id => new Promise((res, rej) => {
+        res(fetchCollection(id))
+    }));
+    const output = await Promise.all(data);
+    return output.map(res => res.data)
 }
 
 export const getPopularMovies = async () => {
