@@ -17,9 +17,7 @@ const MovieDetail = () => {
         displayMovie();
     }, [movie_id])
 
-    const displayMovie = async () => {
-        setMovie(await fetchMovie(movie_id));
-    }
+    const displayMovie = async () => setMovie(await fetchMovie(movie_id));
 
     const handleClick = (clickedMovieId) => {
         navigate(`/movie/${clickedMovieId}`, { replace: true });
@@ -68,12 +66,12 @@ const MovieDetail = () => {
                     </p>
                     <div className="collapse mb-5" id="collapse1">
                         <div className="card card-body">
-                            {React.Children.toArray(movie.credits.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>)))}
+                            {React.Children.toArray(movie.credits?.cast.map(act => (<span><b>{act.name}</b> - {act.character} </span>)))}
                         </div>
                     </div>
                     <div className="collapse mb-5" id="collapse2">
                         <div className="card card-body">
-                            {React.Children.toArray(movie.credits.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>)))}
+                            {React.Children.toArray(movie.credits?.crew.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>)))}
                         </div>
                     </div>
 
