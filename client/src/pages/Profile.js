@@ -2,15 +2,14 @@ import React, { useContext, useEffect } from "react";
 
 // import styles from "../style/Background.module.css"
 import '../style/Home.css';
-
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
 import useInfo from '../hooks/useInfo';
+import { Link } from 'react-router-dom';
 
 
 const Profile = () => {
     const { auth } = useAuth();
-    const navigate = useNavigate();
     const name = auth.user.username;
     const { favorites, watchlist, history } = useInfo();
     console.log("HISTORY-->", history);
@@ -18,8 +17,10 @@ const Profile = () => {
     const totalWatchlist = watchlist.length;
     const totalHistory = history.length;
     const thisYearFilms = history.filter(film => (film.createdAt.split('-')[0] == "2023")).length;
-   
 
+    const navigate = useNavigate();
+
+    const handleClick = (section) => navigate(`/${section}`)
 
     return (
         <>
@@ -40,9 +41,26 @@ const Profile = () => {
                             <div className="col-2 text-center border-dark border-right"><h4>{totalWatchlist}</h4>WATCHLIST</div>
                             <div className="col-2 text-center"><h4>0</h4>LISTS</div>
                         </div>
-
-
                     </div>
+                </div>
+
+                <div className="row margin-top justify-content-md-center profileMovies d-flex">
+                    
+                        <div className="col-3 container border rounded" onClick={() => handleClick("favs")}>
+                            <i className="fa-solid fa-heart" style={{ color: '#d9d9d9' }}></i>
+                            
+                        </div>
+                        
+                    
+                    
+                    <div className="col-3  container border rounded" onClick={() => handleClick("history")}>
+                        <i className="fa-regular fa-eye fa-8x" style={{ color: "#d9d9d9" }}></i>
+                    </div>
+                   
+                    <div className="col-3  container border rounded" onClick={() => handleClick("watchlist")}>
+                      <i className="fa-regular fa-bookmark fa-8x" style={{ color: "#d9d9d9" }}></i>
+                    </div>
+                   
                 </div>
             </div>
 

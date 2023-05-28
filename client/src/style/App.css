@@ -4,6 +4,31 @@
     font-family: 'JetBrains Mono';
 }
 
+@media (max-width: 800px) {
+    .bordered {
+        width: 100%;
+        height: fit-content;
+        padding: auto;
+
+    }
+
+    .movieContainer{
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .posterContainer {
+        max-width: 80%;
+    }
+    .detailsContainer{
+        max-width: 100%;
+    }
+    .profileMovies div{
+        min-width: 250px;
+        width: 400px;
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+}
 body>#root>div {
     height: 100vh;
 }
@@ -133,24 +158,7 @@ a {
     /* box-shadow: none; */
 }
 
-@media (max-width: 800px) {
-    .bordered {
-        width: 100%;
-        height: fit-content;
-        padding: auto;
 
-    }
-
-    .movieContainer{
-        flex-direction: column;
-    }
-    .posterContainer {
-        max-width: 80%;
-    }
-    .detailsContainer{
-        max-width: 100%;
-    }
-}
 
 /* MOVIE DETAILS PAGE  */
 
@@ -258,6 +266,30 @@ a {
 }
 .movieCount div{
 /* padding: 0 40px; */
+}
+
+.profileMovies{
+    height: 400px;
+    margin: 40px auto;
+}
+
+.profileMovies div{
+    margin: 0 10px;
+    display: block;
+    background-color: #373737;
+    
+}
+
+.profileMovies div:hover{
+    cursor:pointer;
+    
+}
+.profileMovies i{
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-top: 50%;
+    font-size: 6em;
 }
 /******************** SCROLLBAR  ***********************/
 /* width */
