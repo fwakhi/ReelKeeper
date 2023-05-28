@@ -12,7 +12,6 @@ const Profile = () => {
     const { auth } = useAuth();
     const name = auth.user.username;
     const { favorites, watchlist, history } = useInfo();
-    console.log("HISTORY-->", history);
     const totalFavs = favorites.length;
     const totalWatchlist = watchlist.length;
     const totalHistory = history.length;
@@ -26,9 +25,9 @@ const Profile = () => {
         <>
             <div className="container">
                 <div className="row margin-top">
-                    <div className="col-1">
-                        <i className="fa-solid fa-user fa-6x iconProfile" style={{ color: '#8a8a8a;' }}></i>
-                    </div>
+                    {/* <div className="col-1">
+                        <i className="fa-solid fa-user fa-6x iconProfile" style={{ color: '#8a8a8a' }}></i>
+                    </div> */}
                     <div className="col-10 ml-5">
                         <div className="col-12">
                             <h1>Hi, @{name}</h1>
@@ -45,22 +44,19 @@ const Profile = () => {
                 </div>
 
                 <div className="row margin-top justify-content-md-center profileMovies d-flex">
-                    
-                        <div className="col-3 container border rounded" onClick={() => handleClick("favs")}>
-                            <i className="fa-solid fa-heart" style={{ color: '#d9d9d9' }}></i>
-                            
-                        </div>
-                        
-                    
-                    
+
+                    <div className="col-3 container border rounded" onClick={() => handleClick("favs")}>
+                        <i className="fa-solid fa-heart" style={{ color: '#d9d9d9' }}></i>
+
+                    </div>
                     <div className="col-3  container border rounded" onClick={() => handleClick("history")}>
                         <i className="fa-regular fa-eye fa-8x" style={{ color: "#d9d9d9" }}></i>
                     </div>
-                   
+
                     <div className="col-3  container border rounded" onClick={() => handleClick("watchlist")}>
-                      <i className="fa-regular fa-bookmark fa-8x" style={{ color: "#d9d9d9" }}></i>
+                        <i className="fa-regular fa-bookmark fa-8x" style={{ color: "#d9d9d9" }}></i>
                     </div>
-                   
+
                 </div>
             </div>
 

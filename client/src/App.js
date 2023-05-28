@@ -15,6 +15,9 @@ import Missing from "./components/Missing";
 import MovieDetail from "./components/MovieDetail";
 import RequireAuth from "./components/RequireAuth";
 import Profile from './pages/Profile';
+import Favs from './pages/Favs';
+import History from './pages/History';
+import Watchlist from './pages/Watchlist';
 
 
 const App = () => {
@@ -39,6 +42,9 @@ const App = () => {
                     <Route path='/playground' element={<Playground />} />
                     <Route path="/movie/:movie_id" element={<MovieDetail />} />
                     <Route path="/profile" element={<Profile />}/>
+                    <Route path="/favs" element={<Favs />}/>
+                    <Route path="/history" element={<History />}/>
+                    <Route path="/watchlist" element={<Watchlist />}/>
                 </Route>
 
                 {/* All routes */}

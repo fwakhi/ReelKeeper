@@ -308,9 +308,9 @@ a {
 
 }
 
-.profileMovies div:hover {
-    cursor: pointer;
-
+.profileMovies div:hover, .fa-circle-left:hover{
+    cursor:pointer;
+    
 }
 
 .profileMovies i {

@@ -67,10 +67,10 @@ const Header = () => {
             <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i className="fa-solid fa-user mr-2"></i>
             </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to="profile" className="dropdown-item" >Go to profile</Link>
-                <Link to="playground" className="dropdown-item">Playground</Link>
-                <button className="dropdown-item" onClick={signOut}>Sign Out</button>
+            <div className="dropdown-menu text-left " aria-labelledby="navbarDropdown">
+                <Link to="profile" className="dropdown-item px-2" >Go to profile</Link>
+                <Link to="playground" className="dropdown-item px-2">Playground</Link>
+                <button className="dropdown-item px-2" onClick={signOut}>Sign Out</button>
             </div>
         </li>
     )
