@@ -3,22 +3,48 @@ import React, { useContext, useEffect } from "react";
 // import styles from "../style/Background.module.css"
 import '../style/Home.css';
 
-import {useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
+import useInfo from '../hooks/useInfo';
 
 
 const Profile = () => {
     const { auth } = useAuth();
-    const isAuthorized = auth.accessToken != null
-    const location = useLocation();
     const navigate = useNavigate();
     const name = auth.user.username;
-
+    const { favorites, watchlist, history } = useInfo();
+    console.log("HISTORY-->", history);
+    const totalFavs = favorites.length;
+    const totalWatchlist = watchlist.length;
+    const totalHistory = history.length;
+    const thisYearFilms = history.filter(film => (film.createdAt.split('-')[0] == "2023")).length;
    
+
 
     return (
         <>
-           <h1 className="margin-top ml-5">hola @{name}</h1>
+            <div className="container">
+                <div className="row margin-top">
+                    <div className="col-1">
+                        <i className="fa-solid fa-user fa-6x iconProfile" style={{ color: '#8a8a8a;' }}></i>
+                    </div>
+                    <div className="col-10 ml-5">
+                        <div className="col-12">
+                            <h1>Hi, @{name}</h1>
+                        </div>
+
+                        <div className="row movieCount mt-4">
+                            <div className="col-2 text-center border-dark border-right"><h4>{totalHistory}</h4>FILMS</div>
+                            <div className="col-2 text-center border-dark border-right"><h4>{totalFavs}</h4>FAVS</div>
+                            <div className="col-2 text-center border-dark border-right"><h4>{thisYearFilms}</h4>2023</div>
+                            <div className="col-2 text-center border-dark border-right"><h4>{totalWatchlist}</h4>WATCHLIST</div>
+                            <div className="col-2 text-center"><h4>0</h4>LISTS</div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
 
         </>
     )
