@@ -11,6 +11,7 @@ import useInfo from '../hooks/useInfo';
 const Header = () => {
 
     const { auth } = useAuth()
+    const isAuthorized = localStorage.getItem("accessToken") != null
     const { favorites, setFavorites, watchlist, setWatchlist, history, setHistory } = useInfo()
     const logout = useLogout();
 
@@ -96,11 +97,11 @@ const Header = () => {
                                 <a className="nav-link active rojito borde text-white" aria-current="page" href="#">About</a>
                             </li>
 
-                            {auth ? moviesButton : ""}
-                            {auth ? listButton : ""}
+                            {isAuthorized ? moviesButton : ""}
+                            {isAuthorized ? listButton : ""}
 
                             <li className="nav-item purple borde rounded ml-3">
-                                {auth ? profileButton : loginButton}
+                                {isAuthorized ? profileButton : loginButton}
                             </li>
                         </ul>
                     </div>
