@@ -30,13 +30,14 @@ code {
 .movie-app>.row img {
     border-radius: 10px;
     width: 180px;
-
 }
 
 .image-container {
     flex-direction: column;
     position: relative;
     transition: transform 0.2s;
+    min-width: 200px;
+    max-width: 200px;
 }
 
 .margin-top {
@@ -141,13 +142,15 @@ a {
 
     }
 
-    .movieContainer{
+    .movieContainer {
         flex-direction: column;
     }
+
     .posterContainer {
         max-width: 80%;
     }
-    .detailsContainer{
+
+    .detailsContainer {
         max-width: 100%;
     }
 }
@@ -157,7 +160,8 @@ a {
 .posterContainer img {
     width: 100%;
 }
-.castTag{
+
+.castTag {
     background-color: rgb(83, 35, 119);
     border-radius: 5px;
     margin: 10px 5px;
@@ -166,9 +170,9 @@ a {
     box-shadow: inset 0 1px 1px hsl(0, 0%, 100%);
 }
 
-.crewTag{
+.crewTag {
     background-color: rgb(202, 206, 86);
-    color:#212529;
+    color: #212529;
     border-radius: 5px;
     margin: 10px 5px;
     text-align: center;
@@ -177,15 +181,16 @@ a {
 }
 
 
-.crewTag:hover, .castTag:hover{
+.crewTag:hover,
+.castTag:hover {
     background-color: #212529;
     color: white;
     text-decoration: none;
-    
+
 }
 
 
-.genreTag{
+.genreTag {
     background-color: rgba(86, 206, 142, 0.661);
     border-radius: 5px;
     margin: 10px 5px;
@@ -195,7 +200,7 @@ a {
 
 }
 
-.directorTag{
+.directorTag {
     background-color: rgba(206, 144, 86, 0.723);
     border-radius: 5px;
     margin: 10px 5px;
@@ -205,18 +210,19 @@ a {
 
 }
 
-.releaseYear{
+.releaseYear {
     font-size: 1rem;
 }
 
 /* LIKE WATCHED WATCHLIST BUTTONS  */
 .btn:focus {
-    box-shadow:  inset 0 1px 1px rgba(255, 255, 255, 0.461), 0 0 3px rgba(58, 58, 58, 0.412);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.461), 0 0 3px rgba(58, 58, 58, 0.412);
 }
-.addListButton{
+
+.addListButton {
     background-color: rgba(206, 144, 86, 0.655);
     margin-right: 4px;
-    
+
 }
 
 .favButton {
@@ -228,7 +234,7 @@ a {
     content: "\f7a9";
 }
 
-.crossed:hover .fa-eye::before{
+.crossed:hover .fa-eye::before {
     content: "\f070";
 }
 
@@ -240,7 +246,7 @@ a {
 .watchlistButton {
     background-color: rgba(83, 35, 119, 0.537);
     margin-right: 4px;
-    
+
 }
 
 
