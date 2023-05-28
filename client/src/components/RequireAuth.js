@@ -2,6 +2,7 @@ import React, { useLocation, Navigate, Outlet, useNavigate } from "react-router-
 import useAuth from "../hooks/useAuth";
 import { useEffect, useState } from "react";
 import api, { AUTH_URL } from "../api/axios"
+import LoadingSpinner from "./Loading";
 
 
 const RequireAuth = () => {
@@ -28,7 +29,7 @@ const RequireAuth = () => {
 
 
     if (loading) {
-        return <p>Cargando...</p>
+        return <LoadingSpinner />
     }
     return (
         auth.user

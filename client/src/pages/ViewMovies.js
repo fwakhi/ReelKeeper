@@ -7,6 +7,8 @@ import MovieList from '../components/MovieList';
 import MovieListHeading from '../components/MovieListHeading';
 import SearchBox from '../components/SearchBox';
 import useInfo from '../hooks/useInfo';
+import LoadingSpinner from '../components/Loading';
+
 
 const ViewMovies = () => {
     const [movies, setMovies] = useState([]);
@@ -14,6 +16,7 @@ const ViewMovies = () => {
     const [upcoming, setUpcoming] = useState([]);
     const [latest, setLatest] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     const { favorites } = useInfo()
 
@@ -21,6 +24,7 @@ const ViewMovies = () => {
         setPopular(await getPopularMovies());
         setUpcoming(await getUpcomingMovies());
         setLatest(await getLatestMovies());
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -62,9 +66,11 @@ const ViewMovies = () => {
                         </div>
                         <div className='row'>
                             {
-                                k.movies.length > 0
-                                    ? <MovieList movies={k.movies} />
-                                    : <p>No movies available</p>
+                                isLoading
+                                    ? <LoadingSpinner />
+                                    : k.movies.length > 0
+                                        ? <MovieList movies={k.movies} />
+                                        : <p>No movies available</p>
                             }
                         </div>
                     </>

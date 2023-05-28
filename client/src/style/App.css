@@ -332,3 +332,44 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: #212529;
 }
+
+/* Spinner */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 50px;
+    height: 50px;
+    border: 24px solid;
+    border-color: rgb(86, 155, 206) rgb(86, 206, 141) rgb(203, 206, 86) rgb(206, 144, 86);
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+    margin: auto;
+}
+
+.container>.loading-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes animloader {
+    0% {
+        border-color: rgb(86, 155, 206) rgb(86, 206, 141) rgb(203, 206, 86) rgb(206, 144, 86);
+    }
+
+    33% {
+        border-color: rgb(206, 144, 86) rgb(86, 155, 206) rgb(86, 206, 141) rgb(203, 206, 86);
+    }
+
+    66% {
+        border-color: rgb(203, 206, 86) rgb(206, 144, 86) rgb(86, 155, 206) rgb(86, 206, 141);
+    }
+
+    100% {
+        border-color: rgb(86, 206, 141) rgb(203, 206, 86) rgb(206, 144, 86) rgb(86, 155, 206);
+    }
+}
