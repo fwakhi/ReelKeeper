@@ -12,25 +12,30 @@
 
     }
 
-    .movieContainer{
+    .movieContainer {
         flex-direction: column;
         flex-wrap: wrap;
     }
+
     .posterContainer {
         max-width: 80%;
     }
-    .detailsContainer{
+
+    .detailsContainer {
         max-width: 100%;
     }
-    .profileMovies div{
+
+    .profileMovies div {
         min-width: 250px;
         width: 400px;
         flex-direction: column;
         margin-bottom: 30px;
     }
 }
+
 body>#root>div {
-    height: 100vh;
+    /* height: 100vh; */
+    height: 100%;
 }
 
 body {
@@ -167,21 +172,17 @@ a {
     /* box-shadow: none; */
 }
 
+.movieContainer {
+    flex-direction: column;
+}
 
-    
+.posterContainer {
+    max-width: 80%;
+}
 
-    .movieContainer {
-        flex-direction: column;
-    }
-
-    .posterContainer {
-        max-width: 80%;
-    }
-
-    .detailsContainer {
-        max-width: 100%;
-    }
-
+.detailsContainer {
+    max-width: 100%;
+}
 
 /* MOVIE DETAILS PAGE  */
 
@@ -280,43 +281,46 @@ a {
 
 /******************** PROFILE PAGE  *********************** */
 
-.iconProfile{
+.iconProfile {
     margin: auto;
     display: block;
-    text-align: center; 
+    text-align: center;
     padding: auto;
     /* position: absolute;
     top: 50%;
     left: 50%; */
-   
-}
-.movieCount div{
-/* padding: 0 40px; */
+
 }
 
-.profileMovies{
+.movieCount div {
+    /* padding: 0 40px; */
+}
+
+.profileMovies {
     height: 400px;
     margin: 40px auto;
 }
 
-.profileMovies div{
+.profileMovies div {
     margin: 0 10px;
     display: block;
     background-color: #373737;
-    
+
 }
 
-.profileMovies div:hover{
-    cursor:pointer;
-    
+.profileMovies div:hover {
+    cursor: pointer;
+
 }
-.profileMovies i{
+
+.profileMovies i {
     margin: auto;
     display: block;
     text-align: center;
     margin-top: 50%;
     font-size: 6em;
 }
+
 /******************** SCROLLBAR  ***********************/
 /* width */
 ::-webkit-scrollbar {
