@@ -173,9 +173,7 @@ a {
 }
 
 
-
 /* MOVIE DETAILS PAGE  */
-
 .posterContainer img {
     width: 100%;
 }
@@ -298,9 +296,10 @@ a {
 
 }
 
-.profileMovies div:hover, .fa-circle-left:hover{
-    cursor:pointer;
-    
+.profileMovies div:hover,
+.fa-circle-left:hover {
+    cursor: pointer;
+
 }
 
 .profileMovies i {
@@ -349,13 +348,6 @@ a {
     box-sizing: border-box;
     animation: animloader 1s linear infinite;
     margin: auto;
-}
-
-.container>.loading-spinner {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 @keyframes animloader {
