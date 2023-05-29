@@ -172,17 +172,7 @@ a {
     /* box-shadow: none; */
 }
 
-.movieContainer {
-    flex-direction: column;
-}
 
-.posterContainer {
-    max-width: 80%;
-}
-
-.detailsContainer {
-    max-width: 100%;
-}
 
 /* MOVIE DETAILS PAGE  */
 

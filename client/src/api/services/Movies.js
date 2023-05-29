@@ -21,15 +21,15 @@ export const fetchMovie = async (id) => {
     if (response.data) {
         const movie = response.data
         movie.genres = movie.genres.map(genre => genre.name);
-        if (movie.recommendations.length > 0) {
+        if (movie.recommendations.results.length > 0) {
             movie.recommendations = filterMovies(movie.recommendations.results).filter((_, i) => i < 5);
         } else {
             movie.recommendations = [
-                { id: 1, poster_path: "" },
-                { id: 2, poster_path: "" },
-                { id: 3, poster_path: "" },
-                { id: 4, poster_path: "" },
-                { id: 5, poster_path: "" }
+                { id: 545611, poster_path: "/w3LxiVYdWWRvEVdn5RYq6jIqkb1.jpg" },
+                { id: 234200, poster_path: "/Kc3vbqO0X4VRnjACGNoWLNQvHo.jpg" },
+                { id: 150540, poster_path: "/2H1TmgdfNtsKlU9jKdeNyYL5y8T.jpg" },
+                { id: 1548, poster_path: "/uwKqnUPE4dSM0kKuMW0vXpURh2T.jpg" },
+                { id: 369557, poster_path: "/sUWpVlrvzU2SJbnVZqIeKulPKwk.jpg" }
             ]
         }
         const director = movie.credits.crew.filter(crew => crew.job === "Director");
