@@ -154,22 +154,18 @@ a {
 
 .redhover:hover {
     background-color: rgba(206, 144, 86, 0.655);
-    /* box-shadow: none; */
 }
 
 .yellowhover:hover {
     background-color: rgba(202, 206, 86, 0.656);
-    /* box-shadow: none; */
 }
 
 .greenhover:hover {
     background-color: rgba(86, 206, 142, 0.527);
-    /* box-shadow: none; */
 }
 
 .purplehover:hover {
     background-color: rgba(83, 35, 119, 0.537);
-    /* box-shadow: none; */
 }
 
 
@@ -268,7 +264,9 @@ a {
 
 
 /******************** PROFILE PAGE  *********************** */
-
+.profile{
+    margin: 80px auto;
+}
 .iconProfile {
     margin: auto;
     display: block;
@@ -285,30 +283,65 @@ a {
 }
 
 .profileMovies {
-    height: 400px;
+    height: 200px;
     margin: 40px auto;
 }
 
-.profileMovies div {
-    margin: 0 10px;
+/* .profileMovies div {
+    margin: 0 30px;
     display: block;
     background-color: #373737;
+    max-width: 200px;
 
-}
+} */
 
-.profileMovies div:hover,
-.fa-circle-left:hover {
-    cursor: pointer;
-
+.profileMovies div:hover, .fa-circle-left:hover{
+    cursor:pointer;
 }
 
 .profileMovies i {
     margin: auto;
     display: block;
     text-align: center;
-    margin-top: 50%;
-    font-size: 6em;
+    margin-top: 20%;
+    font-size: 10vw;
 }
+.favSection{
+    width: 200px;
+    background-color: rgba(206, 144, 86, 0.723);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.favSection:hover i, .historySection:hover i, .watchlistSection:hover i{
+    color: rgb(217, 217, 217);
+    text-shadow:  10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.historySection{
+    width: 200px;
+    background-color: rgba(86, 206, 142, 0.689);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+.watchlistSection{
+    width: 200px;
+    background-color: rgba(202, 206, 86, 0.682);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.noMovies{
+    width: fit-content;
+    background-color: #373737;
+    color:rgb(217, 217, 217);
+}
+
+.noMovies:hover{
+    background-color: rgb(217, 217, 217);;
+    color:#373737;
+}
+
 
 /******************** SCROLLBAR  ***********************/
 /* width */
