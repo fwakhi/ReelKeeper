@@ -1,46 +1,38 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 // import styles from "../style/Background.module.css"
 import '../style/Home.css';
 import { useNavigate } from 'react-router-dom';
+import MovieCount from "../components/MovieCount";
+import MovieListHeading from "../components/MovieListHeading";
+import { getList } from "../api/services/List";
 import useAuth from "../hooks/useAuth";
-import useInfo from '../hooks/useInfo';
-import { Link } from 'react-router-dom';
+
+
 
 
 const Profile = () => {
-    const { auth } = useAuth();
-    const name = auth.user.username;
-    const { favorites, watchlist, history } = useInfo();
-    const totalFavs = favorites.length;
-    const totalWatchlist = watchlist.length;
-    const totalHistory = history.length;
-    const thisYearFilms = history.filter(film => (film.createdAt.split('-')[0] == "2023")).length;
-
     const navigate = useNavigate();
+    const { auth } = useAuth();
+    const userId = auth.user.id;
+    const [lists, setLists] = useState([]);
+
+    const getLists = async () => {
+        setLists(await getList(userId));
+    }
+
+    useEffect(() => {
+        getLists();
+    }, [])
 
     const handleClick = (section) => navigate(`/${section}`)
 
     return (
         <>
+            {/* CONTAINER FAVS, HISTORY & WATCHLIST  */}
             <div className="container">
                 <div className="row profile">
-                    {/* <div className="col-1">
-                        <i className="fa-solid fa-user fa-6x iconProfile" style={{ color: '#8a8a8a' }}></i>
-                    </div> */}
-                    <div className="col-12 row">
-                        <div className="col-md-3">
-                            <h2>Hi, @{name}</h2>
-                        </div>
-
-                        <div className="row col-md-9 ml-auto movieCount">
-                            <div className="col-2 text-center border-dark border-right"><h4>{totalHistory}</h4>FILMS</div>
-                            <div className="col-2 text-center border-dark border-right"><h4>{totalFavs}</h4>FAVS</div>
-                            <div className="col-2 text-center border-dark border-right"><h4>{thisYearFilms}</h4>2023</div>
-                            <div className="col-2 text-center border-dark border-right"><h4>{totalWatchlist}</h4>WATCHLIST</div>
-                            <div className="col-2 text-center"><h4>0</h4>LISTS</div>
-                        </div>
-                    </div>
+                    <MovieCount />
                 </div>
 
                 <div className="row margin-top justify-content-sm-center profileMovies d-flex">
@@ -61,11 +53,25 @@ const Profile = () => {
                     </div>
 
                     <div className="d-flex flex-column text-center mx-5 watchlistSection">
-                    <div className="col-md  container  rounded " onClick={() => handleClick("watchlist")}>
-                        <i className="fa-regular fa-bookmark favhover"></i>
+                        <div className="col-md  container  rounded " onClick={() => handleClick("watchlist")}>
+                            <i className="fa-regular fa-bookmark favhover"></i>
+                        </div>
+                        <h3>WATCHLIST</h3>
                     </div>
-                    <h3>WATCHLIST</h3>
-                    </div>
+
+                </div>
+            </div>
+
+{/* TODO: CREAR UN LISTGRID COMPONENT PARA LAS LISTAS */}
+            <div className="container margin-top ">
+            <MovieListHeading heading="Your lists" />
+                <div className="row margin-top justify-content-sm-center profileMovies d-flex">
+                    {lists?.map(list => (<div className="d-flex flex-column text-center mx-5 listsSection">
+                        <div className="col-md container rounded " key={list.id}>
+                            <i className="fa-solid fa-film favhover"></i>
+                        </div>
+                        <h3 className="mt-4">{list.title}</h3>
+                    </div>))}
 
                 </div>
             </div>

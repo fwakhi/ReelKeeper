@@ -25,7 +25,7 @@ const ViewMovies = () => {
         setUpcoming(await getUpcomingMovies());
         setLatest(await getLatestMovies());
         setIsLoading(false);
-    }
+    } 
 
     useEffect(() => {
         fetchMovies();

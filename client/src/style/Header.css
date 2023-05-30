@@ -12,6 +12,7 @@ a {
     text-decoration: none;
 }
 
+
 @media (max-width: 991px) {
     #navbarSupportedContent {
         max-width: 100%;

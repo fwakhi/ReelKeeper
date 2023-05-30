@@ -278,9 +278,6 @@ a {
 
 }
 
-.movieCount div {
-    /* padding: 0 40px; */
-}
 
 .profileMovies {
     height: 200px;
@@ -312,10 +309,20 @@ a {
     border-radius: 20px;
     box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
 }
+.listsSection{
+    width: 200px;
+    background-color: rgba(216, 216, 216, 0.723);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 0 0 5px 8px rgba(0, 0, 0, 0.155);
+}
 
 .favSection:hover i, .historySection:hover i, .watchlistSection:hover i{
     color: rgb(217, 217, 217);
     text-shadow:  10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.listsSection:hover{
+    transform: scale(1.1);
 }
 
 .historySection{
@@ -341,6 +348,7 @@ a {
     background-color: rgb(217, 217, 217);;
     color:#373737;
 }
+
 
 
 /******************** SCROLLBAR  ***********************/

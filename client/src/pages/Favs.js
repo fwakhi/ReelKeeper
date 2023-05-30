@@ -9,7 +9,7 @@ import NoMovies from "../components/NoMovies";
 const Favs = () => {
     const { auth } = useAuth();
     const name = auth.user.username;
-    const { favorites, watchlist, history } = useInfo();
+    const { favorites } = useInfo();
     const navigate = useNavigate();
 
     const handleClick = () => navigate(`/profile`)
@@ -26,7 +26,7 @@ const Favs = () => {
                 </div>
                 <div className="col-12">
                     <div>
-                        {favorites.length > 0 ? <MovieGrid movies={favorites} /> : <NoMovies/>}
+                        {favorites.length > 0 ? <MovieGrid movies={favorites} /> : <NoMovies />}
                     </div>
 
                 </div>

@@ -28,8 +28,8 @@ export const addList = async (req, res) => {
 export const removeList = async (req, res) => {
     try {
         await ListModel.destroy({
-            where: { 
-                id: req.params.id 
+            where: {
+                id: req.params.id
             }
         })
         res.json({ message: 'List deleted' })

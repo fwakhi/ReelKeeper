@@ -11,6 +11,7 @@ import authRoutes from './routes/auth.js'
 import favoriteRoutes from './routes/favorite.js'
 import watchlistRoutes from './routes/watchlist.js'
 import historyRoutes from './routes/history.js'
+import listRoutes from './routes/list.js'
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -25,6 +26,7 @@ app.use('/auth', authRoutes)
 app.use('/favs', favoriteRoutes)
 app.use('/watchlist', watchlistRoutes)
 app.use('/history', historyRoutes)
+app.use('/list', listRoutes)
 
 app.all('*', (req, res) => {
     res.status(404);

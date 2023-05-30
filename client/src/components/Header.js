@@ -67,7 +67,7 @@ const Header = () => {
             <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i className="fa-solid fa-user mr-2"></i>
             </a>
-            <div className="dropdown-menu text-left " aria-labelledby="navbarDropdown">
+            <div className="dropdown-menu text-left profileDropdown" aria-labelledby="navbarDropdown">
                 <Link to="profile" className="dropdown-item px-2" >Go to profile</Link>
                 <Link to="playground" className="dropdown-item px-2">Playground</Link>
                 <button className="dropdown-item px-2" onClick={signOut}>Sign Out</button>
