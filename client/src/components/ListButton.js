@@ -18,6 +18,10 @@ const ListButton = (props) => {
         getLists();
     }, [])
 
+  //TODO1: hacer el model y to la vaina de MovieList
+    //TODO2: addToList (aki)
+    //TODO3: que al añadir la nueva lista se añada automaticamente al grid sin tener q actualizar
+
     // const addHistoryMovie = async (movie) => {
     //     if (userId && await saveHistory(movie, userId)) {
     //         setHistory(await getHistory(userId));
@@ -41,10 +45,12 @@ const ListButton = (props) => {
     return (
         <>
             <li className="nav-item dropdown">
-                <button className="nav-link dropdown-toggle btn listButton p-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/*onClick={() => addHistoryMovie(movie)}*/><i className="fa-regular fa-plus" style={{ color: "#1f1f1f" }}></i></button>
+                <button className="nav-link dropdown-toggle btn listButton p-2" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/*onClick={() => addHistoryMovie(movie)}*/>
+                    <i className="fa-regular fa-plus" style={{ color: "#1f1f1f" }}></i>
+                </button>
 
                 <div className="dropdown-menu text-left profileDropdown" aria-labelledby="navbarDropdown">
-                    {lists?.map((list) => <li className="dropdown-item px-2" key={list.id}>{list.title}</li>)}
+                    {lists?.map((list) => <li className="dropdown-item px-2" value={list.id} key={list.id}>{list.title}</li>)}
                 </div>
             </li>
              {/* <button className="btn listButton" onClick={() => addHistoryMovie(movie)}> <i className="fa-regular fa-plus" style={{ color: "#1f1f1f" }}></i></button > */}

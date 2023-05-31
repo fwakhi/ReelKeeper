@@ -39,7 +39,6 @@ export const saveList = async (title, userId) => {
 export const removeList = async (title, userId) => {
     try {
         await axios.delete(`${LIST_URL}/${userId}/${title}`, {});
-        
     } catch (err) {
         console.error("Error; ", err);
         return false
