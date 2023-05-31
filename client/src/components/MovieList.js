@@ -15,8 +15,8 @@ const MovieList = (props) => {
     return (
         <>
             {React.Children.toArray(props.movies.map((movie) =>
-                <div key={movie.id} className='image-container d-flex justify-content-start m-3'>
-                    <Image className='mb-1 mt-4' src={imgUrl + movie.poster_path} onClick={() => handleClick(movie.id)} alt="poster" rounded />
+                <div key={movie.id} className=' d-flex flex-column justify-content-start m-3'>
+                    <Image className='image-container mb-1 mt-4' src={imgUrl + movie.poster_path} onClick={() => handleClick(movie.id)} alt="poster" rounded />
                     {props.hideButtons ? "" : <Buttons movie={movie} />}
                 </div>
             ))}
