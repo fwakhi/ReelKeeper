@@ -12,6 +12,7 @@ const ListGrid = (props) => {
     const userId = auth.user.id;
     // const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
+    const [scssMsg, setScssMsg] = useState('');
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -19,7 +20,9 @@ const ListGrid = (props) => {
 
       const handleSubmit = (e) => {
         e.preventDefault();
-        saveList(inputValue,userId);
+        if(saveList(inputValue, userId)){
+            setScssMsg("List created!");
+        }
       };
 
     // const handleClick = (clickedListId) => navigate(`/list/${clickedListId}`);
@@ -27,6 +30,7 @@ const ListGrid = (props) => {
     return (
         <Container fluid className='margin-top'>
             <MovieListHeading heading="Your lists" />
+            <p className={scssMsg ? "scssMsg" : "offscreen"} aria-live="assertive">{scssMsg}</p>
             <Row className="mx-auto margin-top justify-content-sm-center profileMovies d-flex">
                 <div className='d-flex flex-column'>
                     <div className="castTag d-flex flex-column text-center m-5 listsSection newList" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
@@ -35,7 +39,7 @@ const ListGrid = (props) => {
                     <div className="collapse mt-3" id="collapseForm">
                         <form>
                             <input type='text' placeholder='Title of the list' className='form-control' onChange={handleInputChange} name='title' id='title' />
-                            <button className='btn btn-dark mt-1'  onClick={handleSubmit}>Create</button>
+                            <button type="submit" className='btn btn-dark mt-1'  onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</button>
                         </form>
                     </div>
                 </div>

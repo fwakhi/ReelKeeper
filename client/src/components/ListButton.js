@@ -21,6 +21,7 @@ const ListButton = (props) => {
   //TODO1: hacer el model y to la vaina de MovieList
     //TODO2: addToList (aki)
     //TODO3: que al añadir la nueva lista se añada automaticamente al grid sin tener q actualizar
+    //TODO4: cambiar la primary key de Lists porque se pueden crear varias con el mismo nombre
 
     // const addHistoryMovie = async (movie) => {
     //     if (userId && await saveHistory(movie, userId)) {

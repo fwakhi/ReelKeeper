@@ -6,7 +6,6 @@ import useInfo from "../hooks/useInfo";
 const AddFavourites = (props) => {
 
     const { movie } = props;
-
     const { auth: { user: { id: userId } } } = useAuth()
     const { favorites, setFavorites } = useInfo()
 

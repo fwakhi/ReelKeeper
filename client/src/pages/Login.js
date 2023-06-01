@@ -30,12 +30,6 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
-    // useEffect(() => {
-    //     console.log(auth)
-    //     if (isAuthorized) {
-    //         navigate('/movies', { state: { from: location }, replace: true });
-    //     }
-    // }, [])
 
     useEffect(() => {
         if (userRef.current) {
