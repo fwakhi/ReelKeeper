@@ -2,7 +2,7 @@ import db from "../config/db.js";
 import { DataTypes } from 'sequelize';
 
 const MovieListModel = db.define('movielist', {
-    listid: {
+    listId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         references: 'lists',

@@ -6,6 +6,7 @@ export const filterMovies = (data) => {
             movie.adult == false &&
             movie.id != 617932 &&
             movie.id != 732966 &&
+            movie.id != 747355 &&
             !movie.overview.toLowerCase().includes("sex") &&
             !movie.overview.toLowerCase().includes("sexual") &&
             !movie.overview.toLowerCase().includes("erotic") &&

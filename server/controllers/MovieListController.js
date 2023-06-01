@@ -3,12 +3,12 @@ import MovieListModel from "../models/MovieListModel.js";
 
 export const getAllMovieListByListId = async (req, res) => {
     try {
-        const MovieList = await MovieListModel.findAll({
+        const movieList = await MovieListModel.findAll({
             where: {
                 listId: req.params.id
             }
         })
-        res.json(MovieList)
+        res.json(movieList)
     } catch (error) {
         res.json({ message: error.message })
     }

@@ -23,3 +23,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+server/controllers/MovieListController.js
+client/public/images/default1.png
+client/public/images/default2.png
