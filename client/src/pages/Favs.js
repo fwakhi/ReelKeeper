@@ -16,7 +16,7 @@ const Favs = () => {
 
     return (
 
-        <div className="container">
+        <div className="container-fluid">
             <div className="row margin-top">
                 <div className="col-1 mt-2 ">
                     <i class="fa-solid fa-circle-left fa-2xl ml-auto" style={{ color: '#8a8a8a;' }} onClick={() => handleClick()}></i>

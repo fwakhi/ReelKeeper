@@ -1,7 +1,7 @@
 import db from "../config/db.js";
 import { DataTypes } from 'sequelize';
 
-const ListmovieModel = db.define('listmovie', {
+const MovieListModel = db.define('movielist', {
     listid: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -16,4 +16,4 @@ const ListmovieModel = db.define('listmovie', {
     tableName: 'listmovie'
 })
 
-export default ListmovieModel
+export default MovieListModel

@@ -13,7 +13,7 @@ const MovieGrid = (props) => {
 
     return (
         <Container>
-            <Row className="mx-auto">
+            <Row>
                 {React.Children.toArray(props.movies.map((movie) =>
                     <Col className="image-container">
                         <Image className='mb-1 mt-4' src={imgUrl + movie.poster_path} onClick={() => handleClick(movie.id)} alt="poster" rounded fluid />

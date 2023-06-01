@@ -12,6 +12,7 @@ import favoriteRoutes from './routes/favorite.js'
 import watchlistRoutes from './routes/watchlist.js'
 import historyRoutes from './routes/history.js'
 import listRoutes from './routes/list.js'
+import movieListRoutes from './routes/movielist.js'
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -27,6 +28,7 @@ app.use('/favs', favoriteRoutes)
 app.use('/watchlist', watchlistRoutes)
 app.use('/history', historyRoutes)
 app.use('/list', listRoutes)
+app.use('/movielist', movieListRoutes)
 
 app.all('*', (req, res) => {
     res.status(404);
