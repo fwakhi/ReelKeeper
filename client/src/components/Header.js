@@ -37,7 +37,10 @@ const Header = () => {
             }
         };
         const loadLists = async () => {
-            setLists(await getList(auth.user.id));
+            if (lists.length == 0) {
+                const data = await getList(auth.user.id);
+                data && setLists(data);
+            }
         }
 
         if (auth.user) {

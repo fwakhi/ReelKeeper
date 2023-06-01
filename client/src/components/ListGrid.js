@@ -13,7 +13,7 @@ const ListGrid = (props) => {
     const userId = auth.user.id;
     const { lists, setLists } = useInfo()
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
     const [scssMsg, setScssMsg] = useState('');
     const [msgClass, setMsgClass] = useState("offscreen");
@@ -43,6 +43,8 @@ const ListGrid = (props) => {
         }
     };
 
+    const handleClick = (clickedList) => navigate(`/profile/lists/${clickedList}`)
+
     // const handleClick = (clickedListId) => navigate(`/list/${clickedListId}`);
 
     return (
@@ -64,7 +66,7 @@ const ListGrid = (props) => {
 
                 {React.Children.toArray(lists.map((list) =>
                     <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5">
-                        <div className="col-md container rounded" key={list.id}>
+                        <div className="col-md container rounded" onClick={() => handleClick(list.id)}>
                             <i className="fa-solid fa-film"></i>
                         </div>
                         <h3 className="mt-4">{list.title}</h3>

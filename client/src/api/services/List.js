@@ -8,7 +8,7 @@ export const getList = async (userId) => {
             return response.data
         }
     } catch (err) {
-        console.error("Error; ", err);
+        console.error("Error; ", err.message);
     }
     return null
 }
@@ -26,7 +26,7 @@ export const removeList = async (id, userId) => {
     try {
         await axios.delete(`${LIST_URL}/${userId}/${id}`, {});
     } catch (err) {
-        console.error("Error; ", err);
+        console.error("Error; ", err.message);
         return false
     }
     return true

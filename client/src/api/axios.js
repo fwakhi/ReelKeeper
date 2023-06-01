@@ -7,6 +7,7 @@ export const FAVS_URL = '/favs';
 export const WATCHLIST_URL = '/watchlist';
 export const HISTORY_URL = '/history';
 export const LIST_URL = '/list';
+export const LIST_MOVIES_URL = '/movielist';
 
 const api = axios.create({ baseURL: BASE_URL })
 

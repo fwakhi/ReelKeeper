@@ -18,6 +18,7 @@ import Profile from './pages/Profile';
 import Favs from './pages/Favs';
 import History from './pages/History';
 import Watchlist from './pages/Watchlist';
+import ListDetail from "./pages/ListDetail";
 
 
 const App = () => {
@@ -41,10 +42,11 @@ const App = () => {
                     <Route path="/lists" element={<MovieCollections />} />
                     <Route path='/playground' element={<Playground />} />
                     <Route path="/movie/:movie_id" element={<MovieDetail />} />
-                    <Route path="/profile" element={<Profile />}/>
-                    <Route path="/favs" element={<Favs />}/>
-                    <Route path="/history" element={<History />}/>
-                    <Route path="/watchlist" element={<Watchlist />}/>
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/profile/lists/:list_id" element={<ListDetail />} />
+                    <Route path="/favs" element={<Favs />} />
+                    <Route path="/history" element={<History />} />
+                    <Route path="/watchlist" element={<Watchlist />} />
                 </Route>
 
                 {/* All routes */}

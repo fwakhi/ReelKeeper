@@ -5,6 +5,6 @@ const router = express.Router()
 
 router.get('/:id', getAllMovieListByListId)
 router.post('/', addMovieList)
-router.delete('/listId/:id', removeMovieList)
+router.delete('/:id/:movie_id', removeMovieList)
 
 export default router
