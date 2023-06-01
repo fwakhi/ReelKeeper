@@ -7,12 +7,14 @@ import { getHistory } from '../api/services/History'
 import "../style/Header.css"
 import useAuth from '../hooks/useAuth';
 import useInfo from '../hooks/useInfo';
+import { getList } from "../api/services/List";
+
 
 const Header = () => {
 
     const { auth } = useAuth()
     const isAuthorized = localStorage.getItem("accessToken") != null
-    const { favorites, setFavorites, watchlist, setWatchlist, history, setHistory } = useInfo()
+    const { favorites, setFavorites, watchlist, setWatchlist, history, setHistory, lists, setLists, moviesByList, setMoviesByList } = useInfo()
     const logout = useLogout();
 
     useEffect(() => {
@@ -34,11 +36,15 @@ const Header = () => {
                 data && setHistory(data);
             }
         };
+        const loadLists = async () => {
+            setLists(await getList(auth.user.id));
+        }
 
         if (auth.user) {
             loadFavorites();
             loadWatchlist();
             loadHistory();
+            loadLists();
         }
     }, [auth]);
 

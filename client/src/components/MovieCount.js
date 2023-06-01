@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 const MovieCount = () => {
     const { auth } = useAuth();
     const name = auth.user.username;
-    const { favorites, watchlist, history } = useInfo();
+    const { favorites, watchlist, history, lists } = useInfo();
     const totalFavs = favorites.length;
     const totalWatchlist = watchlist.length;
     const totalHistory = history.length;
@@ -23,7 +23,7 @@ const MovieCount = () => {
                 <div className="col-2 text-center border-dark border-right"><h4>{totalFavs}</h4>FAVS</div>
                 <div className="col-2 text-center border-dark border-right"><h4>{thisYearFilms}</h4>2023</div>
                 <div className="col-2 text-center border-dark border-right"><h4>{totalWatchlist}</h4>WATCHLIST</div>
-                <div className="col-2 text-center"><h4>0</h4>LISTS</div>
+                <div className="col-2 text-center"><h4>{lists.length}</h4>LISTS</div>
             </div>
         </div>
     )

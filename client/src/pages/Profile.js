@@ -1,27 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { } from "react";
 // import styles from "../style/Background.module.css"
 import '../style/Home.css';
 import { useNavigate } from 'react-router-dom';
 import MovieCount from "../components/MovieCount";
-import { getList, saveList, removeList } from "../api/services/List";
-import useAuth from "../hooks/useAuth";
 import ListGrid from "../components/ListGrid";
+import useInfo from "../hooks/useInfo";
 
 
 
 const Profile = () => {
     const navigate = useNavigate();
-    const { auth } = useAuth();
-    const userId = auth.user.id;
-    const [lists, setLists] = useState([]);
-
-    const getLists = async () => {
-        setLists(await getList(userId));
-    }
-
-    useEffect(() => {
-        getLists();
-    }, [])
 
     const handleClick = (section) => navigate(`/${section}`)
 
@@ -62,7 +50,7 @@ const Profile = () => {
                 </div>
 
 
-                <ListGrid lists={lists} />
+                <ListGrid />
             </div>
         </>
     )

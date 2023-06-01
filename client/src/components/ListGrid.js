@@ -1,29 +1,33 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 import MovieListHeading from './MovieListHeading';
-import { saveList } from '../api/services/List';
+import { getList, saveList } from '../api/services/List';
 import useAuth from "../hooks/useAuth";
+import useInfo from '../hooks/useInfo';
 
 
 const ListGrid = (props) => {
     const { auth } = useAuth();
     const userId = auth.user.id;
+    const { lists, setLists } = useInfo()
+
     // const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
     const [scssMsg, setScssMsg] = useState('');
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
-      };
+    };
 
-      const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if(saveList(inputValue, userId)){
+        if (userId && await saveList(inputValue, userId)) {
             setScssMsg("List created!");
+            setLists(await getList(auth.user.id));
         }
-      };
+    };
 
     // const handleClick = (clickedListId) => navigate(`/list/${clickedListId}`);
 
@@ -39,12 +43,12 @@ const ListGrid = (props) => {
                     <div className="collapse mt-3" id="collapseForm">
                         <form>
                             <input type='text' placeholder='Title of the list' className='form-control' onChange={handleInputChange} name='title' id='title' />
-                            <button type="submit" className='btn btn-dark mt-1'  onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</button>
+                            <button type="submit" className='btn btn-dark mt-1' onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</button>
                         </form>
                     </div>
                 </div>
 
-                {React.Children.toArray(props.lists.map((list) =>
+                {React.Children.toArray(lists.map((list) =>
                     <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5">
                         <div className="col-md container rounded" key={list.id}>
                             <i className="fa-solid fa-film"></i>
