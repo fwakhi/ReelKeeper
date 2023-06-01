@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, Row, Col, Image } from 'react-bootstrap';
@@ -16,6 +16,7 @@ const ListGrid = (props) => {
     // const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
     const [scssMsg, setScssMsg] = useState('');
+    const [msgClass, setMsgClass] = useState("offscreen");
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -23,9 +24,22 @@ const ListGrid = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (userId && await saveList(inputValue, userId)) {
-            setScssMsg("List created!");
-            setLists(await getList(auth.user.id));
+        if (userId) {
+            const res = await saveList(inputValue, userId);
+
+            if (res.error) {
+                setMsgClass("scssMsg error");
+                setScssMsg(res.message);
+            } else {
+                setMsgClass("scssMsg");
+                setScssMsg(res.message);
+                setLists(await getList(auth.user.id));
+            }
+            setInputValue('');
+            setTimeout(() => {
+                setScssMsg('');
+                setMsgClass("offscreen");
+            }, 3000);
         }
     };
 
@@ -34,7 +48,7 @@ const ListGrid = (props) => {
     return (
         <Container fluid className='margin-top'>
             <MovieListHeading heading="Your lists" />
-            <p className={scssMsg ? "scssMsg" : "offscreen"} aria-live="assertive">{scssMsg}</p>
+            <p className={msgClass} aria-live="assertive">{scssMsg}</p>
             <Row className="mx-auto margin-top justify-content-sm-center profileMovies d-flex">
                 <div className='d-flex flex-column'>
                     <div className="castTag d-flex flex-column text-center m-5 listsSection newList" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
@@ -42,7 +56,7 @@ const ListGrid = (props) => {
                     </div>
                     <div className="collapse mt-3" id="collapseForm">
                         <form>
-                            <input type='text' placeholder='Title of the list' className='form-control' onChange={handleInputChange} name='title' id='title' />
+                            <input type='text' placeholder='Title of the list' value={inputValue} className='form-control' onChange={handleInputChange} name='title' id='title' />
                             <button type="submit" className='btn btn-dark mt-1' onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</button>
                         </form>
                     </div>

@@ -15,12 +15,16 @@ export const getAllListByUserId = async (req, res) => {
 }
 
 export const addList = async (req, res) => {
+    const duplicatedList = await ListModel.findOne({ where: { title: req.body.title } })
+    if (duplicatedList) {
+        return res.status(409).json({ 'message': 'Duplicated list name' });
+    }
     try {
         await ListModel.create(req.body)
-        res.json({ message: 'List created' })
+        res.json({ message: "List created!" })
 
     } catch (error) {
-        res.json({ message: error.message })
+        res.json({ error: error.message })
     }
 }
 

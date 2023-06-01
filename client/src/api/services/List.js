@@ -1,17 +1,5 @@
 import axios, { LIST_URL } from "../axios";
-import { fetchSingleMovie } from '../tmdb'
 
-// @ts-ignore
-const fetchMovies = async (ids) => {
-    const fetchedMovies = []
-    ids.forEach(async movieId => {
-        const response = await fetchSingleMovie(movieId.id);
-        if (response.data) {
-            fetchedMovies.push(response.data)
-        }
-    });
-    return fetchedMovies;
-}
 
 export const getList = async (userId) => {
     try {
@@ -26,19 +14,17 @@ export const getList = async (userId) => {
 }
 
 export const saveList = async (title, userId) => {
-    // const { id, poster_path } = movie
     try {
-        await axios.post(LIST_URL, { title, userId});
-        return true
-    } catch (err) {
-        console.error("Error; ", err);
-        return false
+        const response = await axios.post(LIST_URL, { title, userId });
+        return { error: false, message: response?.data?.message };
+    } catch (error) {
+        return { error: true, message: error.response?.data?.message };
     }
 }
 
-export const removeList = async (title, userId) => {
+export const removeList = async (id, userId) => {
     try {
-        await axios.delete(`${LIST_URL}/${userId}/${title}`, {});
+        await axios.delete(`${LIST_URL}/${userId}/${id}`, {});
     } catch (err) {
         console.error("Error; ", err);
         return false

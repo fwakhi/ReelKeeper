@@ -32,9 +32,11 @@
         margin-bottom: 30px;
     }
 }
-li{
+
+li {
     list-style-type: none;
 }
+
 body>#root>div {
     /* height: 100vh; */
     height: 100%;
@@ -239,7 +241,7 @@ a {
     margin-right: 4px;
 }
 
-.listButton{
+.listButton {
     background-color: rgba(206, 144, 86, 0.655);
 }
 
@@ -252,9 +254,10 @@ a {
 
 
 /******************** PROFILE PAGE  *********************** */
-.profile{
+.profile {
     margin: 80px auto;
 }
+
 .iconProfile {
     margin: auto;
     display: block;
@@ -270,8 +273,9 @@ a {
 }
 
 
-.profileMovies div:hover, .fa-circle-left:hover{
-    cursor:pointer;
+.profileMovies div:hover,
+.fa-circle-left:hover {
+    cursor: pointer;
 }
 
 .profileMovies i {
@@ -282,60 +286,67 @@ a {
     font-size: 10vw;
 }
 
-.newList{
+.newList {
     height: 130px;
 }
-.newList i{
+
+.newList i {
     margin-top: 10%;
     font-size: 5vw;
 }
-.favSection{
+
+.favSection {
     width: 200px;
     background-color: rgba(206, 144, 86, 0.723);
     border-radius: 20px;
     box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
 }
-.listsSection{
+
+.listsSection {
     width: 200px;
     background-color: rgba(216, 216, 216, 0.723);
     border-radius: 20px;
     box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 0 0 5px 8px rgba(0, 0, 0, 0.155);
 }
 
-.favSection:hover i, .historySection:hover i, .watchlistSection:hover i{
+.favSection:hover i,
+.historySection:hover i,
+.watchlistSection:hover i {
     color: rgb(217, 217, 217);
-    text-shadow:  10px 5px 5px rgba(0, 0, 0, 0.155);
+    text-shadow: 10px 5px 5px rgba(0, 0, 0, 0.155);
 }
 
-.listsSection:hover{
+.listsSection:hover {
     transform: scale(1.1);
 }
 
-.historySection{
+.historySection {
     width: 200px;
     background-color: rgba(86, 206, 142, 0.689);
     border-radius: 20px;
     box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
 }
-.watchlistSection{
+
+.watchlistSection {
     width: 200px;
     background-color: rgba(202, 206, 86, 0.682);
     border-radius: 20px;
     box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
 }
 
-.noMovies{
+.noMovies {
     width: fit-content;
     background-color: #373737;
-    color:rgb(217, 217, 217);
+    color: rgb(217, 217, 217);
 }
 
-.noMovies:hover{
-    background-color: rgb(217, 217, 217);;
-    color:#373737;
+.noMovies:hover {
+    background-color: rgb(217, 217, 217);
+    ;
+    color: #373737;
 }
 
-#collapseForm{
+#collapseForm {
     width: 200px;
     margin: auto;
 }
@@ -349,6 +360,10 @@ a {
     padding: 0.5rem;
     margin-bottom: 0.5rem;
     border-radius: 5px;
+}
+
+.scssMsg.error {
+    background-color: #d17e7e;
 }
 
 /******************** SCROLLBAR  ***********************/
