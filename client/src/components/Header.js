@@ -1,53 +1,23 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useLogout from "../hooks/useLogout";
-import { getFavorites } from '../api/services/Favorites'
-import { getWatchlist } from '../api/services/Watchlist'
-import { getHistory } from '../api/services/History'
-import "../style/Header.css"
 import useAuth from '../hooks/useAuth';
+import "../style/Header.css"
+import { refreshUser } from '../api/axios';
 import useInfo from '../hooks/useInfo';
-import { getList } from "../api/services/List";
 
 
 const Header = () => {
 
     const { auth } = useAuth()
+    const { setUserInfo } = useInfo();
     const isAuthorized = localStorage.getItem("accessToken") != null
-    const { favorites, setFavorites, watchlist, setWatchlist, history, setHistory, lists, setLists, moviesByList, setMoviesByList } = useInfo()
     const logout = useLogout();
 
+    const loadUser = async (userId) => setUserInfo(await refreshUser(userId));
     useEffect(() => {
-        const loadFavorites = async () => {
-            if (favorites.length == 0) {
-                const data = await getFavorites(auth.user.id);
-                data && setFavorites(data);
-            }
-        };
-        const loadWatchlist = async () => {
-            if (watchlist.length == 0) {
-                const data = await getWatchlist(auth.user.id);
-                data && setWatchlist(data);
-            }
-        };
-        const loadHistory = async () => {
-            if (history.length == 0) {
-                const data = await getHistory(auth.user.id);
-                data && setHistory(data);
-            }
-        };
-        const loadLists = async () => {
-            if (lists.length == 0) {
-                const data = await getList(auth.user.id);
-                data && setLists(data);
-            }
-        }
-
-        if (auth.user) {
-            loadFavorites();
-            loadWatchlist();
-            loadHistory();
-            loadLists();
+        if (auth.user != null) {
+            loadUser(auth.user?.id);
         }
     }, [auth]);
 

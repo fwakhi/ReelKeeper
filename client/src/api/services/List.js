@@ -1,18 +1,6 @@
 import axios, { LIST_URL } from "../axios";
 
 
-export const getList = async (userId) => {
-    try {
-        const response = await axios.get(`${LIST_URL}/${userId}`, {});
-        if (response.data) {
-            return response.data
-        }
-    } catch (err) {
-        console.error("Error; ", err.message);
-    }
-    return null
-}
-
 export const saveList = async (title, userId) => {
     try {
         const response = await axios.post(LIST_URL, { title, userId });

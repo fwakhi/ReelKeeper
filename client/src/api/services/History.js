@@ -1,18 +1,6 @@
 import axios, { HISTORY_URL } from "../axios";
 
 
-export const getHistory = async (userId) => {
-    try {
-        const response = await axios.get(`${HISTORY_URL}/${userId}`, {});
-        if (response.data) {
-            return response.data
-        }
-    } catch (err) {
-        console.error("Error; ", err);
-    }
-    return null
-}
-
 export const saveHistory = async (movie, userId) => {
     const { id, poster_path } = movie
     try {

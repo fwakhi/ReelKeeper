@@ -1,18 +1,8 @@
 import ListModel from "../models/ListModel.js";
+import MovieListModel from "../models/MovieListModel.js";
 
 
-export const getAllListByUserId = async (req, res) => {
-    try {
-        const lists = await ListModel.findAll({
-            where: {
-                userId: req.params.id
-            }
-        })
-        res.json(lists)
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
+ListModel.hasMany(MovieListModel);
 
 export const addList = async (req, res) => {
     const duplicatedList = await ListModel.findOne({ where: { title: req.body.title } })
@@ -28,7 +18,6 @@ export const addList = async (req, res) => {
     }
 }
 
-
 export const removeList = async (req, res) => {
     try {
         await ListModel.destroy({
@@ -42,4 +31,3 @@ export const removeList = async (req, res) => {
         res.json({ message: error.message })
     }
 }
-

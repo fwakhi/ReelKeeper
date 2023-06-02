@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import axios from "../api/axios";
 
 
 const Playground = () => {
 
-    useEffect(() => {
+    const getUser = async () => {
 
+    }
+
+    useEffect(() => {
+        getUser();
     }, [])
 
     return (

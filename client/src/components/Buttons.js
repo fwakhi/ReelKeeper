@@ -9,10 +9,10 @@ const Buttons = (props) => {
     return (
         <div className="container mt-3">
             <div className="row justify-content-center">
-            <AddFavourites movie={props.movie} />
-            <WatchlistButton movie={props.movie} />
-            <HistoryButton movie={props.movie} />
-            <ListButton movie={props.movie} />
+                <AddFavourites movie={props.movie} />
+                <WatchlistButton movie={props.movie} />
+                <HistoryButton movie={props.movie} />
+                <ListButton movie={props.movie} />
             </div>
         </div>
     )

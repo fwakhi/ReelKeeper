@@ -19,3 +19,19 @@ api.interceptors.request.use(
     }, (error) => Promise.reject(error)
 );
 export default api
+
+export const refreshUser = async (userId) => {
+    if (userId != undefined && userId != "") {
+        try {
+            const response = await api.get("/users/" + userId, {});
+            if (response.data) {
+                // console.log("Refresh user ------>", response.data)
+                return response.data;
+            }
+        } catch (err) {
+            console.error("Error: ", err);
+        }
+    } else {
+        console.error("Error: No user ID found");
+    }
+}

@@ -6,14 +6,12 @@ import useInfo from "./useInfo";
 const useLogout = () => {
     const { setAuth } = useAuth();
     const navigate = useNavigate();
-    const { setFavorites, setHistory, setWatchlist } = useInfo();
+    const { setUserInfo } = useInfo();
 
     return async () => {
         localStorage.removeItem("accessToken");
         setAuth({ user: null })
-        setFavorites([]);
-        setHistory([]);
-        setWatchlist([]);
+        setUserInfo({});
         navigate('/');
     };
 }

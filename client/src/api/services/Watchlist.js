@@ -1,18 +1,6 @@
 import axios, { WATCHLIST_URL } from "../axios";
 
 
-export const getWatchlist = async (userId) => {
-    try {
-        const response = await axios.get(`${WATCHLIST_URL}/${userId}`, {});
-        if (response.data) {
-            return response.data
-        }
-    } catch (err) {
-        console.error("Error; ", err);
-    }
-    return null
-}
-
 export const saveWatchlist = async (movie, userId) => {
     const { id, poster_path } = movie
     try {

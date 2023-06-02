@@ -1,5 +1,14 @@
+import FavoriteModel from "../models/FavoriteModel.js";
+import HistoryModel from "../models/HistoryModel.js";
+import ListModel from "../models/ListModel.js";
 import UserModel from "../models/UserModel.js";
+import WatchlistModel from "../models/WatchlistModel.js";
 
+
+UserModel.hasMany(FavoriteModel);
+UserModel.hasMany(WatchlistModel);
+UserModel.hasMany(HistoryModel);
+UserModel.hasMany(ListModel);
 
 export const getAllUsers = async (req, res) => {
     try {
@@ -12,10 +21,9 @@ export const getAllUsers = async (req, res) => {
 export const getUserById = async (req, res) => {
     try {
         const user = await UserModel.findAll({
-            where: {
-                id: req.params.id
-            }
-        })
+            where: { id: req.params.id },
+            include: { all: true, nested: true }
+        });
         res.json(user[0])
     } catch (error) {
         res.json({ message: error.message })
@@ -54,4 +62,3 @@ export const removeUser = async (req, res) => {
         res.json({ message: error.message })
     }
 }
-

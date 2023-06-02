@@ -10,7 +10,7 @@ const BackButton = () => {
 
     return (
         <div className="col-1 mt-2 ">
-            <i class="fa-solid fa-circle-left fa-2xl ml-auto" style={{ color: '#8a8a8a;' }} onClick={() => handleClick()}></i>
+            <i className="fa-solid fa-circle-left fa-2xl ml-auto" style={{ color: '#1f1f1f' }} onClick={() => handleClick()}></i>
         </div>
 
     )

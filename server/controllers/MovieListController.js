@@ -1,19 +1,6 @@
 import MovieListModel from "../models/MovieListModel.js";
 
 
-export const getAllMovieListByListId = async (req, res) => {
-    try {
-        const movieList = await MovieListModel.findAll({
-            where: {
-                listId: req.params.id
-            }
-        })
-        res.json(movieList)
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
-
 export const addMovieList = async (req, res) => {
     try {
         await MovieListModel.create(req.body)
@@ -23,7 +10,6 @@ export const addMovieList = async (req, res) => {
         res.json({ message: error.message })
     }
 }
-
 
 export const removeMovieList = async (req, res) => {
     try {
@@ -36,4 +22,3 @@ export const removeMovieList = async (req, res) => {
         res.json({ message: error.message })
     }
 }
-

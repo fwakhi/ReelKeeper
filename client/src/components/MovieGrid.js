@@ -8,13 +8,12 @@ import { Button, Container, Row, Col, Image } from 'react-bootstrap';
 const MovieGrid = (props) => {
 
     const navigate = useNavigate();
-
     const handleClick = (clickedMovieId) => navigate(`/movie/${clickedMovieId}`)
 
     return (
         <Container>
             <Row>
-                {React.Children.toArray(props.movies.map((movie) =>
+                {React.Children.toArray(props.movies?.map((movie) =>
                     <Col className="image-container">
                         <Image className='mb-1 mt-4' src={imgUrl + movie.poster_path} onClick={() => handleClick(movie.id)} alt="poster" rounded fluid />
                         <Buttons movie={movie} />

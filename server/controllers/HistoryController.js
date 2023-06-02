@@ -1,19 +1,6 @@
 import HistoryModel from "../models/HistoryModel.js";
 
 
-export const getAllHistoryByUserId = async (req, res) => {
-    try {
-        const history = await HistoryModel.findAll({
-            where: {
-                userId: req.params.id
-            }
-        })
-        res.json(history)
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
-
 export const addToHistory = async (req, res) => {
     try {
         await HistoryModel.create(req.body)
@@ -24,12 +11,11 @@ export const addToHistory = async (req, res) => {
     }
 }
 
-
 export const removeFromHistory = async (req, res) => {
     try {
         await HistoryModel.destroy({
-            where: { 
-                id: req.params.id 
+            where: {
+                id: req.params.id
             }
         })
         res.json({ message: 'Register deleted' })
@@ -38,4 +24,3 @@ export const removeFromHistory = async (req, res) => {
         res.json({ message: error.message })
     }
 }
-

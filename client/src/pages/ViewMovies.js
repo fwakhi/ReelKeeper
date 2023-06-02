@@ -18,14 +18,14 @@ const ViewMovies = () => {
     const [searchValue, setSearchValue] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
-    const { favorites } = useInfo()
+    const { userInfo } = useInfo()
 
     const fetchMovies = async () => {
         setPopular(await getPopularMovies());
         setUpcoming(await getUpcomingMovies());
         setLatest(await getLatestMovies());
         setIsLoading(false);
-    } 
+    }
 
     useEffect(() => {
         fetchMovies();
@@ -59,7 +59,7 @@ const ViewMovies = () => {
                 { title: "Latest Movies", movies: latest },
                 { title: "Upcoming Movies", movies: upcoming },
                 { title: "Popular Movies", movies: popular },
-                { title: "Favorites", movies: favorites }].map((k) =>
+                { title: "Favorites", movies: userInfo?.favorites }].map((k) =>
                     <>
                         <div className='row d-flec align-items-center  mt-5'>
                             <MovieListHeading heading={k.title} />
@@ -68,7 +68,7 @@ const ViewMovies = () => {
                             {
                                 isLoading
                                     ? <LoadingSpinner />
-                                    : k.movies.length > 0
+                                    : k.movies?.length > 0
                                         ? <MovieList movies={k.movies} />
                                         : <p>No movies available</p>
                             }

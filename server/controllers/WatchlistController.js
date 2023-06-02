@@ -1,19 +1,6 @@
 import WatchlistModel from "../models/WatchlistModel.js";
 
 
-export const getAllByUserId = async (req, res) => {
-    try {
-        const watchlist = await WatchlistModel.findAll({
-            where: {
-                userId: req.params.id
-            }
-        })
-        res.json(watchlist)
-    } catch (error) {
-        res.json({ message: error.message })
-    }
-}
-
 export const addToWatchlist = async (req, res) => {
     try {
         await WatchlistModel.create(req.body)
@@ -24,12 +11,11 @@ export const addToWatchlist = async (req, res) => {
     }
 }
 
-
 export const removeFromWatchlist = async (req, res) => {
     try {
         await WatchlistModel.destroy({
-            where: { 
-                id: req.params.id 
+            where: {
+                id: req.params.id
             }
         })
         res.json({ message: 'Movie deleted' })
@@ -38,4 +24,3 @@ export const removeFromWatchlist = async (req, res) => {
         res.json({ message: error.message })
     }
 }
-

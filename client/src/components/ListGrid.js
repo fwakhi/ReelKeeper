@@ -6,12 +6,11 @@ import MovieListHeading from './MovieListHeading';
 import { getList, saveList } from '../api/services/List';
 import useAuth from "../hooks/useAuth";
 import useInfo from '../hooks/useInfo';
+import { refreshUser } from '../api/axios';
 
 
 const ListGrid = (props) => {
-    const { auth } = useAuth();
-    const userId = auth.user.id;
-    const { lists, setLists } = useInfo()
+    const { userInfo, setUserInfo } = useInfo()
 
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState('');
@@ -24,8 +23,8 @@ const ListGrid = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (userId) {
-            const res = await saveList(inputValue, userId);
+        if (userInfo?.id) {
+            const res = await saveList(inputValue, userInfo?.id);
 
             if (res.error) {
                 setMsgClass("scssMsg error");
@@ -33,7 +32,7 @@ const ListGrid = (props) => {
             } else {
                 setMsgClass("scssMsg");
                 setScssMsg(res.message);
-                setLists(await getList(auth.user.id));
+                setUserInfo(await refreshUser(userInfo?.id));
             }
             setInputValue('');
             setTimeout(() => {
@@ -64,7 +63,7 @@ const ListGrid = (props) => {
                     </div>
                 </div>
 
-                {React.Children.toArray(lists.map((list) =>
+                {React.Children.toArray(userInfo?.lists.map((list) =>
                     <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5">
                         <div className="col-md container rounded" onClick={() => handleClick(list.id)}>
                             <i className="fa-solid fa-film"></i>

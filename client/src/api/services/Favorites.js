@@ -1,18 +1,6 @@
 import axios, { FAVS_URL } from "../axios";
 
 
-export const getFavorites = async (userId) => {
-    try {
-        const response = await axios.get(`${FAVS_URL}/${userId}`, {});
-        if (response.data) {
-            return response.data
-        }
-    } catch (err) {
-        console.error("Error; ", err);
-    }
-    return null
-}
-
 export const saveFavorite = async (movie, userId) => {
     const { id, poster_path } = movie
     try {
