@@ -64,8 +64,8 @@ const ListGrid = (props) => {
                 </div>
 
                 {React.Children.toArray(userInfo?.lists.map((list) =>
-                    <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5">
-                        <div className="col-md container rounded" onClick={() => handleClick(list.id)}>
+                    <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5" onClick={() => handleClick(list.id)}>
+                        <div className="col-md container rounded">
                             <i className="fa-solid fa-film"></i>
                         </div>
                         <h3 className="mt-4">{list.title}</h3>

@@ -390,6 +390,7 @@ a {
     background: #212529;
 }
 
+/* If movie is inside list */
 .item-selected {
     background-color: rgba(206, 144, 86, 0.647);
 }
