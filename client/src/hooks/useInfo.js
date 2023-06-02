@@ -1,7 +1,5 @@
 import { useContext } from "react";
 import InfoContext from "../context/InfoProvider"
 
-const useInfo = () => {
-    return useContext(InfoContext);
-}
+const useInfo = () => useContext(InfoContext);
 export default useInfo;

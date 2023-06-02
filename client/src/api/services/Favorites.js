@@ -16,7 +16,7 @@ export const saveFavorite = async (movie, userId) => {
 export const removeFavorite = async (id, userId) => {
     try {
         await axios.delete(`${FAVS_URL}/${userId}/${id}`, {});
-        console.log("favorites-Remved:", id);
+        console.log("favorites-Removed:", id);
         return true
     } catch (err) {
         console.error("Error; ", err);

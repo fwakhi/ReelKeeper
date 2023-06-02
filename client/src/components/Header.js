@@ -10,13 +10,13 @@ import useInfo from '../hooks/useInfo';
 const Header = () => {
 
     const { auth } = useAuth()
-    const { setUserInfo } = useInfo();
+    const { userInfo, setUserInfo } = useInfo();
     const isAuthorized = localStorage.getItem("accessToken") != null
     const logout = useLogout();
 
     const loadUser = async (userId) => setUserInfo(await refreshUser(userId));
     useEffect(() => {
-        if (auth.user != null) {
+        if (auth.user != null && userInfo == null) {
             loadUser(auth.user?.id);
         }
     }, [auth]);
