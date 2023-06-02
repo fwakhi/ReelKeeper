@@ -390,6 +390,10 @@ a {
     background: #212529;
 }
 
+.item-selected {
+    background-color: rgba(206, 144, 86, 0.647);
+}
+
 /* Spinner */
 .loading-spinner {
     position: absolute;
