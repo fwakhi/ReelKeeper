@@ -32,6 +32,6 @@ export const refreshUser = async (userId) => {
             console.error("Error: ", err);
         }
     } else {
-        console.error("Error: No user ID found");
+        console.error("Error: No user ID found", userId);
     }
 }

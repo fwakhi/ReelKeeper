@@ -10,29 +10,31 @@ const HistoryButton = (props) => {
     const { userInfo, setUserInfo } = useInfo()
 
     const addHistoryMovie = async (movie) => {
-        if (userInfo?.id && await saveHistory(movie, userInfo?.id)) {
+        if (movie && userInfo?.id && await saveHistory(movie, userInfo?.id)) {
             setUserInfo(await refreshUser(userInfo?.id));
         }
     }
 
     const removeHistoryMovie = async (movie) => {
-        if (userInfo?.id && await removeHistory(movie.id, userInfo?.id)) {
+        if (movie && userInfo?.id && await removeHistory(movie.id, userInfo?.id)) {
             setUserInfo(await refreshUser(userInfo?.id));
         }
     }
 
-    if (userInfo?.histories?.find(m => m.id == movie.id)) {
-        return (
-            <>
-                <button className="btn watchedButton crossed" onClick={() => removeHistoryMovie(movie)}><i className="fa-solid fa-eye" style={{ color: "#1f1f1f" }}></i></button>
-            </>
-        )
+    const isMovieInHistory = (movie) => {
+        if (userInfo?.histories?.length == 0) {
+            return false
+        }
+        const found = userInfo?.histories?.find(m => m.id == movie.id);
+        return found != null;
+    }
+
+    const handleClick = async (movie) => {
+        isMovieInHistory(movie) ? await removeHistoryMovie(movie) : await addHistoryMovie(movie);
     }
 
     return (
-        <>
-            <button className="btn watchedButton" onClick={() => addHistoryMovie(movie)}><i className="fa-regular fa-eye" style={{ color: "#1f1f1f" }}></i></button>
-        </>
+        <button className="btn watchedButton" onClick={() => handleClick(movie)}><i className={`fa-eye ${isMovieInHistory(movie) ? "fa-solid" : "fa-regular"}`} style={{ color: "#1f1f1f" }}></i></button>
     )
 }
 export default HistoryButton;

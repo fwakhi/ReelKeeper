@@ -1,6 +1,5 @@
 import React, { } from "react";
 import '../style/Home.css';
-import { useNavigate } from 'react-router-dom';
 import useInfo from '../hooks/useInfo'
 import MovieGrid from '../components/MovieGrid';
 import NoMovies from "../components/NoMovies";
@@ -9,8 +8,6 @@ import BackButton from "../components/BackButton";
 
 const Watchlist = () => {
     const { userInfo } = useInfo();
-    const navigate = useNavigate();
-    const handleClick = () => navigate(`/profile`)
 
     return (
 
