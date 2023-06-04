@@ -26,6 +26,7 @@ export const refreshUser = async (userId) => {
             const response = await api.get("/users/" + userId, {});
             if (response.data) {
                 // console.log("Refresh user ------>", response.data)
+                response.data.lists?.sort((a,b)=> a.id - b.id)
                 return response.data;
             }
         } catch (err) {
