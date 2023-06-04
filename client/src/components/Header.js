@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useLogout from "../hooks/useLogout";
 import useAuth from '../hooks/useAuth';
@@ -13,6 +13,22 @@ const Header = () => {
     const { userInfo, setUserInfo } = useInfo();
     const isAuthorized = localStorage.getItem("accessToken") != null
     const logout = useLogout();
+
+    const [showDropdown, setShowDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setShowDropdown(false);
+            return
+        }
+    };
+    const handleToggleButtonClick = () => setShowDropdown(!showDropdown);
 
     const loadUser = async (userId) => setUserInfo(await refreshUser(userId));
     useEffect(() => {
@@ -67,10 +83,10 @@ const Header = () => {
                         </Link>
                     </div>
 
-                    <button className="navbar-toggler negro" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className={`navbar-toggler negro ${showDropdown ? 'collapsed' : ''}`} onClick={handleToggleButtonClick} type="button">
                         <span className="navbar-toggler-icon text-white"></span>
                     </button>
-                    <div className="collapse navbar-collapse col-8" id="navbarSupportedContent">
+                    <div id="navbarSupportedContent" className={`collapse navbar-collapse col-8 ${showDropdown ? 'show' : ''}`} ref={dropdownRef}>
                         <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <a className="nav-link active rojito borde text-white" aria-current="page" href="#">About</a>
