@@ -34,7 +34,7 @@ export const fetchMovie = async (id) => {
                 { id: 369557, poster_path: "/sUWpVlrvzU2SJbnVZqIeKulPKwk.jpg" }
             ]
         }
-        const director = movie.credits.crew.filter(crew => crew.job === "Director");
+        const director = movie.credits.crew.filter(crew => crew.job == "Director");
         movie.credits.crew = movie.credits.crew.filter((_, i) => i < 15);
         movie.credits.cast = movie.credits.cast.filter((_, i) => i < 15);
         movie.director = director;
