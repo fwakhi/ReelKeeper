@@ -1,5 +1,4 @@
 import React from "react";
-import useAuth from "../hooks/useAuth";
 import { saveHistory, removeHistory } from '../api/services/History';
 import useInfo from "../hooks/useInfo";
 import { refreshUser } from "../api/axios";
@@ -22,10 +21,10 @@ const HistoryButton = (props) => {
     }
 
     const isMovieInHistory = (movie) => {
-        if (userInfo?.histories?.length == 0) {
+        if (userInfo?.histories?.length === 0) {
             return false
         }
-        const found = userInfo?.histories?.find(m => m.id == movie.id);
+        const found = userInfo?.histories?.find(m => m.id === movie.id);
         return found != null;
     }
 
