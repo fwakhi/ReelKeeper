@@ -22,10 +22,10 @@ const WatchlistButton = (props) => {
     }
 
     const isMovieInWatchlist = (movie) => {
-        if (userInfo?.watchlists?.length === 0) {
+        if (userInfo?.watchlists?.length == 0) {
             return false
         }
-        const found = userInfo?.watchlists?.find(m => m.id === movie.id);
+        const found = userInfo?.watchlists?.find(m => m.id == movie.id);
         return found != null;
     }
 
