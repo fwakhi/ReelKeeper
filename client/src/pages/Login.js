@@ -6,7 +6,8 @@ import styles from "../style/Background.module.css"
 import '../style/Login.css';
 
 import useAuth from "../hooks/useAuth";
-import api, { AUTH_URL } from "../api/axios";
+import api, { AUTH_URL, refreshUser } from "../api/axios";
+import useInfo from "../hooks/useInfo";
 
 
 const Login = () => {
@@ -17,7 +18,9 @@ const Login = () => {
         }
     }, [])
 
-    const { auth, setAuth } = useAuth();
+    const { setAuth } = useAuth();
+    const { setUserInfo } = useInfo()
+
     const isAuthorized = localStorage.getItem("accessToken") != null
 
     const navigate = useNavigate();
@@ -53,6 +56,8 @@ const Login = () => {
             localStorage.setItem('accessToken', accessToken);
 
             setAuth({ accessToken, user });
+            setUserInfo(await refreshUser(user?.id));
+
             setUsername('');
             setPassword('');
             navigate('/movies', { state: { from: location }, replace: true });
@@ -87,7 +92,6 @@ const Login = () => {
                             <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
                         </Form.Group>
-                        {/* <Link className='btn-pass'>Forgot your password?</Link> */}
 
                         <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
 
