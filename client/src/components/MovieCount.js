@@ -1,6 +1,6 @@
 import React from "react";
 import useInfo from '../hooks/useInfo';
-import useAuth from "../hooks/useAuth";
+
 
 const MovieCount = () => {
 

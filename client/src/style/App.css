@@ -346,11 +346,6 @@ a {
     color: #373737;
 }
 
-#collapseForm {
-    width: 200px;
-    margin: auto;
-}
-
 .scssMsg {
     margin: auto;
     width: fit-content;
@@ -393,6 +388,11 @@ a {
 /* If movie is inside list */
 .item-selected {
     background-color: rgba(206, 144, 86, 0.647);
+}
+
+.form-control{
+    display:inline-block;
+    width: 65%;
 }
 
 /* Spinner */

@@ -44,25 +44,18 @@ const ListGrid = (props) => {
 
     const handleClick = (clickedList) => navigate(`/profile/lists/${clickedList}`)
 
-    // const handleClick = (clickedListId) => navigate(`/list/${clickedListId}`);
-
     return (
         <Container fluid className='margin-top'>
-            <MovieListHeading heading="Your lists" />
+            <Row>
+                <h1 className='mr-5'>Your lists</h1>
+                <Button variant="dark" size="lg" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">+</Button>
+                <div className="collapse ml-3 mr-1 mt-2 align-middle" id="collapseForm">
+                    <input type='text' placeholder='Title of the list' value={inputValue} className='form-control mr-3 align-middle' onChange={handleInputChange} name='title' id='title' />
+                    <Button type="submit" className=' btn btn-dark' onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</Button>
+                </div>
+            </Row>
             <p className={msgClass} aria-live="assertive">{scssMsg}</p>
             <Row className="mx-auto margin-top justify-content-sm-center profileMovies d-flex">
-                <div className='d-flex flex-column'>
-                    <div className="castTag d-flex flex-column text-center m-5 listsSection newList" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">
-                        <i className="fa-solid fa-plus"></i>
-                    </div>
-                    <div className="collapse mt-3" id="collapseForm">
-                        <form>
-                            <input type='text' placeholder='Title of the list' value={inputValue} className='form-control' onChange={handleInputChange} name='title' id='title' />
-                            <button type="submit" className='btn btn-dark mt-1' onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</button>
-                        </form>
-                    </div>
-                </div>
-
                 {React.Children.toArray(userInfo?.lists?.map((list) =>
                     <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5" onClick={() => handleClick(list.id)}>
                         <div className="col-md container rounded">
