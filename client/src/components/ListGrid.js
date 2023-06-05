@@ -1,10 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { imgUrl } from '../api/tmdb'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, Row, Col, Image } from 'react-bootstrap';
-import MovieListHeading from './MovieListHeading';
-import { getList, saveList } from '../api/services/List';
-import useAuth from "../hooks/useAuth";
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import { saveList } from '../api/services/List';
 import useInfo from '../hooks/useInfo';
 import { refreshUser } from '../api/axios';
 

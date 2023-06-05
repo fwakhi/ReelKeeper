@@ -54,11 +54,15 @@ export const fetchMovies = async (ids) => {
 }
 
 export const fetchCollections = async (ids) => {
-    const data = ids.map(id => new Promise((res, rej) => {
-        res(fetchCollection(id))
-    }));
+    const data = ids.map(id => new Promise((res, rej) => res(fetchCollection(id))));
     const output = await Promise.all(data);
-    return output.map(res => res.data)
+    const collections = output.map(res => res.data)
+    collections.map(col => col.parts.sort(function (filmA, filmB) {
+        const a = filmA.release_date.split('/').reverse().join('');
+        const b = filmB.release_date.split('/').reverse().join('');
+        return a > b ? 1 : a < b ? -1 : 0;
+    }));
+    return collections;
 }
 
 export const getPopularMovies = async () => {
