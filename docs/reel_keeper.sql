@@ -125,18 +125,17 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT current_timestamp(),
   `updatedAt` timestamp NOT NULL DEFAULT current_timestamp(),
-  `icon` varchar(20) DEFAULT NULL,
-  `refreshToken` varchar(255) DEFAULT NULL
+  `icon` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `createdAt`, `updatedAt`, `icon`, `refreshToken`) VALUES
-(1, 'quetepasaque', 'quieres@gmail.com', '$2b$10$QpiCaJ4KbhQdjABHbXBeDOWohuPHs0qscnhBjD57KQ7NX11CCZzw.', '2023-05-12 10:46:21', '2023-05-12 10:46:21', NULL, ''),
-(2, 'Andrea2', 'andrea@gmail.com', '$2b$10$ZaMRtUjYf.f.owdRi88uce/YBgfPVdcvuZpC/C42U87fwzqef6Ihy', '2023-05-12 11:14:32', '2023-05-12 11:14:32', NULL, ''),
-(4, 'wilkin25', 'thewilkin25@gmail.com', '$2b$10$YPuymjoxOceoOaTZQTbZOOi6wmEX9BBiV7yAixdymJdjrL1M0Vy36', '2023-05-12 15:04:21', '2023-05-21 15:22:16', NULL, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IndpbGtpbjI1IiwiaWF0IjoxNjg0NjgyNTM2LCJleHAiOjE2ODUyODczMzZ9.JIYvkYKvOeUqcFL47ixx86TlFuB4qSzy0aHdRSYwgVw');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `createdAt`, `updatedAt`, `icon`,) VALUES
+(1, 'quetepasaque', 'quieres@gmail.com', '$2b$10$QpiCaJ4KbhQdjABHbXBeDOWohuPHs0qscnhBjD57KQ7NX11CCZzw.', '2023-05-12 10:46:21', '2023-05-12 10:46:21', NULL),
+(2, 'Andrea2', 'andrea@gmail.com', '$2b$10$ZaMRtUjYf.f.owdRi88uce/YBgfPVdcvuZpC/C42U87fwzqef6Ihy', '2023-05-12 11:14:32', '2023-05-12 11:14:32', NULL),
+(4, 'wilkin25', 'thewilkin25@gmail.com', '$2b$10$YPuymjoxOceoOaTZQTbZOOi6wmEX9BBiV7yAixdymJdjrL1M0Vy36', '2023-05-12 15:04:21', '2023-05-21 15:22:16', NULL);
 
 -- --------------------------------------------------------
 

@@ -390,12 +390,6 @@ a {
     background-color: rgba(206, 144, 86, 0.647);
 }
 
-/* Create list text input */
-.form-control {
-    display: inline-block;
-    width: 65%;
-}
-
 .btn.btn-danger {
     max-height: 50px;
 }

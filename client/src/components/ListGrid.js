@@ -47,7 +47,7 @@ const ListGrid = (props) => {
                 <h1 className='mr-5'>Your lists</h1>
                 <Button variant="dark" size="lg" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">+</Button>
                 <div className="collapse ml-3 mr-1 mt-2 align-middle" id="collapseForm">
-                    <input type='text' placeholder='Title of the list' value={inputValue} className='form-control mr-3 align-middle' onChange={handleInputChange} name='title' id='title' />
+                    <input type='text' placeholder='Title of the list' value={inputValue} className='mr-3 align-middle' onChange={handleInputChange} name='title' id='title' />
                     <Button type="submit" className=' btn btn-dark' onClick={handleSubmit} data-toggle="collapse" href="#collapseForm" >Create</Button>
                 </div>
             </Row>
