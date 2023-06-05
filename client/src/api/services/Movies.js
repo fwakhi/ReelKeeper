@@ -34,6 +34,12 @@ export const fetchMovie = async (id) => {
                 { id: 369557, poster_path: "/sUWpVlrvzU2SJbnVZqIeKulPKwk.jpg" }
             ]
         }
+        if (movie.videos.results.length > 0) {
+            const trailer = movie.videos.results.find(video => video.type == "Trailer" && video.site == "YouTube")
+            if (trailer) {
+                movie.trailer = "https://youtube.com/watch?v=" + trailer.key;
+            }
+        }
         const director = movie.credits.crew.filter(crew => crew.job == "Director");
         movie.credits.crew = movie.credits.crew.filter((_, i) => i < 15);
         movie.credits.cast = movie.credits.cast.filter((_, i) => i < 15);

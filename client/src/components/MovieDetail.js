@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { imgUrl } from '../api/tmdb'
 import { useNavigate } from 'react-router-dom';
 import languageNames from "../utils/languageNames";
@@ -22,6 +22,7 @@ const MovieDetail = () => {
 
     const displayMovie = async () => {
         setMovie(await fetchMovie(movie_id));
+        console.log("movie", movie)
         setIsLoading(false);
     }
 
@@ -72,8 +73,9 @@ const MovieDetail = () => {
                                 <a className="crewTag" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
                                     Crew
                                 </a>
-
+                                {movie?.trailer ? <a href={movie?.trailer} className='btn-pass' target="_blank">Trailer</a> : ""}
                             </p>
+
                             <div className="collapse mb-5" id="collapse1">
                                 <div className="card card-body">
                                     {React.Children.toArray(movie.credits?.cast.map(act => (<span><b>{act.name}</b> - {act.character} </span>)))}
