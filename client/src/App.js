@@ -19,6 +19,7 @@ import Favs from './pages/Favs';
 import History from './pages/History';
 import Watchlist from './pages/Watchlist';
 import ListDetail from "./pages/ListDetail";
+import About from "./pages/About";
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
                 <Route path="/" element={<Home />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/login' element={<Login />} />
+                <Route path='/about' element={<About />} />
 
                 {/* Protected routes */}
                 <Route element={<RequireAuth />}>

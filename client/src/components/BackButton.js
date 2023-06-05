@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import '../style/Home.css';
 import { useNavigate } from 'react-router-dom';
 
 
 const BackButton = () => {
     const navigate = useNavigate();
-
     const handleClick = () => navigate(`/profile`)
 
     return (

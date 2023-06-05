@@ -37,9 +37,7 @@ const Home = () => {
                 </Row>
 
                 <Row className={`justify-content-md-center m-5`}>
-                    <Link to="movies"><Button className="mr-5" variant="dark">MOVIES</Button></Link>
                     <Link to="signup"><Button className={`mr-5 createAccountBtn ${isAuthorized ? "not-visible" : "visible"}`} >Create an account!</Button></Link>
-                    {isAuthorized ? "LOGGED IN" : "LOGGED OUT"}
                 </Row>
 
                 <Container>

@@ -10,14 +10,12 @@ const AddFavourites = (props) => {
 
     const addFavouriteMovie = async (movie) => {
         if (userInfo?.id && await saveFavorite(movie, userInfo?.id)) {
-            const newFavouriteList = [...userInfo?.favorites, movie];
             setUserInfo(await refreshUser(userInfo?.id));
         }
     }
 
     const removeFavouriteMovie = async (movie) => {
         if (userInfo?.id && await removeFavorite(movie.id, userInfo?.id)) {
-            const newFavouriteList = userInfo?.favorites.filter((fav) => fav.id?.toString() !== movie.id?.toString());
             setUserInfo(await refreshUser(userInfo?.id));
         }
     }

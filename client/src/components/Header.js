@@ -37,9 +37,7 @@ const Header = () => {
         }
     }, [auth]);
 
-    const signOut = async () => {
-        await logout();
-    }
+    const signOut = async () => await logout();
 
     const loginButton = (
         <Link to="login" style={{ textDecoration: 'none' }}><span className="nav-link text-white">LOGIN</span></Link>
@@ -54,6 +52,12 @@ const Header = () => {
     const moviesButton = (
         <li className="nav-item">
             <Link to="movies" style={{ textDecoration: 'none' }}><span className="nav-link verde borde text-white">Movies</span></Link>
+        </li>
+    )
+
+    const aboutButton = (
+        <li className="nav-item">
+            <Link to="about" style={{ textDecoration: 'none' }}><span className="nav-link active rojito borde text-white">About</span></Link>
         </li>
     )
 
@@ -88,13 +92,9 @@ const Header = () => {
                     </button>
                     <div id="navbarSupportedContent" className={`collapse navbar-collapse col-8 ${showDropdown ? 'show' : ''}`} ref={dropdownRef}>
                         <ul className="navbar-nav ml-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
-                                <a className="nav-link active rojito borde text-white" aria-current="page" href="#">About</a>
-                            </li>
-
+                            {aboutButton}
                             {isAuthorized ? moviesButton : ""}
                             {isAuthorized ? listButton : ""}
-
                             <li className="nav-item purple borde rounded ml-3">
                                 {isAuthorized ? profileButton : loginButton}
                             </li>

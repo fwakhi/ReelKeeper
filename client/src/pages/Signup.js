@@ -24,7 +24,6 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-
     useEffect(() => {
         if (isAuthorized) {
             navigate('/movies', { state: { from: location }, replace: true });
