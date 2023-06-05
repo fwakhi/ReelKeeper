@@ -22,7 +22,7 @@ export const getUserById = async (req, res) => {
     try {
         const user = await UserModel.findAll({
             where: { id: req.params.id },
-            include: { all: true, nested: true }
+            include: { all: true, nested: true, separate:true }
         });
         res.json(user[0])
     } catch (error) {
