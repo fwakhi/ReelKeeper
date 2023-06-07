@@ -8,12 +8,11 @@ import '../style/Home.css';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
-import AuthContext from "../context/AuthProvider";
 
 
 const Home = () => {
-    const { auth, setAuth } = useContext(AuthContext);
-    const isAuthorized = auth.accessToken != null
+
+    const isAuthorized = localStorage.getItem("accessToken") != null
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -38,10 +37,7 @@ const Home = () => {
                 </Row>
 
                 <Row className={`justify-content-md-center m-5`}>
-                    <Link to="movies"><Button className="mr-5" variant="dark">MOVIES</Button></Link>
-                    <Link to="login"><Button className={`mr-5 ${isAuthorized ? "not-visible" : "visible"}`} variant="dark">LOGIN</Button></Link>
-                    {isAuthorized ? "LOGGED IN" : "LOGGED OUT"}
-                    <Link to="playground"><Button className="" variant="dark">DB check</Button></Link>
+                    <Link to="signup"><Button className={`mr-5 createAccountBtn ${isAuthorized ? "not-visible" : "visible"}`} >Create an account!</Button></Link>
                 </Row>
 
                 <Container>

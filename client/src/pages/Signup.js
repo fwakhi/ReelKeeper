@@ -1,24 +1,32 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import { Card, Container, Form, Button, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import api, { SIGNUP_URL } from "../api/axios";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
-import axios from "axios";
-import { SIGNUP_URL } from "../utils/Constants";
-import { axiosPrivate } from "../api/axios";
+
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-
 
 const Login = () => {
     useEffect(() => {
         document.body.className = styles.dynamicBackground;
         return () => {
             document.body.className = styles.plainBackground;
+        }
+    }, [])
+
+    const isAuthorized = localStorage.getItem("accessToken") != null
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (isAuthorized) {
+            navigate('/movies', { state: { from: location }, replace: true });
         }
     }, [])
 
@@ -53,19 +61,16 @@ const Login = () => {
 
     useEffect(() => {
         const result = EMAIL_REGEX.test(email);
-        console.log(email, result);
         setValidEmail(result);
     }, [email])
 
     useEffect(() => {
         const result = USER_REGEX.test(user);
-        console.log(user, result);
         setValidUser(result);
     }, [user])
 
     useEffect(() => {
         const result = PASSWORD_REGEX.test(password);
-        console.log(password, result);
         setValidPassword(result);
         const match = password === matchPassword;
         setValidMatch(match);
@@ -85,11 +90,7 @@ const Login = () => {
             return;
         }
         try {
-            const response = await axiosPrivate.post(SIGNUP_URL,
-                JSON.stringify({ user, password, email })
-            );
-            console.log(response?.data);
-            console.log(JSON.stringify(response))
+            await api.post(SIGNUP_URL, { user, password, email });
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
@@ -221,7 +222,7 @@ const Login = () => {
 
                         <Button variant="dark" type="submit" disabled={!!(!validUser || !validPassword || !validMatch)} className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Sign up</Button>
 
-                        <Link to="/login" className='btn-pass text-center'>Already registered? Sign in!</Link>
+                        <Link to="/login" className='btn-pass text-center'>Already registered? Log in!</Link>
                     </Form>
                 </Card.Body>
             </Card>

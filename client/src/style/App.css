@@ -4,12 +4,46 @@
     font-family: 'JetBrains Mono';
 }
 
+@media (max-width: 800px) {
+    .bordered {
+        width: 100%;
+        height: fit-content;
+        padding: auto;
+    }
+
+    .movieContainer {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .posterContainer {
+        max-width: 80%;
+    }
+
+    .detailsContainer {
+        max-width: 100%;
+    }
+
+    .profileMovies div {
+        min-width: 250px;
+        width: 400px;
+        flex-direction: column;
+        margin-bottom: 30px;
+    }
+}
+
+li {
+    list-style-type: none;
+}
+
 body>#root>div {
-    height: 100vh;
+    /* height: 100vh; */
+    height: 100%;
 }
 
 body {
     margin: 0;
+    padding-bottom: 3%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
@@ -23,21 +57,29 @@ code {
 }
 
 .movie-app>.row {
-    /* overflow-x: auto; */
-    flex-wrap: wrap;
+    overflow-x: auto;
+    flex-wrap: nowrap;
 }
 
 .movie-app>.row img {
     border-radius: 10px;
     width: 180px;
-
 }
 
 .image-container {
-
+    flex-direction: column;
     position: relative;
     transition: transform 0.2s;
+    min-width: 220px;
+    max-width: 220px;
+}
 
+.image-container-small {
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.2s;
+    min-width: 130px;
+    margin: 4px;
 }
 
 .margin-top {
@@ -49,24 +91,6 @@ code {
     transform: scale(1.1);
 }
 
-.image-container:hover .overlay {
-    opacity: 1;
-
-}
-
-.overlay {
-    text-align: center;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: white;
-    width: 100%;
-    transition: 0.5s ease;
-    opacity: 0;
-    bottom: 0;
-    font-size: 20px;
-    padding: 20px;
-
-}
 
 a {
     color: white;
@@ -103,7 +127,6 @@ a {
     margin: auto;
     display: block;
     font-size: 2em;
-    ;
     text-align: center;
     width: 40px;
 }
@@ -116,32 +139,226 @@ a {
 
 .redhover:hover {
     background-color: rgba(206, 144, 86, 0.655);
-    /* box-shadow: none; */
 }
 
 .yellowhover:hover {
     background-color: rgba(202, 206, 86, 0.656);
-    /* box-shadow: none; */
 }
 
 .greenhover:hover {
     background-color: rgba(86, 206, 142, 0.527);
-    /* box-shadow: none; */
 }
 
 .purplehover:hover {
     background-color: rgba(83, 35, 119, 0.537);
-    /* box-shadow: none; */
 }
 
-@media (max-width: 991px) {
-    .bordered {
-        width: 100%;
-        height: fit-content;
-        padding: auto;
 
-    }
+/* MOVIE DETAILS PAGE  */
+.posterContainer img {
+    width: 100%;
+}
 
+.castTag {
+    background-color: rgb(83, 35, 119);
+    border-radius: 5px;
+    margin: 10px 5px;
+    text-align: center;
+    padding: 8px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%);
+}
+
+.crewTag {
+    background-color: rgb(202, 206, 86);
+    color: #212529;
+    border-radius: 5px;
+    margin: 10px 5px;
+    text-align: center;
+    padding: 8px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%);
+}
+
+
+.crewTag:hover,
+.castTag:hover {
+    background-color: #212529;
+    color: white;
+    text-decoration: none;
+
+}
+
+
+.genreTag {
+    background-color: rgba(86, 206, 142, 0.661);
+    border-radius: 5px;
+    margin: 10px 5px;
+    text-align: center;
+    padding: 0 10px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%);
+
+}
+
+.directorTag {
+    background-color: rgba(206, 144, 86, 0.723);
+    border-radius: 5px;
+    margin: 10px 5px;
+    text-align: center;
+    padding: 0 10px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%);
+
+}
+
+.releaseYear {
+    font-size: 1rem;
+}
+
+/* LIKE WATCHED WATCHLIST BUTTONS  */
+.btn:focus {
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.461), 0 0 3px rgba(58, 58, 58, 0.412);
+}
+
+.addListButton {
+    background-color: rgba(206, 144, 86, 0.655);
+    margin-right: 4px;
+
+}
+
+.favButton {
+    background-color: rgba(86, 206, 142, 0.527);
+    margin-right: 4px;
+}
+
+.broken:hover .fa-heart::before {
+    content: "\f7a9";
+}
+
+.crossed:hover .fa-eye::before {
+    content: "\f070";
+}
+
+.watchedButton {
+    background-color: rgba(202, 206, 86, 0.656);
+    margin-right: 4px;
+}
+
+.listButton {
+    background-color: rgba(206, 144, 86, 0.655);
+}
+
+
+.watchlistButton {
+    background-color: rgba(83, 35, 119, 0.537);
+    margin-right: 4px;
+
+}
+
+
+/******************** PROFILE PAGE  *********************** */
+.profile {
+    margin: 80px auto;
+}
+
+.iconProfile {
+    margin: auto;
+    display: block;
+    text-align: center;
+    padding: auto;
+
+}
+
+
+.profileMovies {
+    height: 200px;
+    margin: 40px auto;
+}
+
+
+.profileMovies div:hover,
+.fa-circle-left:hover {
+    cursor: pointer;
+}
+
+.profileMovies i {
+    margin: auto;
+    display: block;
+    text-align: center;
+    margin-top: 20%;
+    font-size: 10vw;
+}
+
+.newList {
+    height: 130px;
+}
+
+.newList i {
+    margin-top: 10%;
+    font-size: 5vw;
+}
+
+.favSection {
+    width: 200px;
+    background-color: rgba(206, 144, 86, 0.723);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.listsSection {
+    width: 200px;
+    background-color: rgba(216, 216, 216, 0.723);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 0 0 5px 8px rgba(0, 0, 0, 0.155);
+}
+
+.favSection:hover i,
+.historySection:hover i,
+.watchlistSection:hover i {
+    color: rgb(217, 217, 217);
+    text-shadow: 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.listsSection:hover {
+    transform: scale(1.1);
+}
+
+.historySection {
+    width: 200px;
+    background-color: rgba(86, 206, 142, 0.689);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.watchlistSection {
+    width: 200px;
+    background-color: rgba(202, 206, 86, 0.682);
+    border-radius: 20px;
+    box-shadow: inset 0 1px 1px hsl(0, 0%, 100%), 10px 5px 5px rgba(0, 0, 0, 0.155);
+}
+
+.noMovies {
+    width: fit-content;
+    background-color: #373737;
+    color: rgb(217, 217, 217);
+}
+
+.noMovies:hover {
+    background-color: rgb(217, 217, 217);
+    ;
+    color: #373737;
+}
+
+.scssMsg {
+    margin: auto;
+    width: fit-content;
+    background-color: #7ED1A5;
+    color: rgb(36, 36, 36);
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 5px;
+}
+
+.scssMsg.error {
+    background-color: #d17e7e;
 }
 
 /******************** SCROLLBAR  ***********************/
@@ -165,5 +382,48 @@ a {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(177, 255, 211);
+    background: #212529;
+}
+
+/* If movie is inside list */
+.item-selected {
+    background-color: rgba(206, 144, 86, 0.647);
+}
+
+.btn.btn-danger {
+    max-height: 50px;
+}
+
+/* Spinner */
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 50px;
+    height: 50px;
+    border: 24px solid;
+    border-color: rgb(86, 155, 206) rgb(86, 206, 141) rgb(203, 206, 86) rgb(206, 144, 86);
+    border-radius: 50%;
+    display: block;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+    margin: auto;
+}
+
+@keyframes animloader {
+    0% {
+        border-color: rgb(86, 155, 206) rgb(86, 206, 141) rgb(203, 206, 86) rgb(206, 144, 86);
+    }
+
+    33% {
+        border-color: rgb(206, 144, 86) rgb(86, 155, 206) rgb(86, 206, 141) rgb(203, 206, 86);
+    }
+
+    66% {
+        border-color: rgb(203, 206, 86) rgb(206, 144, 86) rgb(86, 155, 206) rgb(86, 206, 141);
+    }
+
+    100% {
+        border-color: rgb(86, 206, 141) rgb(203, 206, 86) rgb(206, 144, 86) rgb(86, 155, 206);
+    }
 }

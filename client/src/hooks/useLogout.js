@@ -1,19 +1,18 @@
-import axios from "../api/axios";
+import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
+import useInfo from "./useInfo";
 
 
 const useLogout = () => {
     const { setAuth } = useAuth();
+    const navigate = useNavigate();
+    const { setUserInfo } = useInfo();
 
     return async () => {
-        setAuth({});
-        try {
-            const response = await axios('/logout', {
-                withCredentials: true
-            });
-        } catch (err) {
-            console.error("Error logging out:", err);
-        }
+        localStorage.removeItem("accessToken");
+        setAuth({ user: null })
+        setUserInfo({});
+        navigate('/');
     };
 }
 export default useLogout

@@ -5,12 +5,14 @@ import credentials from './middleware/credentials.js';
 import path from 'path'
 import { fileURLToPath } from 'url';
 import db from './config/db.js'
-import userRoutes from './routes/routes.js'
+import userRoutes from './routes/users.js'
 import registerRoutes from './routes/signup.js'
 import authRoutes from './routes/auth.js'
-import refreshRoutes from './routes/refresh.js'
-import logoutRoutes from './routes/logout.js'
-import cookieParser from 'cookie-parser'
+import favoriteRoutes from './routes/favorite.js'
+import watchlistRoutes from './routes/watchlist.js'
+import historyRoutes from './routes/history.js'
+import listRoutes from './routes/list.js'
+import movieListRoutes from './routes/movielist.js'
 import dotenv from 'dotenv';
 
 dotenv.config()
@@ -19,12 +21,14 @@ const app = express()
 app.use(credentials);
 app.use(cors(corsOptions));
 app.use(express.json())
-app.use(cookieParser())
 app.use('/users', userRoutes)
 app.use('/signup', registerRoutes)
 app.use('/auth', authRoutes)
-app.use('/refresh', refreshRoutes)
-app.use('/logout', logoutRoutes)
+app.use('/favs', favoriteRoutes)
+app.use('/watchlist', watchlistRoutes)
+app.use('/history', historyRoutes)
+app.use('/list', listRoutes)
+app.use('/movielist', movieListRoutes)
 
 app.all('*', (req, res) => {
     res.status(404);

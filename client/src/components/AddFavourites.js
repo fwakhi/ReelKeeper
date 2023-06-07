@@ -1,12 +1,40 @@
-import React from "react";
+import React, { } from "react";
+import { saveFavorite, removeFavorite } from '../api/services/Favorites'
+import useInfo from "../hooks/useInfo";
+import { refreshUser } from "../api/axios";
 
-const AddFavourites = () => {
+const AddFavourites = (props) => {
+
+    const { movie } = props;
+    const { userInfo, setUserInfo } = useInfo()
+
+    const addFavouriteMovie = async (movie) => {
+        if (userInfo?.id && await saveFavorite(movie, userInfo?.id)) {
+            setUserInfo(await refreshUser(userInfo?.id));
+        }
+    }
+
+    const removeFavouriteMovie = async (movie) => {
+        if (userInfo?.id && await removeFavorite(movie.id, userInfo?.id)) {
+            setUserInfo(await refreshUser(userInfo?.id));
+        }
+    }
+
+    if (userInfo?.favorites?.find(m => m.id == movie.id)) {
+        return (
+            <>
+                <button className="btn favButton broken" onClick={() => removeFavouriteMovie(movie)}>
+                    <i className="fa-solid fa-heart" style={{ color: '#1f1f1f' }}></i>
+                </button>
+            </>
+        )
+    }
+
     return (
         <>
-            <span className="mr-2 h6 lead text-center">Add to Favourites</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" className="bi bi-heart-fill" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-            </svg>
+            <button className="btn favButton" onClick={() => addFavouriteMovie(movie)}>
+                <i className="fa-regular fa-heart" style={{ color: '#1f1f1f' }}></i>
+            </button>
         </>
     )
 }

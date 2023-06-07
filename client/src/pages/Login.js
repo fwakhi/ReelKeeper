@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios'
 
 import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
 
 import useAuth from "../hooks/useAuth";
-import { LOGIN_URL } from "../utils/Constants";
-import { axiosPrivate } from "../api/axios";
+import api, { AUTH_URL, refreshUser } from "../api/axios";
+import useInfo from "../hooks/useInfo";
 
 
 const Login = () => {
@@ -19,7 +18,10 @@ const Login = () => {
         }
     }, [])
 
-    const { auth, setAuth, persist, setPersist } = useAuth();
+    const { setAuth } = useAuth();
+    const { setUserInfo } = useInfo()
+
+    const isAuthorized = localStorage.getItem("accessToken") != null
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,6 +32,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
+
 
     useEffect(() => {
         if (userRef.current) {
@@ -43,16 +46,18 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         try {
-            const response = await axiosPrivate.post(LOGIN_URL,
-                JSON.stringify({ username, password })
+            const response = await api.post(AUTH_URL,
+                { username, password }
             );
             const accessToken = response?.data?.accessToken;
-            const savedUsername = response?.data?.username;
-            localStorage.setItem("savedUsername", savedUsername);
+            const user = response?.data?.user;
 
-            setAuth({ username, password, accessToken });
+            localStorage.setItem('accessToken', accessToken);
+
+            setAuth({ accessToken, user });
+            setUserInfo(await refreshUser(user?.id));
+
             setUsername('');
             setPassword('');
             navigate('/movies', { state: { from: location }, replace: true });
@@ -62,21 +67,13 @@ const Login = () => {
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized');
+                setErrMsg('No user found with that name');
             } else {
                 setErrMsg('Login Failed');
             }
             errorRef.current?.focus();
         }
     };
-
-    const togglePersist = () => {
-        setPersist(prev => !prev);
-    }
-
-    useEffect(() => {
-        localStorage.setItem("persist", persist);
-    }, [persist])
 
     const loginContent =
         (<>
@@ -95,18 +92,8 @@ const Login = () => {
                             <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
                         </Form.Group>
-                        <Link className='btn-pass'>Forgot your password?</Link>
 
                         <Button variant="dark" type="submit" className="mx-auto mt-3 mb-3" style={{ width: "100%" }}>Login</Button>
-                        <div className="persistCheck">
-                            <input
-                                type="checkbox"
-                                id="persist"
-                                onChange={togglePersist}
-                                checked={persist}
-                            />
-                            <label htmlFor="persist">Trust This Device</label>
-                        </div>
 
                         <Link to="/signup" className='btn-pass text-center'>Don't have an account? Sign up!</Link>
                     </Form>
@@ -130,10 +117,9 @@ const Login = () => {
 
     return (
         <>
-            (<Container className="h-100 mt-5 ">
+            <Container className="h-100 mt-5 ">
                 <Row className="align-items-center h-100">
-                    {/* {loginContent} */}
-                    {auth.accessToken != null ? loginSuccessContent : loginContent}
+                    {isAuthorized ? loginSuccessContent : loginContent}
                 </Row>
             </Container>
         </>
