@@ -54,8 +54,8 @@ const Home = () => {
 
                     <Row className="justify-content-md-center m-5">
                         <Col className="text-justify bordered mb-5 greenhover row">
-                            <div className="col-2"><i className="fa-solid fa-star-half-stroke"></i></div>
-                            <div className="col-10">Rate the movies you've watched and check your history of movies watched!</div>
+                            <div className="col-2"><i className="fa-solid fa-magnifying-glassg"></i></div>
+                            <div className="col-10">Check the details of any movie you search!</div>
                         </Col>
                         <Col className="text-justify bordered mb-5 purplehover row">
                             <div className="col-2"><i className="fa-solid fa-crown"> </i></div>

@@ -68,7 +68,6 @@ const Header = () => {
             </a>
             <div className="dropdown-menu text-left profileDropdown" aria-labelledby="navbarDropdown">
                 <Link to="profile" className="dropdown-item px-2" >Go to profile</Link>
-                <Link to="playground" className="dropdown-item px-2">Playground</Link>
                 <button className="dropdown-item px-2" onClick={signOut}>Sign Out</button>
             </div>
         </li>

@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-
 import { Card, Container, Form, Button, Row } from 'react-bootstrap';
 import styles from "../style/Background.module.css"
 import '../style/Login.css';
-
 import useAuth from "../hooks/useAuth";
 import api, { AUTH_URL, refreshUser } from "../api/axios";
 import useInfo from "../hooks/useInfo";
@@ -20,15 +18,11 @@ const Login = () => {
 
     const { setAuth } = useAuth();
     const { setUserInfo } = useInfo()
-
     const isAuthorized = localStorage.getItem("accessToken") != null
-
     const navigate = useNavigate();
     const location = useLocation();
-
     const userRef = useRef();
     const errorRef = useRef();
-
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errMsg, setErrMsg] = useState('');
@@ -48,8 +42,7 @@ const Login = () => {
         event.preventDefault();
         try {
             const response = await api.post(AUTH_URL,
-                { username, password }
-            );
+                { username, password });
             const accessToken = response?.data?.accessToken;
             const user = response?.data?.user;
 
@@ -57,7 +50,6 @@ const Login = () => {
 
             setAuth({ accessToken, user });
             setUserInfo(await refreshUser(user?.id));
-
             setUsername('');
             setPassword('');
             navigate('/movies', { state: { from: location }, replace: true });
@@ -67,7 +59,7 @@ const Login = () => {
             } else if (err.response?.status === 400) {
                 setErrMsg('Missing Username or Password');
             } else if (err.response?.status === 401) {
-                setErrMsg('No user found with that name');
+                setErrMsg('No user found with that name or incorrect password');
             } else {
                 setErrMsg('Login Failed');
             }

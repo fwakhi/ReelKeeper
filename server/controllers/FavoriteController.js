@@ -1,6 +1,4 @@
 import FavoriteModel from "../models/FavoriteModel.js";
-
-
 export const addToFavorites = async (req, res) => {
     try {
         await FavoriteModel.create(req.body)

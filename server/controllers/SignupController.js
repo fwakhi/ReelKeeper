@@ -1,5 +1,4 @@
 import UserModel from "../models/UserModel.js";
-
 import bcrypt from 'bcrypt';
 
 
@@ -9,7 +8,7 @@ export const handleNewUser = async (req, res) => {
         return res.status(400).json({ 'message': 'Username, email and password are required.' });
     }
 
-    // check for duplicate usernames in the db
+    // check for duplicate usernames or mails in the db
     const duplicateUsername = await UserModel.findOne({ where: { username: user } })
     if (duplicateUsername) {
         return res.sendStatus(409);

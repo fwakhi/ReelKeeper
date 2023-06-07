@@ -22,20 +22,15 @@ const AddFavourites = (props) => {
 
     if (userInfo?.favorites?.find(m => m.id == movie.id)) {
         return (
-            <>
-                <button className="btn favButton broken" onClick={() => removeFavouriteMovie(movie)}>
-                    <i className="fa-solid fa-heart" style={{ color: '#1f1f1f' }}></i>
-                </button>
-            </>
+            <button className="btn favButton broken" onClick={() => removeFavouriteMovie(movie)}>
+                <i className="fa-solid fa-heart" style={{ color: '#1f1f1f' }}></i>
+            </button>
         )
     }
-
     return (
-        <>
             <button className="btn favButton" onClick={() => addFavouriteMovie(movie)}>
                 <i className="fa-regular fa-heart" style={{ color: '#1f1f1f' }}></i>
             </button>
-        </>
     )
 }
 export default AddFavourites;
