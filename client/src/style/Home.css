@@ -1,3 +1,12 @@
+@media (max-width: 991px) {
+    .reasons-container{
+        flex-direction: column;
+        width: 500px;
+        margin: auto;
+        align-items: center;
+        
+    }
+}
 .titulo {
     font-size: 70pt;
     text-align: center;
@@ -19,8 +28,12 @@
     width: 60%;
     margin: auto;
 }
-
+.reason{
+    min-height: 100px;
+    height: fit-content;
+}
 .createAccountBtn{
+    margin: auto;
     background-color: rgb(82, 35, 119);
     border: none;
     box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.155);

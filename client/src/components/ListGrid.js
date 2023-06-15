@@ -42,9 +42,9 @@ const ListGrid = (props) => {
     const handleClick = (clickedList) => navigate(`/profile/lists/${clickedList}`)
 
     return (
-        <Container fluid className='margin-top'>
-            <Row>
-                <h1 className='mr-5'>Your lists</h1>
+        <div className='container-fluid default-lists-container end-of-lists'>
+            <Row className='margin-top'>
+                <h1 className='mr-5 ml-5'>Your lists</h1>
                 <Button variant="dark" size="lg" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseForm">+</Button>
                 <div className="collapse ml-3 mr-1 mt-2 align-middle" id="collapseForm">
                     <input type='text' placeholder='Title of the list' value={inputValue} className='mr-3 align-middle' onChange={handleInputChange} name='title' id='title' />
@@ -52,19 +52,18 @@ const ListGrid = (props) => {
                 </div>
             </Row>
             <p className={msgClass} aria-live="assertive">{scssMsg}</p>
-            <Row className="mx-auto margin-top justify-content-sm-center profileMovies d-flex">
+            <Row className="mx-auto margin-top justify-content-sm-center profileMovies d-flex ">
                 {React.Children.toArray(userInfo?.lists?.map((list) =>
-                    <Col md={3} className="d-flex flex-column image-container text-center m-3 listsSection mb-5" onClick={() => handleClick(list.id)}>
-                        <div className="col-md container rounded">
+                    <Col md={3} className="d-flex flex-column text-center mx-5 mb-5 listsSection" onClick={() => handleClick(list.id)}>
+                        <div className="col-md container rounded ">
                             <i className="fa-solid fa-film"></i>
                         </div>
                         <h3 className="mt-4">{list.title}</h3>
-                        {/* <Image className='mb-1 mt-4' src={imgUrl + movie.poster_path} onClick={() => handleClick(movie.id)} alt="poster" rounded fluid /> */}
                     </Col>
                 ))}
 
             </Row>
-        </Container>
+        </div>
     );
 }
 export default ListGrid;

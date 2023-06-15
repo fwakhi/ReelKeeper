@@ -87,26 +87,6 @@ const MovieDetail = () => {
                                 </div>
                             </div>
 
-                            {/* <Tabs
-                        defaultActiveKey="profile"
-                        id="uncontrolled-tab-example"
-
-                    >
-                        <Tab eventKey="home" title="Cast" className="castTag">
-                            <div className="card card-body">
-                                {movie.cast?.map(act => (<span><b>{act.name}</b> - {act.character} </span>))}
-                            </div> 
-                        </Tab>
-
-                        <Tab eventKey="profile" title="Crew" className="crewTag">
-                            <div className="card card-body">
-                                {movie.crew?.map(cr => (<span><b>{cr.name}</b> - {cr.job} </span>))}
-                            </div>
-                        </Tab>
-
-                    </Tabs> */}
-
-
                             {/* RECOMMENDATIONS  */}
                             <p className="mt-5">If you liked this title, you'll probably like...</p>
 

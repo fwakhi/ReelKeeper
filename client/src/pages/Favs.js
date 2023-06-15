@@ -15,7 +15,7 @@ const Favs = () => {
                 <div className="col-10">
                     <h2>Hi @{userInfo?.username}, these are your favs:</h2>
                 </div>
-                <div className="col-12">
+                <div className="col-12 ml-5">
                     <div>
                         {userInfo?.favorites.length > 0 ? <MovieGrid movies={userInfo?.favorites} /> : <NoMovies />}
                     </div>
