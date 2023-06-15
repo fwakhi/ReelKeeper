@@ -69,7 +69,7 @@ const Login = () => {
 
     const loginContent =
         (<>
-            <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded min-width">
+            <Card className="col-5 mx-auto shadow p-3 mb-5 bg-white rounded min-width margin-top">
                 <Card.Body>
                     <p ref={errorRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <Card.Title>Login</Card.Title>

@@ -4,7 +4,6 @@ import useInfo from "../hooks/useInfo";
 import { refreshUser } from "../api/axios";
 
 const AddFavourites = (props) => {
-
     const { movie } = props;
     const { userInfo, setUserInfo } = useInfo()
 

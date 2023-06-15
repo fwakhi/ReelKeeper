@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthProvider';
 import { InfoProvider } from './context/InfoProvider';
 import App from './App';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,7 +23,9 @@ root.render(
                     <Routes>
                         <Route path="/*" element={<App />} />
                     </Routes>
+                    <Footer />
                 </InfoProvider>
+                
             </AuthProvider>
         </BrowserRouter>
     </React.StrictMode>

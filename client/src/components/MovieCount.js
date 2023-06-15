@@ -21,7 +21,7 @@ const MovieCount = () => {
                 <div className="col-2 text-center border-dark border-right"><h4>{totalHistory}</h4>FILMS</div>
                 <div className="col-2 text-center border-dark border-right"><h4>{totalFavs}</h4>FAVS</div>
                 <div className="col-2 text-center border-dark border-right"><h4>{thisYearFilms}</h4>2023</div>
-                <div className="col-2 text-center border-dark border-right"><h4>{totalWatchlist}</h4>WATCHLIST</div>
+                <div className="col-2 text-center border-dark border-right"><h4>{totalWatchlist}</h4><span className="watchlist">WATCHLIST</span></div>
                 <div className="col-2 text-center"><h4>{userInfo?.lists?.length}</h4>LISTS</div>
             </div>
         </div>
